@@ -5,7 +5,7 @@ import gala.potential as gp
 from gala.units import galactic
 
 
-mw = gp.BovyMWPotential2014
+mw = gp.BovyMWPotential2014()
 default_disk_bulge = gp.CCompositePotential()
 default_disk_bulge['disk'] = mw['disk']
 default_disk_bulge['bulge'] = mw['bulge']
@@ -20,7 +20,7 @@ def get_bar_model(Omega, Snlm, disknobar=None):
     if disknobar is None:
         disknobar = default_disk_bulge
 
-    res = minimize(corot_func, x0=4., args=(Omega, ))
+    res = minimize(corot_func, x0=4., args=(Omega, disknobar))
     r_cr = res.x[0]
     r_s = r_cr / 3.2 # 3.2 scales this to the value WZ2012 use (60 km/s/kpc)
 
