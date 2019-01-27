@@ -66,6 +66,57 @@
 \label{sec:intro}
 
 
+\section{Data}
+
+\section{Density model}
+We first transform our  simulated Pal 5 data points to the tangent sky plane using a Zeanit (Lambert azimuthal) equal-area projection, such that we can define a Gaussian. We call these coordinates, $X$, $Y$.
+
+We then fit a 3rd order polynomial to the leading and trailing arm separately, in this projected space. 
+
+We place K nodes, k, equally in distance along the polynomial fits to the leading and trailing arm. 
+
+At each node, k, along the polynomial we find the tangent/parallel unit vector,  $\hat{u}$, and the perpendicular normal unit vector, $\hat{v}$, to the stream. 
+
+At each node, k, we define the co-variance matrix, $\tilde{C_k}$:
+
+\begin{equation}
+\tilde{C_k} = 
+\begin{pmatrix}
+    h^2 & 0  \\
+    0 & S_k^2  \\
+\end{pmatrix}
+\end{equation}
+where $h$ is bandwidth of the Gaussian components along the polynomial fit and $S_k$ is the  width of the Gaussians in the perpendicular (normal) direction of the stream at any node, k. 
+
+We transform it from the space spanned by the $\hat{u}$,  $\hat{v}$ vectors to $X$, $Y$:
+\begin{equation}
+C_k = \rm{R} \tilde{C_k} \rm{R}^T
+\end{equation}
+where
+\begin{equation}
+\rm{R} = 
+\begin{pmatrix}
+    \rm{cos} \theta & - \rm{cos} \theta  \\
+    \rm{cos} \theta & \rm{cos} \theta \\
+\end{pmatrix}
+\end{equation}
+and  $\theta$ is the angle between the tangent sky plane and the unit vector, $\hat{u}$.
+
+To compute our density model along the leading at trailing stream, for the K nodes, k, we define ln density  and sum over the K nodes:
+\begin{equation}
+\rm{ln} \sum ( \alpha_k \mathcal{N}\left(\mu_k, C_k\right))
+\end{equation}
+where $\mu_k$ denotes the location of each node, k, along the leading and trailing polynomial fits, respectively, $C_k$ is the covariance matrix, and $\alpha_k$ is the amplitude of the Gaussian (representing density at specific node, k). 
+
+We then fit for the perpendicular width, $S_k$, to the stream (polynomial fits) and the amplitude of the Gaussians, $\alpha_k$, which represent the density along the stream. 
+
+%Explain background model for data.
+
+We compute the width and density of both or simulated Pal 5 streams and the DECaLS data fitting the above Gaussian mixture model. 
+
+
+
+
 \acknowledgements{
 It is a pleasure to thank
 
