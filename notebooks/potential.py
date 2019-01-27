@@ -1,3 +1,4 @@
+from astropy.coordinates.matrix_utilities import rotation_matrix
 import astropy.units as u
 from scipy.optimize import minimize
 
@@ -16,7 +17,7 @@ def corot_func(r_cr, Omega, disknobar):
     return abs(vc - Omega*r_cr * u.kpc).decompose().value[0]
 
 
-def get_bar_model(Omega, Snlm, disknobar=None):
+def get_bar_model(Omega, Snlm, alpha=-27*u.deg, disknobar=None):
     if disknobar is None:
         disknobar = default_disk_bulge
 
@@ -26,4 +27,5 @@ def get_bar_model(Omega, Snlm, disknobar=None):
 
     return gp.SCFPotential(m=5e9 / 10., r_s=r_s, # 10 is a MAGIC NUMBER: believe
                            Snlm=Snlm,
-                           units=galactic)
+                           units=galactic,
+                           R=rotation_matrix(alpha, 'z'))
