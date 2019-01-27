@@ -1,0 +1,101 @@
+% Copyright 2019 the authors. All rights reserved.
+
+% TODO:
+% -
+
+\documentclass[modern]{aastex62}
+
+\usepackage{amsmath}
+
+% typography
+\setlength{\parindent}{1.\baselineskip}
+\newcommand{\acronym}[1]{{\small{#1}}}
+\newcommand{\package}[1]{\textsl{#1}}
+\newcommand{\gaia}{\textsl{Gaia}}
+\newcommand{\pans}{\textsl{Pan-STARRS}}
+\newcommand{\DR}{\acronym{DR2}}
+\newcommand{\msun}{\textrm{M}_\odot}
+\newcommand{\kpc}{\textrm{kpc}}
+\newcommand{\kms}{\ensuremath{\textrm{km}~\textrm{s}^{-1}}}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\masyr}{\ensuremath{\textrm{mas}~\textrm{yr}^{-1}}}
+\newcommand{\feh}{\ensuremath{[\textrm{Fe} / \textrm{H}]}}
+\newcommand{\given}{\,|\,}
+
+\newcommand{\sectionname}{Section}
+\newcommand{\equationname}{Equation}
+\renewcommand{\tablename}{Table}
+
+\newcommand{\todo}[1]{{\color{red} TODO: #1}}
+
+\newcommand{\changes}[1]{{\textbf{#1}}}
+% \newcommand{\changes}[1]{{#1}}
+
+% aastex parameters
+% \received{not yet; THIS IS A DRAFT}
+%\revised{not yet}
+%\accepted{not yet}
+% % Adds "Submitted to " the arguement.
+% \submitjournal{ApJ}
+\shorttitle{Stuff}
+\shortauthors{People}
+
+%@arxiver{}
+
+\begin{document}\sloppy\sloppypar\raggedbottom\frenchspacing % trust me
+
+\title{Flashy title}
+
+% \author[0000-0003-0872-7098]{Adrian~M.~Price-Whelan}
+% \affiliation{Department of Astrophysical Sciences,
+%              Princeton University, Princeton, NJ 08544, USA}
+% \email{adrn@astro.princeton.edu}
+% \correspondingauthor{Adrian M. Price-Whelan}
+
+% \author[0000-0002-7846-9787]{Ana Bonaca}
+% \affiliation{Harvard--Smithsonian Center for Astrophysics, Cambridge, MA 02138, USA}
+
+\begin{abstract}\noindent % trust me
+    Words!
+\end{abstract}
+
+\keywords{Galaxy: halo --- dark matter ---
+          Galaxy: kinematics and dynamics}
+
+\section{Introduction}
+\label{sec:intro}
+
+
+\acknowledgements{
+It is a pleasure to thank
+
+
+This work has made use of data from the European Space Agency (ESA) mission {\it
+Gaia} (\url{https://www.cosmos.esa.int/gaia}), processed by the {\it Gaia} Data
+Processing and Analysis Consortium (DPAC,
+\url{https://www.cosmos.esa.int/web/gaia/dpac/consortium}). Funding for the DPAC
+has been provided by national institutions, in particular the institutions
+participating in the {\it Gaia} Multilateral Agreement.  This research was
+started at the NYC Gaia DR2 Workshop at the Center for Computational
+Astrophysics of the Flatiron Institute in 2018 April.
+
+AB acknowledges generous support from the Institute for Theory and Computation
+at Harvard University.
+% All code used in this work and all results are available at
+% \url{https://github.com/adrn/GD1-DR2}.
+}
+
+\software{
+    \package{Astropy} \citep{astropy, astropy:2018},
+    \package{dustmaps}\footnote{\url{https://github.com/gregreen/dustmaps}},
+    \package{gala} \citep{gala},
+    \package{IPython} \citep{ipython},
+    \package{matplotlib} \citep{mpl},
+    \package{numpy} \citep{numpy},
+    \package{scipy} \citep{scipy}
+}
+
+\bibliographystyle{aasjournal}
+\bibliography{pal5fan}
+
+\end{document}
