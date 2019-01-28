@@ -67,6 +67,38 @@
 
 
 \section{Data}
+\label{sec:data}
+
+\section{Simulations}
+\label{sec:sim}
+We run a suite of Pal 5 simulations to explore the mechanism leading the the observed morphology of the stream. In particular, we are interested reproducing the length asymmetry between the leading and trailing arm as well as the gap in the trailing arm and the ``fan" in the leading arm. In Section \ref{sec:potential}, we describe the potentials in which we simulate the evolution of Pal 5, and in Section \ref{sec:potential} we describe our suite of Pal 5 stream simulations. 
+
+\subsection{Potential}
+\label{sec:potential}
+We simulate the evolution of Pal 5 in two types of potentials:
+
+{\bf 1) NFW potential}: consisting of a disk, bulge and halo. We use two different fattenings for the dark matter halo to illustrate Pal 5 on a regular as opposed to chaotic orbit.  
+
+{\bf  2) Barred potential}: consisting af a disk, halo and bar with varying pattern speeds and bar masses.
+We use the basis function expansion (\citealt{wang:2012}). 
+We use $n=9$, $l=19$ (\citealt{banik:2019}). 
+
+We explore a range of pattern speeds of the bar from $\Omega_b$ = (25 to 66) $\kms$ kpc$^{-1}$ in increments of 1 kpc$^{-1}$. As bars are not expected to extend beyond their co-rotation radius (\citealt{binney:2008}), we   
+
+Additionally, we test two different bar masses, M$_{bar} = 5 \times 10^{9} \msun$ and M$_{bar} = 1 \times 10^{10} \msun$, respectively. 
+
+
+\subsection{Stream modeling}
+\label{sec:modeling}
+For all simulations we assume a 6D phase space position of Pal 5 as: RA = 229.018 deg, Dec = - 0.24 deg, distance = 22.9 kpc, $v_r$ = -58.7 , pm$_{RA,cosdec}= -2.296$ mas and pm$_{Dec} = -2.257$ mas. We first transform Pal 5's 6D phase space position into a Galactocentric frame by assuming $v_{lsr} = (11.1, 24.0, 7.25) \kms$, 
+$v_{circ} = 220  \kms$ and a distance from the Sun to the Galactic centre of 8.1 kpc. 
+
+We first integrate the cluster backwards in time for 4 Gyr in steps of 0.5 Myr. Subsequently, simulate the evolution of Pal 5 using the ``particle-spray" stream modeling method developed by \citet{Fardal:2015}. We release two particles through each of the two Lagrange points every 10 Myr. We repeat this in first the NFW potential setting $q_z = 0.94$ (\citealt{Bovy:2016}) and subsequently in a flattened NFW potential ($q_z = 0.5$ to induce a chaotic orbit). 
+
+Additionally, we simulate the evolution of Pal 5's stream in the barred potential
+
+
+
 
 \section{Density model}
 We first transform our  simulated Pal 5 data points to the tangent sky plane using a Zeanit (Lambert azimuthal) equal-area projection, such that we can define a Gaussian. We call these coordinates, $X$, $Y$.
@@ -114,6 +146,7 @@ We then fit for the perpendicular width, $S_k$, to the stream (polynomial fits) 
 
 We compute the width and density of both or simulated Pal 5 streams and the DECaLS data fitting the above Gaussian mixture model. 
 
+\section{Discussion}
 
 
 
