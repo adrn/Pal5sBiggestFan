@@ -77,13 +77,13 @@ We run a suite of Pal 5 simulations to explore the mechanism leading the the obs
 \label{sec:potential}
 We simulate the evolution of Pal 5 in two types of potentials:
 
-{\bf 1) NFW potential}: consisting of a disk, bulge and halo. We use two different fattenings for the dark matter halo to illustrate Pal 5 on a regular as opposed to chaotic orbit.  
+{\bf 1) NFW potential}: We use the {\small MWPotential2014} (\citealt{Bovy:2015}) consisting of a disk, bulge and halo. We use two different fattenings for the dark matter halo to illustrate Pal 5 on a regular as opposed to chaotic orbit.  
 
 {\bf  2) Barred potential}: consisting af a disk, halo and bar with varying pattern speeds and bar masses.
-We use the basis function expansion (\citealt{wang:2012}). 
-We use $n=9$, $l=19$ (\citealt{banik:2019}). 
+Following \citet{wang:2012}, the bar potential is a basis-function (BFE) representation of a triaxial, exponential density profile. We include terms up to $n=9$, $l=19$ on the ``self-consistent field" BFE, as this yields a viable representation of the density of the bar (\citealt{banik:2019}). 
 
-We explore a range of pattern speeds of the bar from $\Omega_b$ = (25 to 66) $\kms$ kpc$^{-1}$ in increments of 1 kpc$^{-1}$. As bars are not expected to extend beyond their co-rotation radius (\citealt{binney:2008}), we   
+We explore a range of pattern speeds of the bar from $\Omega_b$ = (25 to 66) $\kms$ kpc$^{-1}$ in increments of 1 kpc$^{-1}$. Bars are not expected to extend beyond their co-rotation radius (\citealt{binney:2008}). Therefore given a pattern speed, we compute the co-rotation radius based on the mass profiles of the disk and halo and exponentially truncate our bar at this radius. If the scaling of the bar were left unaltered, this would significantly affect the gravitational  influence of the bar, as a slower bar would have its length underestimated and vice versa (\todo{subtily make the point that bovy and banik didn't do this?}).
+Including the bar mass when calculating the co-rotation radius does not much affect the radius of co-rotation (see Figure). 
 
 Additionally, we test two different bar masses, M$_{bar} = 5 \times 10^{9} \msun$ and M$_{bar} = 1 \times 10^{10} \msun$, respectively. 
 
