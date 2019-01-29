@@ -66,25 +66,25 @@
 
 \section{Introduction}
 \label{sec:intro}
-%%Opening sentences on streams
+\todo{1. Opening sentences on streams}.
 
-%%Motivate deepest data of Pal 5
-	% Emphasize Pal 5 is the only cold stream for which we know the progenitor.
-	% Mention other papers: Odenkirchen, Ibata, Balbinot, Bernard (PS1)
-	% Mention remaining puzzles: main sequence stars,
-	% is the trailing arm thinner, does the leading arm truncate?
+\todo{2. Motivate deepest data of Pal 5}
+\begin{itemize}
+\item Emphasize Pal 5 is the only cold stream for which we know the progenitor.
+\item	 Mention other papers: Odenkirchen, \citet{Ibata:2016}, \citet{Ibata:2017}, \citet{Balbinot:2017}, Bernard (PS1: \citealt{Bernard:2016})
+\item	 Mention remaining puzzles: main sequence stars, is the trailing arm thinner, does the leading arm truncate?
+\end{itemize}
 
-
-%%Idea: Motivate through gaps in streams
-	%GD1 gaps (Boanaca, Price-Whelan)., Pal 5 gaps (Yoon), but other mechanism can 
-	%produce them in prograde (Amorisco, Pearson). Emphasize why GD1 is a much cleaner case than Pal 5.
-	%We need depper data, and data further south to fully understand what has created the gaps in Pal 5
+\todo{3. Idea: Motivate through gaps in streams}
+\begin{itemize}
+\item	GD1 gaps (\citealt{Price-Whelan:2018}, \citealt{Bonaca:2018b})., Pal 5 gaps (\citealt{Yoon:2011}), but other mechanism can produce them in prograde (\citealt{Amorisco:2016}, \citealt{Pearson:2017}). Emphasize why GD1 is a much cleaner case than Pal 5.
+\item	We need deeper data, and data further south to fully understand what has created the gaps in Pal 5
+\end{itemize}
 	
-	
-%%wrapping up intro: 
-%In this paper we present the deepest map of Pal 5 to date, and we extend the search of stream members further south. (Explain new data briefly: DECaLS). We find non-uniformities in the stream, in particular ....(fan, asymmetries, gaps)....  We compare our data to a suite of Pal 5 simulations in various potentials using a detailed density model, to explore various mechanisms which could lead to the formation of the new observed features presented here. 
-%
-%The paper is structured as follows: in Section \ref{sec:data}, we present new DECaLS Pal 5 data, in Section \ref{sec:sim} we describe the Galactic potentials and Pal 5 simulations. In Section \ref{sec:density} we describe our Gaussian mixture model we use to fit the density and width of Pal 5. We show our comparisons of the simulations and data using the density model in Section \ref{sec:results}. We discuss the implications of our results and outstanding questions about Pal 5's morphology in Section \ref{sec:discussion}, and we conclude in Section \ref{sec:conclusion}. 
+%wrapping up intro: 
+In this paper we present the deepest map of Pal 5 to date, and we extend the search of stream members further south. (Explain new data briefly: DECaLS). We find non-uniformities in the stream, in particular ....(fan, asymmetries, gaps)....  We compare our data to a suite of Pal 5 simulations in various potentials using a detailed density model, to explore various mechanisms which could lead to the formation of the new observed features presented here. 
+
+The paper is structured as follows: in Section \ref{sec:data}, we present new DECaLS Pal 5 data, in Section \ref{sec:sim} we describe the Galactic potentials and Pal 5 simulations. In Section \ref{sec:density} we describe our Gaussian mixture model we use to fit the density and width of Pal 5. We show our comparisons of the simulations and data using the density model in Section \ref{sec:results}. We discuss the implications of our results and outstanding questions about Pal 5's morphology in Section \ref{sec:discussion}, and we conclude in Section \ref{sec:conclusion}. 
 
 
 
@@ -133,7 +133,7 @@ r_1 = \left[\left((x/x_0)^2 + (y/y_0)^2\right)^2 +( z/z_0)^4\right]^{1/4}
 \begin{equation}
 r_2 = \left[\frac{q^2(x^2 + y^2) + z^2)}{z_0^2}\right]^{1/2}
 \end{equation}
-where the scale length is $x_0$ = 1.49 kpc, $y_0$ = 0.58 kpc, $z_0$ = 0.4 kpc, and q = 0.6. We include terms up to $n=9$, $l=19$ in the ``self-consistent field" BFE formalism, as this yields a good representation of the density of the bar (\citealt{Banik:2019})\footnote{Note that using lower order terms (e.g. n=6, l = 8) for the basis function expansion does not much change the morphology or kinematics of the Pal 5 stream.}. We explore barred models with pattern speeds of $\Omega_b$ = ($25 - 65$) $\kms$ kpc$^{-1}$ in increments of 1 kpc$^{-1}$ and bar masses of $M_{bar} = 5 \times 10^{9}$ $\msun$ and $M_{bar} = 1 \times 10^{10}$ $\msun$.
+where the scale length is $x_0$ = 1.49 kpc, $y_0$ = 0.58 kpc, $z_0$ = 0.4 kpc, and q = 0.6. We include terms up to $n=9$, $l=19$ in the ``self-consistent field" BFE formalism, as this yields a good representation of the density of the bar (\citealt{Banik:2019})\footnote{Note that using lower order terms (e.g. n=6, l = 8) for the basis function expansion does not much change the morphology or kinematics of the Pal 5 stream.}. We explore barred models with pattern speeds of $\Omega_b$ = ($25 - 65$) $\kms$ kpc$^{-1}$ in increments of 1 kpc$^{-1}$, we explore bar masses of $M_{bar} = 5 \times 10^{9}$ $\msun$ and $M_{bar} = 1 \times 10^{10}$ $\msun$ (\citealt{Portail:2017}), and we fix the present day angular offset from the Galactic x-axis in the direction of rotation, $\alpha = 27\deg$.
 \end{itemize}
 
 In \citet{wang:2012}, they construct a bar with a pattern speed of $\Omega_b$ =  60 $\kms$ kpc$^{-1}$. This corresponds to a barred model with a co-rotation at $r_{\rm CR} = 3.2$ kpc. However, in this work we explore a range of pattern speeds. As bars are not expected to extend much beyond their co-rotation radius (\citealt{binney:2008}), we adjust the physical scaling of the bar when varying the pattern speed. %In \citet{wang:2012}, the scale-radius, $r_s$, assumed in the BFE, is  $r_s = 1.1$ kpc. 
@@ -228,9 +228,19 @@ The left panel of Figure \ref{fig:static} shows the Pal 5 on a regular orbit in 
 \label{fig:static}
 \end{figure}
 
+
+
+
 \subsection{Barred Potentials}
 In Figure \ref{fig:bar} we show four different simulated Pal 5 streams that all yield densities and widths comparable to the data. These streams were evolved in a barred potential with pattern speeds of $\Omega_b = (...) \kms$ kpc$^{-1}$. We selected these four examples through visual inspection of the density and width of the data and the simulated streams. 
 
+
+
+\begin{figure}
+\centerline{\includegraphics[width=\columnwidth]{bar.png}}
+\caption{\todo{Placeholder, show some bar models along with density, width from gaussian mixture model.. Maybe in other columns. Here $M_{bar} = 10^{10} \msun$}}
+\label{fig:bar}
+\end{figure}
 
 \section{Discussion}
 \label{sec:discussion}
