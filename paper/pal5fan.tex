@@ -72,7 +72,7 @@
 
 \section{Simulations}
 \label{sec:sim}
-In order to explore the mechanism leading the the observed morphology of the stream (e.g. the length asymmetry between the leading and trailing arm, as well as the gap in the trailing arm, and the ``fan" in the leading arm), we run a suite of Pal 5 simulations. In particular, we investigate whether Pal 5's ``fan" can be explained from mild chaos  (\citealt{Pearson:2015}, \citealt{Price-Whelan:2016}), or whether Pal 5 is interacting with the Galactic bar (\citealt{Pearson:2017}, \citealt{Erkal:2017}, \citealt{Banik:2019}). In Section \ref{sec:potential}, we describe the potentials in which we simulate the evolution of Pal 5, and in Section \ref{sec:potential} we describe our suite of Pal 5 stream simulations. 
+In order to explore the mechanism leading the the observed morphology of the stream (e.g. the length asymmetry between the leading and trailing arm, as well as the gap in the trailing arm, and the ``fan" in the leading arm), we run a suite of Pal 5 simulations. In particular, we investigate whether Pal 5's ``fan" in the leading arm can be explained from mild chaos  (\citealt{Pearson:2015}, \citealt{Price-Whelan:2016}), or whether Pal 5 is interacting with the Galactic bar (\citealt{Pearson:2017}, \citealt{Erkal:2017}, \citealt{Banik:2019}). In Section \ref{sec:potential}, we describe the potentials in which we simulate the evolution of Pal 5, and in Section \ref{sec:potential} we describe our suite of Pal 5 stream simulations. 
 
 \subsection{Potential}
 \label{sec:potential}
@@ -88,7 +88,7 @@ We simulate the evolution of Pal 5 in two classes of three-component Galactic po
 \end{equation}
 
 \begin{equation}
-r_1 = \left[((x/x_0)^2 + (y/y_0)^2)^2 +( z/z_0)^4\right]^{1/4}
+r_1 = \left[\left((x/x_0)^2 + (y/y_0)^2\right)^2 +( z/z_0)^4\right]^{1/4}
 \end{equation}
 
 \begin{equation}
@@ -104,7 +104,7 @@ To include the fact that we are using various pattern speeds in our bar models, 
 r_{s, \Omega_b}  = r_{{\rm CR}, \Omega_b}/r_{{\rm CR, Wang 2012}}
 \end{equation} 
 
-If this scaling parameter of the bar is left unaltered (e.g. for the bar models used in \citealt{price:2016b}, \citealt{Pearson:2017}, \citealt{Erkal:2017}, \citealt{Banik:2019}), this creates a too strong a bar quadrupole for the faster pattern speeds, and too weak bar quadrupole for the slower pattern speeds. 
+If this scaling is not included (e.g. see bar models used in \citealt{price:2016b}, \citealt{Pearson:2017}, \citealt{Erkal:2017}, \citealt{Banik:2019}), this creates too strong a bar quadrupole for the faster pattern speeds, and too weak a bar quadrupole for the slower pattern speeds. 
 
 In Figure \ref{fig:vcirc}, we show the circular velocity curve for our barred, three-component Galactic potential for the range of  $\Omega_b$ = ($25 - 65$) $\kms$ kpc$^{-1}$ and for the two different bar masses explored in this paper (red: $M_{bar} = 5 \times 10^{9}$ $\msun$, blue: $M_{bar} = 1 \times 10^{10}$ $\msun$).
 
@@ -121,7 +121,7 @@ In Figure \ref{fig:vcirc}, we show the circular velocity curve for our barred, t
 For all simulations we assume a 6D phase space position of Pal 5 as: RA = 229.018 deg, Dec = - 0.24 deg, distance = 22.9 kpc, $v_r$ = -58.7 , pm$_{RA,cosdec}= -2.296$ mas and pm$_{Dec} = -2.257$ mas. We first transform Pal 5's 6D phase space position into a Galactocentric frame by assuming $v_{lsr} = (11.1, 24.0, 7.25) \kms$, 
 $v_{circ} = 220  \kms$ and a distance from the Sun to the Galactic centre of 8.1 kpc. 
 
-We first integrate the cluster backwards in time for 4 Gyr in steps of 0.5 Myr. Subsequently, we model the evolution of Pal 5 using the ``particle-spray" stream generating method developed by \citet{Fardal:2015}. We release two particles through each of the two Lagrange points every 10 Myr. We repeat this in first the NFW potential setting $q_z = 0.94$ (\citealt{Bovy:2016}) and subsequently in a flattened NFW potential ($q_z = 0.5$ to induce a chaotic orbit). 
+We integrate the cluster backwards in time for 4 Gyr in steps of 0.5 Myr. Subsequently, we simulate the forward evolution of Pal 5 using the ``particle-spray" stream generating method developed by \citet{Fardal:2015}, such that the cluster ends at its present day position. We release two particles through each of the two Lagrange points every 10 Myr. We repeatedly at this in first the NFW potential setting $q_z = 0.94$ (\citealt{Bovy:2016}) and subsequently in a flattened NFW potential ($q_z = 0.5$ to induce a chaotic orbit). 
 
 Additionally, we simulate the evolution of Pal 5's stream in the barred potential, where we vary the pattern speed from and the bar mass, while updating the physical scaling of the bar (see Section \ref{sec:potential} and Figure \ref{fig:vcirc}). 
 
