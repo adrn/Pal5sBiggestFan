@@ -26,6 +26,7 @@
 \newcommand{\sectionname}{Section}
 \newcommand{\equationname}{Equation}
 \renewcommand{\tablename}{Table}
+\usepackage{upgreek}
 
 \newcommand{\todo}[1]{{\color{red} TODO: #1}}
 
@@ -83,7 +84,7 @@ Likely members of the Palomar 5 globular cluster in the coordinate system aligne
 
 \section{Simulations}
 \label{sec:sim}
-In order to explore the mechanism leading the the observed morphology of the stream (e.g. the length asymmetry between the leading and trailing arm, as well as the gap in the trailing arm, and the ``fan" in the leading arm), we run a suite of Pal 5 simulations. In particular, we investigate whether Pal 5's ``fan" can be explained from mild chaos  (\citealt{Pearson:2015}, \citealt{Price-Whelan:2016}), or whether Pal 5 is interacting with the Galactic bar (\citealt{Pearson:2017}, \citealt{Erkal:2017}, \citealt{Banik:2019}). In Section \ref{sec:potential}, we describe the potentials in which we simulate the evolution of Pal 5, and in Section \ref{sec:potential} we describe our suite of Pal 5 stream simulations. 
+In order to explore the mechanism leading the the observed morphology of the stream (e.g. the length asymmetry between the leading and trailing arm, as well as the gap in the trailing arm, and the ``fan" in the leading arm), we run a suite of Pal 5 simulations. In particular, we investigate whether Pal 5's ``fan" in the leading arm can be explained from mild chaos  (\citealt{Pearson:2015}, \citealt{Price-Whelan:2016}), or whether Pal 5 is interacting with the Galactic bar (\citealt{Pearson:2017}, \citealt{Erkal:2017}, \citealt{Banik:2019}). In Section \ref{sec:potential}, we describe the potentials in which we simulate the evolution of Pal 5, and in Section \ref{sec:potential} we describe our suite of Pal 5 stream simulations. 
 
 \subsection{Potential}
 \label{sec:potential}
@@ -99,7 +100,7 @@ We simulate the evolution of Pal 5 in two classes of three-component Galactic po
 \end{equation}
 
 \begin{equation}
-r_1 = \left[((x/x_0)^2 + (y/y_0)^2)^2 +( z/z_0)^4\right]^{1/4}
+r_1 = \left[\left((x/x_0)^2 + (y/y_0)^2\right)^2 +( z/z_0)^4\right]^{1/4}
 \end{equation}
 
 \begin{equation}
@@ -115,7 +116,7 @@ To include the fact that we are using various pattern speeds in our bar models, 
 r_{s, \Omega_b}  = r_{{\rm CR}, \Omega_b}/r_{{\rm CR, Wang 2012}}
 \end{equation} 
 
-If this scaling parameter of the bar is left unaltered (e.g. for the bar models used in \citealt{price:2016b}, \citealt{Pearson:2017}, \citealt{Erkal:2017}, \citealt{Banik:2019}), this creates a too strong a bar quadrupole for the faster pattern speeds, and too weak bar quadrupole for the slower pattern speeds. 
+If this scaling is not included (e.g. see bar models used in \citealt{price:2016b}, \citealt{Pearson:2017}, \citealt{Erkal:2017}, \citealt{Banik:2019}), this creates too strong a bar quadrupole for the faster pattern speeds, and too weak a bar quadrupole for the slower pattern speeds. 
 
 In Figure \ref{fig:vcirc}, we show the circular velocity curve for our barred, three-component Galactic potential for the range of  $\Omega_b$ = ($25 - 65$) $\kms$ kpc$^{-1}$ and for the two different bar masses explored in this paper (red: $M_{bar} = 5 \times 10^{9}$ $\msun$, blue: $M_{bar} = 1 \times 10^{10}$ $\msun$).
 
@@ -132,7 +133,7 @@ In Figure \ref{fig:vcirc}, we show the circular velocity curve for our barred, t
 For all simulations we assume a 6D phase space position of Pal 5 as: RA = 229.018 deg, Dec = - 0.24 deg, distance = 22.9 kpc, $v_r$ = -58.7 , pm$_{RA,cosdec}= -2.296$ mas and pm$_{Dec} = -2.257$ mas. We first transform Pal 5's 6D phase space position into a Galactocentric frame by assuming $v_{lsr} = (11.1, 24.0, 7.25) \kms$, 
 $v_{circ} = 220  \kms$ and a distance from the Sun to the Galactic centre of 8.1 kpc. 
 
-We first integrate the cluster backwards in time for 4 Gyr in steps of 0.5 Myr. Subsequently, we model the evolution of Pal 5 using the ``particle-spray" stream generating method developed by \citet{Fardal:2015}. We release two particles through each of the two Lagrange points every 10 Myr. We repeat this in first the NFW potential setting $q_z = 0.94$ (\citealt{Bovy:2016}) and subsequently in a flattened NFW potential ($q_z = 0.5$ to induce a chaotic orbit). 
+We integrate the cluster backwards in time for 4 Gyr in steps of 0.5 Myr. Subsequently, we simulate the forward evolution of Pal 5 using the ``particle-spray" stream generating method developed by \citet{Fardal:2015}, such that the cluster ends at its present day position. We release two particles through each of the two Lagrange points every 10 Myr. We repeatedly at this in first the NFW potential setting $q_z = 0.94$ (\citealt{Bovy:2016}) and subsequently in a flattened NFW potential ($q_z = 0.5$ to induce a chaotic orbit). 
 
 Additionally, we simulate the evolution of Pal 5's stream in the barred potential, where we vary the pattern speed from and the bar mass, while updating the physical scaling of the bar (see Section \ref{sec:potential} and Figure \ref{fig:vcirc}). 
 
@@ -208,7 +209,7 @@ In Figure \ref{fig:bar} we show four different simulated Pal 5 streams that all 
 \label{sec:discussion}
 
 \subsection{Other perturbers}
-As Pal 5 is moving prograde with respect to the disk it will be subject to interactions with both the bar (\citealt{Hattori:2016}, \citealt{price:2016b}) and molecular clouds (\citealt{amorisco:2016}). Additionally, dark matter substructure could also be interacting with the stream (although probing inner potential: \citealt{Garrison-Kimmel:2017}). 
+As Pal 5 is moving prograde with respect to the disk it will be subject to interactions with both the bar (\citealt{Hattori:2016}, \citealt{price:2016b}), molecular clouds (\citealt{amorisco:2016}) and possibly spiral arms (\citealt{Banik:2019}). Additionally, dark matter substructure could also be interacting with the stream. Pal 5 is probing the inner part of the Galatic potential, so it might be unlikely that there are many dark matter subhalos in this part of the halo (\citealt{Garrison-Kimmel:2017}). However, the GD1 stellar stream orbit probes a similar region of the Galatic potential, and shows evidence of an interaction with a dark substructure (\citealt{Price-Whelan:2018}, \citealt{Bonaca:2018b}). 
 
 \begin{itemize}
 \item{Molecular clouds}
@@ -217,8 +218,71 @@ As Pal 5 is moving prograde with respect to the disk it will be subject to inter
 \end{itemize}
 
 
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+
 \acknowledgements{
 It is a pleasure to thank
+
+
+\appendix
+\section{Math for density model}
+We define our likelihood function, $\mathcal{L} $, as:
+
+\begin{equation}
+    \begin{split}
+     \mathcal{L} = P(\{x_n\} \given \{\mu_k\}, \{C_k\}, \{\alpha_k\} ) &= 
+            \prod_n \sum_k P(x_n \given \mu_k, C_k, \alpha_k )  \quad 
+    \end{split}
+\end{equation}
+where $K$ is the total number of nodes, $\mu_k$ is the mean position of each node, $N$ is the total number of ``data points", $\alpha$ is the amplitude, $x_n$ = $(\vdots)$ is the data points and $P$ is:
+\begin{equation}
+    \begin{split}
+       P(x_n \given \mu_k, C_k, \alpha_k ) = \alpha_k \mathcal{N}(x_n \given \mu_k, C_k)  \quad 
+    \end{split}
+\end{equation}
+
+
+
+\begin{equation}
+\tilde{C_k} = 
+\begin{pmatrix}
+    h^2 & 0  \\
+    0 & S_k^2  \\
+\end{pmatrix}
+\end{equation}
+where $h$ is bandwidth of the Gaussian components along the polynomial fit and $S_k$ is the  width of the Gaussians in the perpendicular (normal) direction of the stream at any node, k. 
+
+We transform it from the space spanned by the $\hat{u}$,  $\hat{v}$ vectors to $X$, $Y$:
+\begin{equation}
+C_k = \rm{R} \tilde{C_k} \rm{R}^T
+\end{equation}
+where
+\begin{equation}
+\rm{R} = 
+\begin{pmatrix}
+    \rm{cos} \theta & - \rm{cos} \theta  \\
+    \rm{cos} \theta & \rm{cos} \theta \\
+\end{pmatrix}
+\end{equation}
+and  $\theta$ is the angle between the tangent sky plane and the unit vector, $\hat{u}$.
+
+
+
+
+%\begin{equation}
+%    \begin{split}
+%    p(\phi_2 \given \bs{\theta}) &=
+%            \alpha_{\textrm{bg}} \, \mathcal{U}(-10, 5) \\ & \quad +
+%            \alpha_{\textrm{s}, 1} \, \mathcal{N}(\phi_2 \given \mu_{\textrm{s}}, \sigma_{\textrm{s}, 1}) +
+%            \alpha_{\textrm{s}, 2} \, \mathcal{N}(\phi_2 \given \mu_{\textrm{s}}, \sigma_{\textrm{s}, 2}) \\ & \quad +
+%            \alpha_{\textrm{f}} \,
+%                \mathcal{N}(\phi_2 \given \mu_{\textrm{f}}, \sigma_{\textrm{f}})
+%    \end{split}
+%\end{equation}
+
 
 % 
 % This work has made use of data from the European Space Agency (ESA) mission {\it
