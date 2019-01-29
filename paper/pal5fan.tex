@@ -26,6 +26,7 @@
 \newcommand{\sectionname}{Section}
 \newcommand{\equationname}{Equation}
 \renewcommand{\tablename}{Table}
+\usepackage{upgreek}
 
 \newcommand{\todo}[1]{{\color{red} TODO: #1}}
 
@@ -209,7 +210,7 @@ In Figure \ref{fig:bar} we show four different simulated Pal 5 streams that all 
 \label{sec:discussion}
 
 \subsection{Other perturbers}
-As Pal 5 is moving prograde with respect to the disk it will be subject to interactions with both the bar (\citealt{Hattori:2016}, \citealt{price:2016b}) and molecular clouds (\citealt{amorisco:2016}). Additionally, dark matter substructure could also be interacting with the stream (although probing inner potential: \citealt{Garrison-Kimmel:2017}). 
+As Pal 5 is moving prograde with respect to the disk it will be subject to interactions with both the bar (\citealt{Hattori:2016}, \citealt{price:2016b}), molecular clouds (\citealt{amorisco:2016}) and possibly spiral arms (\citealt{Banik:2019}). Additionally, dark matter substructure could also be interacting with the stream. Pal 5 is probing the inner part of the Galatic potential, so it might be unlikely that there are many dark matter subhalos in this part of the halo (\citealt{Garrison-Kimmel:2017}). However, the GD1 stellar stream orbit probes a similar region of the Galatic potential, and shows evidence of an interaction with a dark substructure (\citealt{Price-Whelan:2018}, \citealt{Bonaca:2018b}). 
 
 \begin{itemize}
 \item{Molecular clouds}
@@ -218,8 +219,71 @@ As Pal 5 is moving prograde with respect to the disk it will be subject to inter
 \end{itemize}
 
 
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+
 \acknowledgements{
 It is a pleasure to thank
+
+
+\appendix
+\section{Math for density model}
+We define our likelihood function, $\mathcal{L} $, as:
+
+\begin{equation}
+    \begin{split}
+     \mathcal{L} = P(\{x_n\} \given \{\mu_k\}, \{C_k\}, \{\alpha_k\} ) &= 
+            \prod_n \sum_k P(x_n \given \mu_k, C_k, \alpha_k )  \quad 
+    \end{split}
+\end{equation}
+where $K$ is the total number of nodes, $\mu_k$ is the mean position of each node, $N$ is the total number of ``data points", $\alpha$ is the amplitude, $x_n$ = $(\vdots)$ is the data points and $P$ is:
+\begin{equation}
+    \begin{split}
+       P(x_n \given \mu_k, C_k, \alpha_k ) = \alpha_k \mathcal{N}(x_n \given \mu_k, C_k)  \quad 
+    \end{split}
+\end{equation}
+
+
+
+\begin{equation}
+\tilde{C_k} = 
+\begin{pmatrix}
+    h^2 & 0  \\
+    0 & S_k^2  \\
+\end{pmatrix}
+\end{equation}
+where $h$ is bandwidth of the Gaussian components along the polynomial fit and $S_k$ is the  width of the Gaussians in the perpendicular (normal) direction of the stream at any node, k. 
+
+We transform it from the space spanned by the $\hat{u}$,  $\hat{v}$ vectors to $X$, $Y$:
+\begin{equation}
+C_k = \rm{R} \tilde{C_k} \rm{R}^T
+\end{equation}
+where
+\begin{equation}
+\rm{R} = 
+\begin{pmatrix}
+    \rm{cos} \theta & - \rm{cos} \theta  \\
+    \rm{cos} \theta & \rm{cos} \theta \\
+\end{pmatrix}
+\end{equation}
+and  $\theta$ is the angle between the tangent sky plane and the unit vector, $\hat{u}$.
+
+
+
+
+%\begin{equation}
+%    \begin{split}
+%    p(\phi_2 \given \bs{\theta}) &=
+%            \alpha_{\textrm{bg}} \, \mathcal{U}(-10, 5) \\ & \quad +
+%            \alpha_{\textrm{s}, 1} \, \mathcal{N}(\phi_2 \given \mu_{\textrm{s}}, \sigma_{\textrm{s}, 1}) +
+%            \alpha_{\textrm{s}, 2} \, \mathcal{N}(\phi_2 \given \mu_{\textrm{s}}, \sigma_{\textrm{s}, 2}) \\ & \quad +
+%            \alpha_{\textrm{f}} \,
+%                \mathcal{N}(\phi_2 \given \mu_{\textrm{f}}, \sigma_{\textrm{f}})
+%    \end{split}
+%\end{equation}
+
 
 % 
 % This work has made use of data from the European Space Agency (ESA) mission {\it
