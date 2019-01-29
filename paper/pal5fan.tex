@@ -251,11 +251,11 @@ where $K$ is the total number of nodes, $\mu_k$ is the mean position of each nod
 
 $C_k$ is the covariance matrix in the $X,Y$-space which is the tangent plane sky projection. We transform to $X,Y$-space from the space spanned by the $\hat{u}$,  $\hat{v}$ vectors:
 \begin{equation}
-C_k = \rm{R} \tilde{C_k} \rm{R}^T
+C_k^{(x,y)} = \rm{R} \tilde{C_k} \rm{R}^{\rm T}
 \end{equation}
 where
 \begin{equation}
-\tilde{C_k} = 
+\tilde{C_k}^{(\hat{u},\hat{v})} = 
 \begin{pmatrix}
     {\rm h}^2 & 0  \\
     0 & S_k^2  \\
@@ -300,7 +300,7 @@ To do so, we need to use the following:
 
  \begin{equation}
  \begin{split}
- \mathcal{N}(x_n \given \mu_k, C_k) = \frac{1}{2\pi}|C_k^{-1}|^{1/2} {\rm exp}\left[-\frac{1}{2}(x_n - \mu_k)^T C_k^{-1} (x_n - \mu_k) \right]  \quad 
+ \mathcal{N}(x_n \given \mu_k, C_k) = \frac{1}{2\pi}|C_k^{-1}|^{1/2} {\rm exp}\left[-\frac{1}{2}(x_n - \mu_k)^{\rm T} C_k^{-1} (x_n - \mu_k) \right]  \quad 
    \end{split}
 \end{equation}
 
