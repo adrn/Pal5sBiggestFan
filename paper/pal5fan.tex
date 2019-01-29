@@ -170,8 +170,8 @@ where
 \begin{equation}
 \rm{R} = 
 \begin{pmatrix}
-    \rm{cos} \theta & - \rm{cos} \theta  \\
-    \rm{cos} \theta & \rm{cos} \theta \\
+    \rm{cos} \theta & - \rm{sin} \theta  \\
+    \rm{sin} \theta & \rm{cos} \theta \\
 \end{pmatrix}
 \end{equation}
 and  $\theta$ is the angle between the tangent sky plane and the unit vector, $\hat{u}$.
@@ -238,40 +238,91 @@ We define our likelihood function, $\mathcal{L} $, as:
             \prod_n \sum_k P(x_n \given \mu_k, C_k, \alpha_k )  \quad 
     \end{split}
 \end{equation}
-where $K$ is the total number of nodes, $\mu_k$ is the mean position of each node, $N$ is the total number of ``data points", $\alpha$ is the amplitude, $x_n$ = $(\vdots)$ is the data points and $P$ is:
+where $K$ is the total number of nodes, $\mu_k$ is the mean position of each node, $N$ is the total number of ``data points", $\alpha$ is the amplitude, $x_n$ = $\begin{pmatrix} x\\  y \end{pmatrix}$ is the data points and $P$ is:
 \begin{equation}
     \begin{split}
        P(x_n \given \mu_k, C_k, \alpha_k ) = \alpha_k \mathcal{N}(x_n \given \mu_k, C_k)  \quad 
     \end{split}
 \end{equation}
 
-
-
-\begin{equation}
-\tilde{C_k} = 
-\begin{pmatrix}
-    h^2 & 0  \\
-    0 & S_k^2  \\
-\end{pmatrix}
-\end{equation}
-where $h$ is bandwidth of the Gaussian components along the polynomial fit and $S_k$ is the  width of the Gaussians in the perpendicular (normal) direction of the stream at any node, k. 
-
-We transform it from the space spanned by the $\hat{u}$,  $\hat{v}$ vectors to $X$, $Y$:
+$C_k$ is the covariance matrix in the $X,Y$-space which is the tangent plane sky projection. We transform to $X,Y$-space from the space spanned by the $\hat{u}$,  $\hat{v}$ vectors:
 \begin{equation}
 C_k = \rm{R} \tilde{C_k} \rm{R}^T
 \end{equation}
 where
 \begin{equation}
+\tilde{C_k} = 
+\begin{pmatrix}
+    {\rm h}^2 & 0  \\
+    0 & S_k^2  \\
+\end{pmatrix}
+\end{equation}
+and where h is bandwidth of the Gaussian components (which we fix) along the polynomial fit, and $S_k$ is the  width of the Gaussians in the perpendicular (normal) direction of the stream at any node, k. R is the rotation matrix from $\hat{u}$,  $\hat{v}$ to $X, Y$-space:
+
+\begin{equation}
 \rm{R} = 
 \begin{pmatrix}
-    \rm{cos} \theta & - \rm{cos} \theta  \\
-    \rm{cos} \theta & \rm{cos} \theta \\
+    \rm{cos} \theta & - \rm{sin} \theta  \\
+    \rm{sin} \theta & \rm{cos} \theta \\
 \end{pmatrix}
 \end{equation}
 and  $\theta$ is the angle between the tangent sky plane and the unit vector, $\hat{u}$.
 
+To optimize for the likelihoods, we compute the analytic derivatives of the log likelihoods, ln$\mathcal{L}$:
+ \begin{equation}
+ \begin{split}
+    {\rm ln} \mathcal{L} = \sum_n {\rm ln} \left[\sum_k P(x_n \given \mu_k, C_k, \alpha_k)\right]  \quad 
+    \end{split}
+\end{equation}
+hence, we want to compute:
+ \begin{equation}
+ \begin{split}
+    \frac{\partial{\rm ln} \mathcal{L}}{\partial \alpha_k}, \frac{\partial{\rm ln} \mathcal{L}}{\partial \mu_k}, \frac{\partial{\rm ln} \mathcal{L}}{\partial S_k}  \quad 
+    \end{split}
+\end{equation}
 
+To do so, we need to use the following:
+ \begin{equation}
+ \begin{split}
+ |C_k^{-1}|^{1/2} = \frac{1}{{\rm h} S_k},
+   \end{split}
+\end{equation}
 
+ \begin{equation}
+ \begin{split}
+  \alpha_K = 1 - \sum_k^{K-1} \alpha_k,
+   \end{split}
+\end{equation}
+
+ \begin{equation}
+ \begin{split}
+ \mathcal{N}(x_n \given \mu_k, C_k) = \frac{1}{2\pi}|C_k^{-1}|^{1/2} {\rm exp}\left[-\frac{1}{2}(x_n - \mu_k)^T C_k^{-1} (x_n - \mu_k) \right]  \quad 
+   \end{split}
+\end{equation}
+
+We can now compute the partial derivatives of the log likelihoods, $\partial$ln$\mathcal{L}$:
+ \begin{equation}
+ \begin{split}
+    \frac{\partial{\rm ln} \mathcal{L}}{\partial \alpha_k}  = \sum_n \frac{ \mathcal{N}(x_n \given \mu_k, C_k) -  \mathcal{N}(x_n \given \mu_K, C_K)}{\sum_k \alpha_K \mathcal{N}(x_n \given \mu_K, C_K)} \quad 
+    \end{split}
+\end{equation}
+\todo{check capital K's above}
+and
+
+ \begin{equation}
+ \begin{split}
+\frac{\partial{\rm ln} \mathcal{L}}{\partial \mu_k} = \sum_n \frac{\alpha_k \mathcal{N}(x_n \given \mu_k, C_k) C_k^{-1} (x_n - \mu_k)}{\sum_k \alpha_K \mathcal{N}(x_n \given \mu_K, C_K)}
+    \end{split}
+\end{equation}
+and
+
+ \begin{equation}
+ \begin{split}
+\frac{\partial{\rm ln} \mathcal{L}}{\partial S_k} = \sum_n \frac{\alpha_k \mathcal{N}(x_n \given \mu_k, C_k)}{\sum_k \alpha_K \mathcal{N}(x_n \given \mu_K, C_K)} \left[ \frac{1}{S_k} \left(\frac{1}{S_k^2} \left( \frac{1}{b_2} {\rm cos \theta} -  \frac{1}{b_1} {\rm sin} \theta \right)^2 - 1\right)\right]
+    \end{split}
+\end{equation}
+where
+$\begin{pmatrix} b_1\\  b_2 \end{pmatrix}= x_n - \mu_k$. 
 
 %\begin{equation}
 %    \begin{split}
