@@ -12,14 +12,14 @@ default_disk_bulge['disk'] = default_mw['disk']
 default_disk_bulge['bulge'] = default_mw['bulge']
 
 
-def corot_func(r_cr, Omega, disknobar):
-    vc = disknobar.circular_velocity([r_cr, 0., 0.])
+def corot_func(r_cr, Omega, mw_pot):
+    vc = mw_pot.circular_velocity([r_cr, 0., 0.])
     return abs(vc - Omega*r_cr * u.kpc).decompose().value[0]
 
 
 def get_bar_model(Omega, Snlm,
                   alpha=-27*u.deg, m=5e9*u.Msun,
-                  disknobar=None):
+                  mw_pot=None):
     """Get an SCF bar model with the specified pattern speed.
 
     Parameters
@@ -38,12 +38,12 @@ def get_bar_model(Omega, Snlm,
     bar : `gala.potential.SCFPotential`
         The bar model with the specified parameters.
     """
-    if disknobar is None:
-        disknobar = default_disk_bulge
+    if mw_pot is None:
+        mw_pot = default_mw
 
-    res = minimize(corot_func, x0=4., args=(Omega, disknobar))
+    res = minimize(corot_func, x0=4., args=(Omega, mw_pot))
     r_cr = res.x[0]
-    r_s = r_cr / 3.2 # 3.2 scales this to the value WZ2012 use (60 km/s/kpc)
+    r_s = r_cr / 3.67 # 3.67 scales this to the value WZ2012 use (60 km/s/kpc)
 
     return gp.SCFPotential(m=m / 10., r_s=r_s, # 10 is a MAGIC NUMBER: believe
                            Snlm=Snlm,
