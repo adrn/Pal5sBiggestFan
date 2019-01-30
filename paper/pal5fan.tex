@@ -72,14 +72,11 @@
 \begin{itemize}
 \item  Emphasize Pal 5 is the only cold stream for which we know the progenitor.
 \item	 Mention other papers: Odenkirchen, \citet{Ibata:2016}, \citet{Ibata:2017}, \citet{Balbinot:2017}, Bernard (PS1: \citealt{Bernard:2016})
-\item	 Mention remaining puzzles: main sequence stars, is the trailing arm thinner, does the leading arm truncate?
-\end{itemize}
-
-\todo{3. Idea: Motivate through gaps in streams}
-\begin{itemize}
-\item	GD1 gaps (\citealt{Price-Whelan:2018}, \citealt{Bonaca:2018b})., Pal 5 gaps (\citealt{Yoon:2011}), but other mechanism can produce them in prograde (\citealt{Amorisco:2016}, \citealt{Pearson:2017}). Emphasize why GD1 is a much cleaner case than Pal 5.
+\item	 Mention remaining puzzles: main sequence stars, is the trailing arm thinner, does the leading arm truncate, are the gaps from the bar?
+\item Maybe motivate through chaos, bar etc. that there might be crazy features we haven't seen. 
 \item	We need deeper data, and data further south to fully understand what has created the gaps in Pal 5
 \end{itemize}
+
 	
 %wrapping up intro: 
 In this paper we present the deepest map of Pal 5 to date. \todo{one sentence on DECaLS)}. The data clearly show non-uniformities in both the leading and trailing arm of the stream. In particular, we discover a ``fanned" feature in the leading arm of the stream. We compare the data to a suite of simulated Pal 5 streams using a detailed gaussian mixture density model, and we explore mechanisms that could lead to the formation of the observed features.  
@@ -168,6 +165,26 @@ To investigate Pal 5's evolution on a regular orbit, we first run a ``particle-s
 
 Additionally, we simulate the evolution of Pal 5's stream in the barred potential, where we first integrating the orbit backwards for 4 Gyr. We then create mock streams using the ``particle-spray" method. We vary the pattern speed of the bar, while updating its physical scaling (see Section \ref{sec:potential} and Figure \ref{fig:vcirc}). We do this exercise with a bar mass of $M_{bar} = 5 \times 10^{9}$ $\msun$ and $M_{bar} = 1 \times 10^{10}$ $\msun$.
 
+\subsection{Simulation results}
+\label{sec:sim_results}
+In this Section, we show the results of modeling Pal 5 in a static potentail with varying halo flattening (Section \ref{sec:results_stat}), and in a barred potentials with various pattern speeds (Section \ref{sec:results_barred}). In both cases, we compare the simulations to our data using the density model described in Section \ref{sec:density}.
+
+
+%\label{sec:results_stat}
+%The left panel of Figure \ref{fig:sims} shows the Pal 5 on a regular orbit in a static potential with a flattening of $q_z = 0.94$ (\citealt{bovy:2017}). The leading and trailing arm of Pal 5 are symmetric, as expected (e.g. \citealt{dehnen:2004}, \citealt{Pearson:2015}). In the right panel, we show a stream evolved in a flattened static potential ($q_z = 0.5$). For both scenarios the leading and trailing arm look symmetric, although the arms are ``fanned" out in the chaotic case (\citealt{Price-Whelan:2016}).
+%
+%
+%\label{sec:results_barred}
+%In Figure \ref{fig:sims} we show four different simulated Pal 5 streams that all yield densities and widths comparable to the data. These streams were evolved in a barred potential with pattern speeds of $\Omega_b = (...) \kms$ kpc$^{-1}$. We selected these four examples through visual inspection of the density and width of the data and the simulated streams. 
+
+
+
+\begin{figure}
+\centerline{\includegraphics[width=\columnwidth]{bar.png}}
+\caption{\todo{Placeholder: have two columns with 1) morpohology of sims 2) radial velocities, black colors. }}
+\label{fig:sims}
+\end{figure}
+
 
 \section{Density model}
 \label{sec:density}
@@ -219,46 +236,16 @@ We then fit for the perpendicular width, $S_k$, to the stream (polynomial fits) 
 We compute the width and density of both or simulated Pal 5 streams and the DECaLS data fitting the above Gaussian mixture model. 
 
 
-\section{Results}
-\label{sec:results}
-In this Section, we show the results of modeling Pal 5 in a static potentail with varying halo flattening (Section \ref{sec:results_stat}), and in a barred potentials with various pattern speeds (Section \ref{sec:results_barred}). In both cases, we compare the simulations to our data using the density model described in Section \ref{sec:density}.
 
-\subsection{Static Potentials}
-\label{sec:results_stat}
-The left panel of Figure \ref{fig:static} shows the Pal 5 on a regular orbit in a static potential with a flattening of $q_z = 0.94$ (\citealt{bovy:2017}). The leading and trailing arm of Pal 5 are symmetric, as expected (e.g. \citealt{dehnen:2004}, \citealt{Pearson:2015}). In the right panel, we show a stream evolved in a flattened static potential ($q_z = 0.5$). For both scenarios the leading and trailing arm look symmetric, although the arms are ``fanned" out in the chaotic case (\citealt{Price-Whelan:2016}). 
-
-\begin{figure}
-\centerline{\includegraphics[width=\columnwidth]{static.png}}
-\caption{\todo{Placeholder, but maybe only show these two sims. in one fig as Ana suggested. Have panels with our width and density as estimated from the density model. Maybe also show data density model in those panels?}}
-\label{fig:static}
-\end{figure}
-
-
-
-
-\subsection{Barred Potentials}
-\label{sec:results_barred}
-In Figure \ref{fig:bar} we show four different simulated Pal 5 streams that all yield densities and widths comparable to the data. These streams were evolved in a barred potential with pattern speeds of $\Omega_b = (...) \kms$ kpc$^{-1}$. We selected these four examples through visual inspection of the density and width of the data and the simulated streams. 
-
-
-
-\begin{figure}
-\centerline{\includegraphics[width=\columnwidth]{bar.png}}
-\caption{\todo{Placeholder, show some bar models along with density, width from gaussian mixture model.. Maybe in other columns. Here $M_{bar} = 10^{10} \msun$}}
-\label{fig:bar}
-\end{figure}
 
 \section{Discussion}
 \label{sec:discussion}
 
+\subsection{Deeper stream data}
+Do all streams look crazy if we get deeper data? Discuss ``stream-fanning", bar, VL2 Banaca paper. 
+
 \subsection{Other perturbers}
 As Pal 5 is moving prograde with respect to the disk it will be subject to interactions with both the bar (\citealt{Hattori:2016}, \citealt{price:2016b}), molecular clouds (\citealt{Amorisco:2016}) and possibly spiral arms (\citealt{Banik:2019}). Additionally, dark matter substructure could be interacting with the stream. Pal 5 apocentric distance is $\sim 18$ kpc, and the cluster is therefore probing the inner part of the Galatic potential. Hence, it might be unlikely that there are many dark matter subhalos in this part of the halo (\citealt{Garrison-Kimmel:2017}). However, the GD1 stellar stream orbit probes a similar region of the Galatic potential, and shows evidence of an interaction with a dark substructure (\citealt{Price-Whelan:2018}, \citealt{Bonaca:2018b}) as the data shows a gap and a ``spur" (\citealt{Yoon:2011}). 
-
-\begin{itemize}
-\item{Molecular clouds}
-\item{Spiral arms}
-\item{Dark matter subhalos}
-\end{itemize}
 
 
 
