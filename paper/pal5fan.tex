@@ -70,7 +70,7 @@
 
 \todo{2. Motivate deepest data of Pal 5}
 \begin{itemize}
-\item Emphasize Pal 5 is the only cold stream for which we know the progenitor.
+\item  Emphasize Pal 5 is the only cold stream for which we know the progenitor.
 \item	 Mention other papers: Odenkirchen, \citet{Ibata:2016}, \citet{Ibata:2017}, \citet{Balbinot:2017}, Bernard (PS1: \citealt{Bernard:2016})
 \item	 Mention remaining puzzles: main sequence stars, is the trailing arm thinner, does the leading arm truncate?
 \end{itemize}
@@ -82,9 +82,9 @@
 \end{itemize}
 	
 %wrapping up intro: 
-In this paper we present the deepest map of Pal 5 to date, and we extend the search of stream members further south. (Explain new data briefly: DECaLS). We find non-uniformities in the stream, in particular ....(fan, asymmetries, gaps)....  We compare our data to a suite of Pal 5 simulations in various potentials using a detailed density model, to explore various mechanisms which could lead to the formation of the new observed features presented here. 
+In this paper we present the deepest map of Pal 5 to date. \todo{one sentence on DECaLS)}. The data clearly show non-uniformities in both the leading and trailing arm of the stream. In particular, we discover a ``fanned" feature in the leading arm of the stream. We compare the data to a suite of simulated Pal 5 streams using a detailed gaussian mixture density model, and we explore mechanisms that could lead to the formation of the observed features.  
 
-The paper is structured as follows: in Section \ref{sec:data}, we present new DECaLS Pal 5 data, in Section \ref{sec:sim} we describe the Galactic potentials and Pal 5 simulations. In Section \ref{sec:density} we describe our Gaussian mixture model we use to fit the density and width of Pal 5. We show our comparisons of the simulations and data using the density model in Section \ref{sec:results}. We discuss the implications of our results and outstanding questions about Pal 5's morphology in Section \ref{sec:discussion}, and we conclude in Section \ref{sec:conclusion}. 
+The paper is structured as follows: in Section \ref{sec:data}, we present new DECaLS Pal 5 data, and in Section \ref{sec:sim} we describe our simulation setups. We describe our Gaussian mixture model we use to fit the density and width of Pal 5 in Section \ref{sec:density}, and we show our comparisons of the simulations and data using in Section \ref{sec:results}. We discuss the implications of our results and address outstanding questions about Pal 5's morphology in Section \ref{sec:discussion}, and we conclude in Section \ref{sec:conclusion}. 
 
 
 
@@ -111,14 +111,14 @@ The fiducial Pal~5 isochrone is offset in every panel (amount indicated in the t
 
 \section{Simulations}
 \label{sec:sim}
-In order to explore the mechanism leading the the observed morphology of the stream (e.g. the length asymmetry between the leading and trailing arm, as well as the gap in the trailing arm, and the ``fan" in the leading arm), we run a suite of Pal 5 simulations. In particular, we investigate whether Pal 5's ``fan" in the leading arm can be explained due to chaotic regions in the potential (\citealt{Pearson:2015}, \citealt{Price-Whelan:2016}, Yavetz et al., {\it in prep.}), or whether Pal 5 is interacting with the Galactic bar (\citealt{Pearson:2017}, \citealt{Erkal:2017}, \citealt{Banik:2019}). In Section \ref{sec:potential}, we describe the potentials in which we simulate the evolution of Pal 5, and in Section \ref{sec:potential} we describe our suite of Pal 5 stream simulations. 
+In order to explore the mechanism leading the the observed morphology of the stream (i.e. the length asymmetry between the leading and trailing arm, as well as the gap in the trailing arm, and the ``fan" in the leading arm), we run a suite of Pal 5 simulations. In particular, we investigate whether Pal 5's ``fan" in the leading arm can be explained due to chaotic regions in the potential (\citealt{Pearson:2015}, \citealt{Price-Whelan:2016}, Yavetz et al., {\it in prep.}), or whether Pal 5 is interacting with the Galactic bar (\citealt{Pearson:2017}, \citealt{Erkal:2017}, \citealt{Banik:2019}). In Section \ref{sec:potential}, we describe the potentials we use to simulate the evolution of Pal 5, and in Section \ref{sec:potential} we describe our simulation setup. 
 
 \subsection{Potential}
 \label{sec:potential}
 We simulate the evolution of Pal 5 in two classes of three-component Galactic potentials: 
 
 \begin{itemize}
-\item[1.] {\bf Static potential}: we use the {\small MWPotential2014} (\citealt{Bovy:2015}) consisting of a Miyamoto-Nagai disk (\citealt{Miyamoto:1975}), a bulge modeled as an exponentially cut off, power-law density profile, and an NFW dark matter halo (\citealt{Navarro:1996}). We vary the flattening of this halo to demonstrate both a regular and chaotic Pal 5 orbit (see Section \ref{sec:modeling}). 
+\item[1.] {\bf Static potential}: we use the {\small MWPotential2014} (\citealt{Bovy:2015}) consisting of a Miyamoto-Nagai disk (\citealt{Miyamoto:1975}), a bulge modeled as an exponentially cut off, power-law density profile, and an NFW dark matter halo (\citealt{Navarro:1996}). We vary the flattening of the NFW halo ($q_z = 0.94$ and $q_z = 0.5$) to investigate Pal 5's morphology in on both a regular and chaotic orbit (see Section \ref{sec:modeling}). 
 
 \item[2.] {\bf  Barred potential}: we use the same disk and halo as in {\small MWPotential2014}, but include a Galactic bar instead of a bulge. Following \citet{wang:2012}, we compute the bar potential as a basis-function expansion (BFE) representation of a triaxial, exponential density profile:
 
@@ -133,19 +133,19 @@ r_1 = \left[\left((x/x_0)^2 + (y/y_0)^2\right)^2 +( z/z_0)^4\right]^{1/4}
 \begin{equation}
 r_2 = \left[\frac{q^2(x^2 + y^2) + z^2)}{z_0^2}\right]^{1/2}
 \end{equation}
-where the scale length is $x_0$ = 1.49 kpc, $y_0$ = 0.58 kpc, $z_0$ = 0.4 kpc, and q = 0.6. We include terms up to $n=9$, $l=19$ in the ``self-consistent field" BFE formalism, as this yields a good representation of the density of the bar (\citealt{Banik:2019})\footnote{Note that using lower order terms (e.g. n=6, l = 8) for the basis function expansion does not much change the morphology or kinematics of the Pal 5 stream.}. We explore barred models with pattern speeds of $\Omega_b$ = ($25 - 65$) $\kms$ kpc$^{-1}$ in increments of 1 kpc$^{-1}$, we explore bar masses of $M_{bar} = 5 \times 10^{9}$ $\msun$ and $M_{bar} = 1 \times 10^{10}$ $\msun$ (\citealt{Portail:2017}), and we fix the present day angular offset from the Galactic x-axis in the direction of rotation, $\alpha = 27\deg$.
+where the scale lengths are $x_0$ = 1.49 kpc, $y_0$ = 0.58 kpc, $z_0$ = 0.4 kpc, and q = 0.6. We include terms up to $n=9$, $l=19$ in the ``self-consistent field" BFE formalism, as this yields a good representation of the density of the bar (\citealt{Banik:2019})\footnote{Note that using lower order terms (e.g. n=6, l = 8) for the basis function expansion does not much change the morphology or kinematics of the Pal 5 stream.}. We explore barred models with pattern speeds of $\Omega_b$ = ($25 - 65$) $\kms$ kpc$^{-1}$ in increments of 1 kpc$^{-1}$, and  we vary the bar mass to be $M_{bar} = 5 \times 10^{9}$ $\msun$ or $M_{bar} = 1 \times 10^{10}$ $\msun$ (\citealt{Portail:2017}). Additionally, we fix the present day angular offset from the Galactic x-axis in the direction of rotation, $\alpha = 27\deg$.
 \end{itemize}
 
-In \citet{wang:2012}, they construct a bar with a pattern speed of $\Omega_b$ =  60 $\kms$ kpc$^{-1}$. This corresponds to a barred model with a co-rotation at $r_{\rm CR} = 3.2$ kpc. However, in this work we explore a range of pattern speeds. As bars are not expected to extend much beyond their co-rotation radius (\citealt{binney:2008}), we adjust the physical scaling of the bar when varying the pattern speed. %In \citet{wang:2012}, the scale-radius, $r_s$, assumed in the BFE, is  $r_s = 1.1$ kpc. 
-To include the fact that we are using various pattern speeds in our bar models, we  compute the co-rotation radius, $r_{\rm CR},$ based on the mass profiles of the disk and bulge (from the static potential) at any given pattern speed, $\Omega_b$. We then scale our bar model for a given pattern speed, $\Omega_b$, by:
+\citet{wang:2012} construct a bar with a pattern speed of $\Omega_b$ =  60 $\kms$ kpc$^{-1}$, which has a co-rotation radius, $r_{\rm CR} = 3.7$ kpc. However, in this paper, we explore a range of pattern speeds, and this will change the co-rotation radii (faster bars have co-rotation at smaller radii and vice versa).  As bars are not expected to extend beyond their co-rotation radius (\citealt{binney:2008}), we therefore adjust the physical scaling of the bar when varying the pattern speed. %In \citet{wang:2012}, the scale-radius, $r_s$, assumed in the BFE, is  $r_s = 1.1$ kpc. 
+In particular, we  compute the co-rotation radius, $r_{\rm CR},$ based on the mass profiles of the static potential at any given pattern speed, $\Omega_b$. We then scale our bar model for a given pattern speed, $\Omega_b$, by:
 
 \begin{equation} 
 r_{s, \Omega_b}  = r_{{\rm CR}, \Omega_b}/r_{{\rm CR, Wang 2012}}
 \end{equation} 
 
-If this scaling is not included (e.g. see bar models used in \citealt{price:2016b}, \citealt{Pearson:2017}, \citealt{Erkal:2017}, \citealt{Banik:2019}), this creates too strong a bar quadrupole for the faster pattern speeds, and too weak a bar quadrupole for the slower pattern speeds. 
+If this scaling is not included (as for bar models used in \citealt{price:2016b}, \citealt{Pearson:2017}, \citealt{Erkal:2017}, \citealt{Banik:2019}), this creates a too strong bar quadrupole for the faster pattern speeds, and a too weak bar quadrupole for the slower pattern speeds. 
 
-In Figure \ref{fig:vcirc}, we show the circular velocity curve for our barred, three-component Galactic potential for the range of  $\Omega_b$ = ($25 - 65$) $\kms$ kpc$^{-1}$ and for the two different bar masses explored in this paper (red: $M_{bar} = 5 \times 10^{9}$ $\msun$, blue: $M_{bar} = 1 \times 10^{10}$ $\msun$).
+In Figure \ref{fig:vcirc}, we show the circular velocity as a function of radius for the barred, three-component Galactic potential with $\Omega_b$ = ($25 - 65$) $\kms$ kpc$^{-1}$. The red lines correspond to the potentials with a bar mass of $M_{bar} = 5 \times 10^{9}$ $\msun$, and the blue lines correspond to potentials with a bar mass of  $M_{bar} = 1 \times 10^{10}$ $\msun$.
 
 \begin{figure}
 \centerline{\includegraphics[width=\columnwidth]{v_circ_nlm919.png}}
@@ -157,17 +157,21 @@ In Figure \ref{fig:vcirc}, we show the circular velocity curve for our barred, t
 
 \subsection{Stream modeling}
 \label{sec:modeling}
-For all simulations we assume a 6D phase space position of Pal 5 as: RA = 229.018 deg, Dec = - 0.24 deg, distance = 22.9 kpc, $v_r$ = -58.7 , pm$_{RA,cosdec}= -2.296$ mas and pm$_{Dec} = -2.257$ mas. We first transform Pal 5's 6D phase space position into a Galactocentric frame by assuming $v_{lsr} = (11.1, 24.0, 7.25) \kms$, 
-$v_{circ} = 220  \kms$ and a distance from the Sun to the Galactic centre of 8.1 kpc. 
+To simulate the evolution of Pal 5 in a given potential, we first transform Pal 5's observed 6D phase space coordinates (see Table \ref{tab:pal5}) into a Galactocentric frame by assuming $v_{lsr} = (11.1, 24.0, 7.25) \kms$,  $v_{circ} = 220  \kms$ and a distance from the Sun to the Galactic centre of 8.1 kpc. 
 
-We integrate the cluster backwards in time for 4 Gyr in steps of 0.5 Myr. Subsequently, we simulate the forward evolution of Pal 5 using the ``particle-spray" stream generating method developed by \citet{Fardal:2015}, such that the cluster ends at its present day position. We release two particles through each of the two Lagrange points every 10 Myr. We repeatedly at this in first the NFW potential setting $q_z = 0.94$ (\citealt{Bovy:2016}) and subsequently in a flattened NFW potential ($q_z = 0.5$ to induce a chaotic orbit). 
+%Put into table 
+%(RA = 229.018 deg, Dec = - 0.24 deg, distance = 22.9 kpc, $v_r$ = -58.7 , pm$_{RA,cosdec}= -2.296$ mas and pm$_{Dec} = -2.257$ mas
 
-Additionally, we simulate the evolution of Pal 5's stream in the barred potential, where we vary the pattern speed from and the bar mass, while updating the physical scaling of the bar (see Section \ref{sec:potential} and Figure \ref{fig:vcirc}). 
+We then integrate the cluster backwards in time for 4 Gyr in steps of 0.5 Myr in a given potential. Subsequently, we simulate the forward evolution of Pal 5 using the ``particle-spray" stream generating method developed by \citet{Fardal:2015}, such that the cluster ends at its present day position at $t = 0$. We release two particles through each of the two Lagrange points every 10 Myr. 
+
+To investigate Pal 5's evolution on a regular orbit, we first run a ``particle-spray" simulations setting $q_z = 0.94$ (\citealt{Bovy:2016}). Subsequently, to we run the same simulation setting $q_z = 0.5$ to induce a chaotic orbit. 
+
+Additionally, we simulate the evolution of Pal 5's stream in the barred potential, where we first integrating the orbit backwards for 4 Gyr. We then create mock streams using the ``particle-spray" method. We vary the pattern speed of the bar, while updating its physical scaling (see Section \ref{sec:potential} and Figure \ref{fig:vcirc}). We do this exercise with a bar mass of $M_{bar} = 5 \times 10^{9}$ $\msun$ and $M_{bar} = 1 \times 10^{10}$ $\msun$.
 
 
 \section{Density model}
 \label{sec:density}
-To compare our data and various Pal 5 simulated streams, we construct density model consisting of a multicomponent Gaussian mixture model. In particular, we are interested in fitting the width and density of our data and various simulations.  
+To compare our data and various Pal 5 simulated streams, we construct density model consisting of a multicomponent Gaussian mixture model. In particular, we are interested in fitting the width and density of our data and simulated stars.  
 
 We first transform our simulated Pal 5 data points to the tangent sky plane using a Zeanit (Lambert azimuthal) equal-area projection, such that we can define a Gaussian. We call these coordinates, $X$, $Y$.
 
@@ -217,10 +221,11 @@ We compute the width and density of both or simulated Pal 5 streams and the DECa
 
 \section{Results}
 \label{sec:results}
-In this Section, we show the results of modeling Pal 5 in a static potentail with varying halo flattening and in a barred potentials with various pattern speeds and compare the simulations to our data using the density model described in Section \ref{sec:density}.
+In this Section, we show the results of modeling Pal 5 in a static potentail with varying halo flattening (Section \ref{sec:results_stat}), and in a barred potentials with various pattern speeds (Section \ref{sec:results_barred}). In both cases, we compare the simulations to our data using the density model described in Section \ref{sec:density}.
 
 \subsection{Static Potentials}
-The left panel of Figure \ref{fig:static} shows the Pal 5 on a regular orbit in a static potential with a flattening of $q_z = 0.94$ (\citealt{bovy:2017}). The leading and trailing arm of Pal 5 are symmetric, as expected (\citealt{dehnen:2004}, \citealt{Pearson:2015}). In the right panel, we show a stream evolved in a flattened static potential ($q_z = 0.5$), in order to induce a chaotic orbit. For both scenarios the leading and trailing arm look symmetric, although the arms are ``fanned" out in the chaotic case (\citealt{Pearson:2015}, \citealt{Price-Whelan:2016}). 
+\label{sec:results_stat}
+The left panel of Figure \ref{fig:static} shows the Pal 5 on a regular orbit in a static potential with a flattening of $q_z = 0.94$ (\citealt{bovy:2017}). The leading and trailing arm of Pal 5 are symmetric, as expected (e.g. \citealt{dehnen:2004}, \citealt{Pearson:2015}). In the right panel, we show a stream evolved in a flattened static potential ($q_z = 0.5$). For both scenarios the leading and trailing arm look symmetric, although the arms are ``fanned" out in the chaotic case (\citealt{Price-Whelan:2016}). 
 
 \begin{figure}
 \centerline{\includegraphics[width=\columnwidth]{static.png}}
@@ -232,6 +237,7 @@ The left panel of Figure \ref{fig:static} shows the Pal 5 on a regular orbit in 
 
 
 \subsection{Barred Potentials}
+\label{sec:results_barred}
 In Figure \ref{fig:bar} we show four different simulated Pal 5 streams that all yield densities and widths comparable to the data. These streams were evolved in a barred potential with pattern speeds of $\Omega_b = (...) \kms$ kpc$^{-1}$. We selected these four examples through visual inspection of the density and width of the data and the simulated streams. 
 
 
@@ -246,7 +252,7 @@ In Figure \ref{fig:bar} we show four different simulated Pal 5 streams that all 
 \label{sec:discussion}
 
 \subsection{Other perturbers}
-As Pal 5 is moving prograde with respect to the disk it will be subject to interactions with both the bar (\citealt{Hattori:2016}, \citealt{price:2016b}), molecular clouds (\citealt{amorisco:2016}) and possibly spiral arms (\citealt{Banik:2019}). Additionally, dark matter substructure could also be interacting with the stream. Pal 5 is probing the inner part of the Galatic potential, so it might be unlikely that there are many dark matter subhalos in this part of the halo (\citealt{Garrison-Kimmel:2017}). However, the GD1 stellar stream orbit probes a similar region of the Galatic potential, and shows evidence of an interaction with a dark substructure (\citealt{Price-Whelan:2018}, \citealt{Bonaca:2018b}). 
+As Pal 5 is moving prograde with respect to the disk it will be subject to interactions with both the bar (\citealt{Hattori:2016}, \citealt{price:2016b}), molecular clouds (\citealt{Amorisco:2016}) and possibly spiral arms (\citealt{Banik:2019}). Additionally, dark matter substructure could be interacting with the stream. Pal 5 apocentric distance is $\sim 18$ kpc, and the cluster is therefore probing the inner part of the Galatic potential. Hence, it might be unlikely that there are many dark matter subhalos in this part of the halo (\citealt{Garrison-Kimmel:2017}). However, the GD1 stellar stream orbit probes a similar region of the Galatic potential, and shows evidence of an interaction with a dark substructure (\citealt{Price-Whelan:2018}, \citealt{Bonaca:2018b}) as the data shows a gap and a ``spur" (\citealt{Yoon:2011}). 
 
 \begin{itemize}
 \item{Molecular clouds}
@@ -354,7 +360,7 @@ and
 
  \begin{equation}
  \begin{split}
-\frac{\partial{\rm ln} \mathcal{L}}{\partial S_k} = \sum_n \frac{\alpha_k \mathcal{N}(x_n \given \mu_k, C_k)}{\sum_k \alpha_K \mathcal{N}(x_n \given \mu_K, C_K)} \left[ \frac{1}{S_k} \left(\frac{1}{S_k^2} \left( \frac{1}{b_2} {\rm cos \theta} -  \frac{1}{b_1} {\rm sin} \theta \right)^2 - \frac{1}{{\rm h} s_k}\right)\right]
+\frac{\partial{\rm ln} \mathcal{L}}{\partial S_k} = \sum_n \frac{\alpha_k \mathcal{N}(x_n \given \mu_k, C_k)}{\sum_k \alpha_K \mathcal{N}(x_n \given \mu_K, C_K)} \left[ \frac{1}{S_k} \left(\frac{1}{S_k^2} \left( \frac{1}{b_2} {\rm cos \theta} -  \frac{1}{b_1} {\rm sin} \theta \right)^2 - 1\right)\right]
     \end{split}
 \end{equation}
 where
