@@ -23,9 +23,13 @@ def a_to_z(ak):
     return z
 
 
+def ln_normal(x, mu, var):
+    return -0.5*np.log(2*np.pi) - 0.5*np.log(var) - 0.5 * (x-mu)**2 / var
+
+
 class Model:
 
-    def __init__(self, density_model, h, frozen=None):
+    def __init__(self, density_model, h, l=None, frozen=None):
         if frozen is None:
             frozen = dict()
         self.frozen = dict(frozen)
@@ -37,10 +41,14 @@ class Model:
         self._K = self.density_model.K
 
         self.h = h
+        if l is None: # width of prior on m
+            l = self.h
+        self.l = l
 
         self._params = dict()
         self._params['ln_z'] = (self.density_model.K-1, )
         self._params['ln_s'] = (self.density_model.K, )
+        self._params['m'] = (self.density_model.K, )
 
     def pack_pars(self, **kwargs):
         vals = []
@@ -78,6 +86,11 @@ class Model:
     def get_z(self, p):
         return np.exp(p['ln_z'])
 
+    def get_mu(self, p):
+        mu = self.density_model.nodes.copy()
+        mu[:, 1] = mu[:, 1] + p['m']
+        return mu
+
     # =========================================================================
     # Probability functions:
     #
@@ -87,6 +100,9 @@ class Model:
 
         if np.any(p['ln_z'] > 0):
             return -np.inf
+
+        # this is like L2 regularization, but I should try Lasso at some point
+        lp += ln_normal(p['m'], 0, self.l).sum()
 
         return lp
 
@@ -113,7 +129,8 @@ class Model:
         return self.ln_posterior(p)
 
     def derivs(self, p):
-        nodes = self.density_model.nodes
+        """Derivatives of the ln_posterior, not ln_likelihood!"""
+
         R = self.density_model._R_k
         K = self.density_model.K
         X = self.density_model.X
@@ -123,16 +140,35 @@ class Model:
         a = self.get_a(p)
         s = self.get_s(p)
         z = self.get_z(p)
+        nodes = self.get_mu(p)
 
         # We need this for all of the derivatives
         ln_N_nk = np.zeros((N, K))
         C = np.zeros((K, D, D))
+        Cinv = np.zeros((K, D, D))
         for k in range(K):
             C[k] = self.density_model.get_Ck(k, s[k], h)
+            Cinv[k] = self.density_model.get_Ck(k, s[k], h, inv=True)
             ln_N_nk[:, k] = mvn.logpdf(X, nodes[k], C[k],
                                        allow_singular=True)
         ln_aN_nk = np.log(a) + ln_N_nk
         ln_denom = logsumexp(ln_aN_nk, axis=1)
+
+        # ---
+        ln_d_lnL_d_mk = np.zeros((N, K))
+        signs = np.zeros((N, K))
+        for k in range(K):
+            # the [:,1] below picks off only the y term, because we only allow
+            # the means to move in y
+            Cinv_dx = np.einsum('ij,nj->ni', Cinv[k], X - nodes[k:k+1])[:, 1]
+            signs[:, k] = np.sign(Cinv_dx)
+            log_Cinv_dx = np.log(np.abs(Cinv_dx))
+            ln_d_lnL_d_mk[:, k] = ln_aN_nk[:, k] + log_Cinv_dx - ln_denom
+
+        ln_d_lnL_d_m, sign = logsumexp(ln_d_lnL_d_mk, b=signs, axis=0,
+                                       return_sign=True)
+        # the last term is because of the prior we put on m
+        d_lnL_d_m = sign * np.exp(ln_d_lnL_d_m) - p['m'] / self.l**2
 
         # ---
         ln_d_lnL_d_a = logsumexp(ln_N_nk - ln_denom[:, None], axis=0)
@@ -148,7 +184,6 @@ class Model:
             d_lnL_d_z[k] = term1 + term2
 
         # ---
-
         ln_d_lnL_d_sk = np.zeros((N, K))
         signs = np.zeros((N, K))
         for k in range(K):
@@ -165,4 +200,4 @@ class Model:
         ln_d_lnL_d_s, sign = logsumexp(ln_d_lnL_d_sk, b=signs, axis=0,
                                        return_sign=True)
         d_lnL_d_s = sign * np.exp(ln_d_lnL_d_s)
-        return np.concatenate((d_lnL_d_s * s, d_lnL_d_z * z))
+        return np.concatenate((d_lnL_d_s * s, d_lnL_d_z * z, d_lnL_d_m))

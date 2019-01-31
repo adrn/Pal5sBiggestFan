@@ -177,7 +177,7 @@ class DensityModel2D:
 
         return R
 
-    def get_Ck(self, k, s_k, h):
+    def get_Ck(self, k, s_k, h, inv=False):
         """Get the 2D covariance matrix in x-y coordinates at the node k.
 
         Parameters
@@ -190,8 +190,12 @@ class DensityModel2D:
 
         # 2x2 covariance matrix in the u-v plane
         Ck_prim = np.zeros([2, 2])
-        Ck_prim[0, 0] = h ** 2
-        Ck_prim[1, 1] = s_k ** 2
+        if inv:
+            Ck_prim[0, 0] = 1 / h ** 2
+            Ck_prim[1, 1] = 1 / s_k ** 2
+        else:
+            Ck_prim[0, 0] = h ** 2
+            Ck_prim[1, 1] = s_k ** 2
 
         # retrieve pre-computed matrix
         R = self._R_k[k]
@@ -200,12 +204,15 @@ class DensityModel2D:
         Ck = R @ Ck_prim @ R.T
         return Ck
 
-    def ln_density(self, X, a_k, s_k, h):
+    def ln_density(self, X, a_k, s_k, h, nodes=None):
+        if nodes is None:
+            nodes = self.nodes
+
         ln_dens = np.zeros((self.K, len(X)))
         for k in range(self.K):
             C = self.get_Ck(k, s_k[k], h)
             try:
-                ln_dens[k] = mvn.logpdf(X, self.nodes[k], C,
+                ln_dens[k] = mvn.logpdf(X, nodes[k], C,
                                         allow_singular=True)
             except ValueError as e:
                 raise e
