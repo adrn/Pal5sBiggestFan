@@ -6,7 +6,7 @@ from astropy.wcs import WCS
 import gala.coordinates as gc
 import numpy as np
 from scipy.special import logsumexp
-from scipy.stats import multivariate_normal
+from scipy.stats import multivariate_normal as mvn
 
 from utilities import get_uniform_idx
 
@@ -27,7 +27,8 @@ def get_projected_coords(c, ref_c):
         The projected (x,y) coordinates.
 
     """
-    offset_fr = coord.SkyOffsetFrame(origin=ref_c)
+    c = coord.SkyCoord(c)
+    offset_fr = coord.SkyOffsetFrame(origin=ref_c.transform_to(c.frame))
     c2 = c.transform_to(offset_fr)
 
     wcs = WCS(naxis=2)
@@ -96,60 +97,28 @@ def get_u_v(k, dense_x, dense_y, poly, eps=1e-3):
     return u_vec, v_vec
 
 
-class StreamSurfaceDensityModel:
+class DensityModel2D:
 
-    def __init__(self, data_c, ref_c,
-                 lon_limits=None, lat_limits=None,
-                 poly_deg=5):
+    def __init__(self, X, poly_deg=5):
         """TODO:
 
         Parameters
         ----------
-        data_c : `astropy.coordinates.SkyCoord`
-            TODO:
-        ref_c : `astropy.coordinates.SkyCoord`
-            The coordinates of a reference point along the stream. For streams
-            with a progenitor, this could be the coordinates of the cluster,
-            e.g., Pal 5.
-        K : int
-            The number of nodes to place along the stream.
-        h : float
-            The bandwidth parameter, or the along-stream width (standard
-            deviation) of each 2D node Gaussian.
-        lon_limits : iterable, optional
-            TODO
 
         """
-        data_c = coord.SkyCoord(data_c)
-
-        if lon_limits is None:
-            lon_limits = [-180*u.deg, 180*u.deg]
-        if lat_limits is None:
-            lat_limits = [-90*u.deg, 90*u.deg]
-
-        data_lon = data_c.spherical.lon.wrap_at(180*u.deg)
-        data_lat = data_c.spherical.lat
-        data_mask = ((data_lon > lon_limits[0]) &
-                     (data_lon < lon_limits[1]) &
-                     (data_lat > lat_limits[0]) &
-                     (data_lat < lat_limits[1]))
-        self.data_c = data_c[data_mask]
-
-        self._frame = self.data_c.frame
-        self.ref_c = coord.SkyCoord(ref_c.transform_to(self._frame))
 
         # Projected coordinates
-        self.proj_xy = get_projected_coords(self.data_c, self.ref_c)
+        self.X = X # (N, D)
+        self.N, self.D = self.X.shape
+
+        if self.D != 2:
+            raise NotImplementedError('D={0}'.format(self.D))
 
         # Fit a polynomial to the projected coordinates
-        self.poly = np.poly1d(np.polyfit(self.proj_xy[0],
-                                         self.proj_xy[1],
+        self.poly = np.poly1d(np.polyfit(self.X[:, 0], self.X[:, 1],
                                          deg=poly_deg))
 
-        # other cached things:
-        self._data_lon = self.data_c.spherical.lon.wrap_at(180*u.deg)
-        self._data_lat = self.data_c.spherical.lat
-        self._nodes = None
+        self.nodes = None
         self.K = None
 
     def get_dense_poly_track(self, size=None, xgrid=None):
@@ -159,31 +128,54 @@ class StreamSurfaceDensityModel:
                              'grid, or pass in `xgrid`.')
 
         if xgrid is None:
-            xgrid = np.linspace(self._data_lon.value.min(),
-                                self._data_lon.value.max(),
+            xgrid = np.linspace(self.X[:, 0].min(),
+                                self.X[:, 0].max(),
                                 size)
 
-        return np.stack((xgrid, self.poly(xgrid)))
+        track = np.stack((xgrid, self.poly(xgrid))).T
+        return track # (many, D)
 
-    def set_nodes(self, spacing=None, K=None, dense_poly_size=10000):
-        if K is not None and spacing is not None:
-            raise ValueError('Set either spacing or K, not both!')
+    def set_nodes(self, track, nodes=None, spacing=None):
+        if nodes is not None and spacing is not None:
+            raise ValueError('Set either spacing or nodes, not both!')
 
-        if K is not None:
-            raise NotImplementedError('So far we only support passing in `spacing`')
+        if nodes is not None:
+            self.nodes = np.array(nodes)
+            self.K = len(self.nodes)
 
-        track = self.get_dense_poly_track(size=dense_poly_size)
-        idx = get_uniform_idx(track[0], track[1], spacing=spacing)
-        self._nodes = track[:, idx]
-        self.K = len(idx)
+            idx = []
+            for k in range(self.K):
+                i = np.linalg.norm(track - self.nodes[k][None], axis=1).argmin()
+                idx.append(i)
+            idx = np.array(idx)
+
+        else:
+            idx = get_uniform_idx(track[:, 0], track[:, 1],
+                                  spacing=spacing)
+            self.nodes = track[idx]
+            self.K = len(idx)
 
         # cache the u_k's at each node
-        self._u_k = np.zeros((2, self.K))
-        for i, k in enumerate(idx):
-            self._u_k[:, i] = get_u_v(k, track[0], track[1],
-                                      self.poly, eps=1e-3)[0]
+        self._u_k = np.zeros((self.K, self.D))
+        self._R_k = np.zeros((self.K, self.D, self.D))
+        for k, j in enumerate(idx):
+            self._u_k[k] = get_u_v(j, track[:, 0], track[:, 1],
+                                   self.poly, eps=1e-3)[0] # HACK: eps?
+            self._R_k[k] = self._get_R(self._u_k[k])
 
-        return self._nodes
+        return self.nodes
+
+    def _get_R(self, u_vec):
+        # TODO: only works for 2D
+        theta = np.arctan2(u_vec[1], u_vec[0])
+
+        # rotation from u,v to x,y (sky-tangent-plane, area conserved)
+        R = np.zeros([2, 2])
+        R[0, 0] = R[1, 1] = np.cos(theta)
+        R[0, 1] = -np.sin(theta)
+        R[1, 0] = np.sin(theta)
+
+        return R
 
     def get_Ck(self, k, s_k, h):
         """Get the 2D covariance matrix in x-y coordinates at the node k.
@@ -201,21 +193,20 @@ class StreamSurfaceDensityModel:
         Ck_prim[0, 0] = h ** 2
         Ck_prim[1, 1] = s_k ** 2
 
-        theta = np.arctan2(self._u_k[1, k], self._u_k[0, k])
-
-        # rotation from u,v to x,y (sky-tangent-plane, area conserved)
-        R = np.zeros([2, 2])
-        R[0, 0] = R[1, 1] = np.cos(theta)
-        R[0, 1] = -np.sin(theta)
-        R[1, 0] = np.sin(theta)
+        # retrieve pre-computed matrix
+        R = self._R_k[k]
 
         # rotate the covariance matrix to the x-y space
         Ck = R @ Ck_prim @ R.T
         return Ck
 
-    def ln_density(self, xy, a_k, s_k, h):
-        ln_dens = np.zeros((self.K, len(xy)))
+    def ln_density(self, X, a_k, s_k, h):
+        ln_dens = np.zeros((self.K, len(X)))
         for k in range(self.K):
             C = self.get_Ck(k, s_k[k], h)
-            ln_dens[k] = multivariate_normal.logpdf(xy, self._nodes[:, k], C)
+            try:
+                ln_dens[k] = mvn.logpdf(X, self.nodes[k], C,
+                                        allow_singular=True)
+            except ValueError as e:
+                raise e
         return logsumexp(ln_dens + np.log(a_k)[:, None], axis=0)
