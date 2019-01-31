@@ -204,7 +204,7 @@ class DensityModel2D:
         Ck = R @ Ck_prim @ R.T
         return Ck
 
-    def ln_density(self, X, a_k, s_k, h, nodes=None):
+    def ln_density(self, X, a_k, s_k, h, nodes=None, sum=True):
         if nodes is None:
             nodes = self.nodes
 
@@ -216,4 +216,8 @@ class DensityModel2D:
                                         allow_singular=True)
             except ValueError as e:
                 raise e
-        return logsumexp(ln_dens + np.log(a_k)[:, None], axis=0)
+
+        if sum:
+            return logsumexp(ln_dens + np.log(a_k)[:, None], axis=0)
+        else:
+            return ln_dens + np.log(a_k)[:, None]

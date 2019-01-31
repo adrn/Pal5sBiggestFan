@@ -106,10 +106,15 @@ class Model:
 
         return lp
 
-    def ln_likelihood(self, p):
+    def ln_density(self, p, X, sum=True):
         s = self.get_s(p)
         a = self.get_a(p)
-        return self.density_model.ln_density(self._X, a, s, self.h)
+        mu = self.get_mu(p)
+        return self.density_model.ln_density(X, a, s, self.h,
+                                             nodes=mu, sum=sum)
+
+    def ln_likelihood(self, p, sum=True):
+        return self.ln_density(p, self._X, sum=sum)
 
     def ln_posterior(self, p):
         # unpack parameter vector, p
@@ -128,7 +133,7 @@ class Model:
     def __call__(self, p):
         return self.ln_posterior(p)
 
-    def derivs(self, p):
+    def derivs_ln_post(self, p):
         """Derivatives of the ln_posterior, not ln_likelihood!"""
 
         R = self.density_model._R_k
