@@ -97,27 +97,43 @@ def get_u_v(k, dense_x, dense_y, poly, eps=1e-3):
     return u_vec, v_vec
 
 
-class DensityModel2D:
+class GaussianNoodle2D:
 
-    def __init__(self, X, poly_deg=5):
+    def __init__(self, X, poly=None, poly_deg=5):
         """TODO:
 
         Parameters
         ----------
-
+        X : array_like
+            Array of coordinate positions with shape (N, 2), where N is the
+            number of data points.
+        poly : `numpy.poly.poly1d` (optional)
+            The polynomial that defines the track through the data points.
+            Either directly specify the polynomial with this argument, or a
+            polynomial will be fit (with degree specified with ``poly_deg``) to
+            the specified data.
+        poly_deg : int (optional)
+            The degree of the polynomial fit to the coordinate positions, used
+            to define
         """
 
         # Projected coordinates
-        self.X = X # (N, D)
+        self.X = np.array(X) # (N, 2)
         self.N, self.D = self.X.shape
 
         if self.D != 2:
-            raise NotImplementedError('D={0}'.format(self.D))
+            raise NotImplementedError('expected 2D data, got D={0}'
+                                      .format(self.D))
 
-        # Fit a polynomial to the projected coordinates
-        self.poly = np.poly1d(np.polyfit(self.X[:, 0], self.X[:, 1],
-                                         deg=poly_deg))
+        if poly is not None:
+            self.poly = poly
 
+        else:
+            # Fit a polynomial to the projected coordinates
+            self.poly = np.poly1d(np.polyfit(self.X[:, 0], self.X[:, 1],
+                                             deg=poly_deg))
+
+        # things we know we'll need later
         self.nodes = None
         self.K = None
 
@@ -204,20 +220,17 @@ class DensityModel2D:
         Ck = R @ Ck_prim @ R.T
         return Ck
 
-    def ln_density(self, X, a_k, s_k, h, nodes=None, sum=True):
-        if nodes is None:
-            nodes = self.nodes
+    def ln_density(self, X, a_k, s_k, h, mu_k=None):
+        if mu_k is None:
+            mu_k = self.nodes
 
         ln_dens = np.zeros((self.K, len(X)))
         for k in range(self.K):
             C = self.get_Ck(k, s_k[k], h)
             try:
-                ln_dens[k] = mvn.logpdf(X, nodes[k], C,
+                ln_dens[k] = mvn.logpdf(X, mu_k[k], C,
                                         allow_singular=True)
             except ValueError as e:
                 raise e
 
-        if sum:
-            return logsumexp(ln_dens + np.log(a_k)[:, None], axis=0)
-        else:
-            return ln_dens + np.log(a_k)[:, None]
+        return logsumexp(ln_dens + np.log(a_k)[:, None], axis=0)
