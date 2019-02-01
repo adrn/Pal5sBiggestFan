@@ -1,2 +1,4 @@
 *.npy
 *.hdf5
+data
+plots
