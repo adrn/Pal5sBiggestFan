@@ -13,6 +13,6 @@ pal5_c = coord.SkyCoord(ra=229.018*u.degree, dec=-0.124*u.degree,
 # Setting Sun's params - should update distance
 v_lsr = [11.1, 24.0, 7.25]*u.km/u.s
 v_circ = 220 * u.km/u.s
-v_sun = coord.CartesianDifferential(v_lsr + [0, 1, 0]*v_circ)
+v_sun = coord.CartesianDifferential(v_lsr + [0, 1, 0] * v_circ)
 galcen_frame = coord.Galactocentric(galcen_distance=8.1*u.kpc,
                                     galcen_v_sun=v_sun)
