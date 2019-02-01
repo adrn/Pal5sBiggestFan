@@ -27,9 +27,9 @@ def ln_normal(x, mu, var):
     return -0.5*np.log(2*np.pi) - 0.5*np.log(var) - 0.5 * (x-mu)**2 / var
 
 
-class Model:
+class GaussianNoodleModel:
 
-    def __init__(self, density_model, h, l=None, frozen=None):
+    def __init__(self, density_model, h, m_prior_sigma=None, frozen=None):
         if frozen is None:
             frozen = dict()
         self.frozen = dict(frozen)
@@ -41,14 +41,18 @@ class Model:
         self._K = self.density_model.K
 
         self.h = h
-        if l is None: # width of prior on m
-            l = self.h
-        self.l = l
+        if m_prior_sigma is None: # width of prior on m
+            m_prior_sigma = self.h
+        self.m_prior_sigma = m_prior_sigma
 
         self._params = dict()
         self._params['ln_z'] = (self.density_model.K-1, )
         self._params['ln_s'] = (self.density_model.K, )
         self._params['m'] = (self.density_model.K, )
+
+    # =========================================================================
+    # Parameter packing and unpacking:
+    #
 
     def pack_pars(self, **kwargs):
         vals = []
@@ -102,7 +106,7 @@ class Model:
             return -np.inf
 
         # this is like L2 regularization, but I should try Lasso at some point
-        lp += ln_normal(p['m'], 0, self.l).sum()
+        lp += ln_normal(p['m'], 0, self.m_prior_sigma).sum()
 
         return lp
 
@@ -173,7 +177,7 @@ class Model:
         ln_d_lnL_d_m, sign = logsumexp(ln_d_lnL_d_mk, b=signs, axis=0,
                                        return_sign=True)
         # the last term is because of the prior we put on m
-        d_lnL_d_m = sign * np.exp(ln_d_lnL_d_m) - p['m'] / self.l**2
+        d_lnL_d_m = sign * np.exp(ln_d_lnL_d_m) - p['m'] / self.m_prior_sigma**2
 
         # ---
         ln_d_lnL_d_a = logsumexp(ln_N_nk - ln_denom[:, None], axis=0)
@@ -206,3 +210,76 @@ class Model:
                                        return_sign=True)
         d_lnL_d_s = sign * np.exp(ln_d_lnL_d_s)
         return np.concatenate((d_lnL_d_s * s, d_lnL_d_z * z, d_lnL_d_m))
+
+    def ln_derivs_like(self, p):
+        """Log of the derivatives of the *likelihood*, not the log-likelihood!"""
+
+        R = self.density_model._R_k
+        K = self.density_model.K
+        X = self.density_model.X
+        h = self.h
+        (N, D) = X.shape
+
+        a = self.get_a(p)
+        s = self.get_s(p)
+        z = self.get_z(p)
+        nodes = self.get_mu(p)
+
+        # We need this for all of the derivatives
+        ln_N_nk = np.zeros((N, K))
+        C = np.zeros((K, D, D))
+        Cinv = np.zeros((K, D, D))
+        for k in range(K):
+            C[k] = self.density_model.get_Ck(k, s[k], h)
+            Cinv[k] = self.density_model.get_Ck(k, s[k], h, inv=True)
+            ln_N_nk[:, k] = mvn.logpdf(X, nodes[k], C[k],
+                                       allow_singular=True)
+        ln_aN_nk = np.log(a) + ln_N_nk
+
+        # ---
+        ln_d_L_d_a = ln_N_nk
+        ln_d_L_dznk = np.zeros((N, K-1))
+        z_sign = np.ones((N, K-1))
+        for k in range(K-1):
+            # note the change: z-1 to 1-z and minus sign out front
+            ln_t1 = np.log(a[k]) - np.log(1 - z[k]) + ln_d_L_d_a[:, k]
+
+            terms = []
+            for j in range(k+1, K):
+                terms.append(np.log(a[j]) - np.log(z[k]) + ln_d_L_d_a[:, j])
+            ln_t2 = logsumexp(terms, axis=0)
+
+            ln_d_L_dznk[:, k], z_sign[:, k] = logsumexp([ln_t1, ln_t2],
+                                                        b=[np.ones(N), -np.ones(N)],
+                                                        axis=0, return_sign=True)
+        ln_d_L_d_lnznk = ln_d_L_dznk + np.log(z)
+
+        # ---
+        ln_d_L_d_mnk = np.zeros((N, K))
+        m_sign = np.zeros((N, K))
+        for k in range(K):
+            # the [:,1] below picks off only the y term, because we only allow
+            # the means to move in y
+            Cinv_dx = np.einsum('ij,nj->ni', Cinv[k], X - nodes[k:k+1])[:, 1]
+            m_sign[:, k] = np.sign(Cinv_dx)
+            log_Cinv_dx = np.log(np.abs(Cinv_dx))
+            ln_d_L_d_mnk[:, k] = ln_aN_nk[:, k] + log_Cinv_dx
+
+        # ---
+        ln_d_L_d_snk = np.zeros((N, K))
+        s_sign = np.zeros((N, K))
+        for k in range(K):
+            b = X - nodes[k:k+1]
+
+            term = ((b[:, 1]*R[k,0,0] + b[:, 0]*R[k,0,1])**2/s[k]**2 - 1) / s[k]
+
+            s_sign[:, k] = np.sign(term)
+            log_term = np.log(np.abs(term))
+
+            ln_d_L_d_snk[:, k] = ln_aN_nk[:, k] + log_term
+
+        ln_d_L_d_lnsnk = ln_d_L_d_snk + np.log(s)
+
+        return [[ln_d_L_d_lnsnk, s_sign],
+                [ln_d_L_d_lnznk, z_sign],
+                [ln_d_L_d_mnk, m_sign]]
