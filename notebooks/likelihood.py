@@ -29,7 +29,9 @@ def ln_normal(x, mu, var):
 
 class StreamDensityModel:
 
-    def __init__(self, X, density_model, h, bg_ln_likelihood,
+    def __init__(self, X, density_model, h,
+                 bg_ln_likelihood=None, d_bg_ln_likelihood_dp=None,
+                 bg_params=None, bg_kwargs=None,
                  m_prior_sigma=None, frozen=None):
 
         if frozen is None:
@@ -47,8 +49,6 @@ class StreamDensityModel:
 
         self.h = h
 
-        self.bg_ln_likelihood = bg_ln_likelihood
-
         if m_prior_sigma is None: # width of prior on m
             m_prior_sigma = self.h
         self.m_prior_sigma = m_prior_sigma
@@ -57,29 +57,52 @@ class StreamDensityModel:
         self._params['ln_z'] = (self.density_model.K-1, )
         self._params['ln_s'] = (self.density_model.K, )
         self._params['m'] = (self.density_model.K, )
-        self._params['f'] = (1, )
-        # TODO: how to generalize the background model? for now, assume uniform
-        # - I could take functions that evaluate the background likelihood
-        #   and any derivatives?
 
+        # Background model:
+        if bg_ln_likelihood is not None:
+            self._params['f'] = (1, )
+        else:
+            self.frozen['f'] = 1.
+
+        if bg_kwargs is None:
+            bg_kwargs = dict()
+        self.bg_kwargs = bg_kwargs
+        self.bg_ln_likelihood = bg_ln_likelihood
+        self.d_bg_ln_likelihood_dp = d_bg_ln_likelihood_dp
+
+        if bg_params is None:
+            bg_params = dict()
+        self._bg_params = bg_params
+        for name, shape in bg_params.items():
+            self._params[name] = shape
+
+        # Packing and unpacking is done by sorted names:
         self._params_sorted = sorted(list(self._params.keys()))
+        self._params_sorted_unfrozen = sorted([k for k in self._params.keys()
+                                               if k not in self.frozen])
 
     # =========================================================================
     # Parameter packing and unpacking:
     #
 
-    def pack_pars(self, **kwargs):
+    def pack_pars(self, p, fill_frozen=True):
         vals = []
         for k in self._params_sorted:
-            frozen_val = self.frozen.get(k, None)
-            val = kwargs.get(k, frozen_val)
+            if k in self.frozen:
+                val = self.frozen.get(k, None)
+                if not fill_frozen:
+                    continue
+
+            else:
+                val = p.get(k, None)
+
             if val is None:
                 raise ValueError("No value passed in for parameter {0}, but "
                                  "it isn't frozen either!".format(k))
             vals.append(np.array(val).reshape(self._params[k]))
         return np.concatenate(vals)
 
-    def unpack_pars(self, p):
+    def unpack_pars(self, x):
         key_vals = []
 
         j = 0
@@ -89,7 +112,7 @@ class StreamDensityModel:
             if name in self.frozen:
                 key_vals.append((name, self.frozen[name]))
             else:
-                key_vals.append((name, p[j:j+size]))
+                key_vals.append((name, x[j:j+size]))
                 j += size
 
         return dict(key_vals)
@@ -132,9 +155,11 @@ class StreamDensityModel:
         mu = self.get_mu(p)
         return self.density_model.ln_density(X, a, s, self.h, mu_k=mu)
 
-    def ln_likelihood(self, p):
-        ln_fg = self.ln_density(p, self.X)
-        ln_bg = self.bg_ln_likelihood(p, self.X)
+    def ln_likelihood(self, p, X=None):
+        if X is None:
+            X = self.X
+        ln_fg = self.ln_density(p, X)
+        ln_bg = self.bg_ln_likelihood(p, X, **self.bg_kwargs)
         return np.logaddexp(ln_fg + np.log(p['f']),
                             ln_bg + np.log(1 - p['f']))
 
@@ -246,12 +271,19 @@ class StreamDensityModel:
         # ----
         if 'f' not in self.frozen:
             ln_fg = self.ln_density(p, X)
-            ln_bg = self.bg_ln_likelihood(p, X)
+            ln_bg = self.bg_ln_likelihood(p, X, **self.bg_kwargs)
             ln_numer, f_sign = logsumexp([ln_fg, ln_bg],
                                          b=np.stack((np.ones(N), -np.ones(N))),
                                          return_sign=True, axis=0)
             ln_derivs['f'] = ln_numer
             signs['f'] = f_sign
+
+        for name in self._bg_params:
+            ln_bg_derivs, bg_signs = self.d_bg_ln_likelihood_dp(p, X,
+                                                                **self.bg_kwargs)
+            if name not in self.frozen:
+                ln_derivs[name] = ln_bg_derivs[name]
+                signs[name] = bg_signs[name]
 
         for k in ln_derivs:
             ln_derivs[k] = ln_derivs[k].reshape((N, ) + self._params[k])
@@ -265,12 +297,104 @@ class StreamDensityModel:
 
         full_derivs = dict()
         for name in self._params_sorted:
+            if name in self.frozen:
+                continue
+
             if name == 'f':
                 f_fac = 0.
+            elif name.startswith('bg'):
+                f_fac = np.log(1 - p['f'])
             else:
                 f_fac = np.log(p['f'])
+
             full_derivs[name] = np.sum(signs[name] *
                                        np.exp(f_fac + derivs[name] - ln_denom[:, None]),
                                        axis=0)
 
         return full_derivs
+
+
+# Background models:
+
+def ln_bg_quadratic_uniform(p, X, window_bounds):
+    a, b = window_bounds[0]
+    x1, x2 = X.T
+    N = len(x1)
+
+    # x1 direction:
+    c1 = p['bg_c1']
+    c2 = p['bg_c2']
+    c3 = p['bg_c3']
+    x0 = p['bg_x0']
+
+    lnA = np.log(6) - np.log((b - a)*(2*a**2*c1 + 2*a*b*c1 + 2*b**2*c1 + 3*a*c2 + 3*b*c2 + 6*c3 - 6*a*c1*x0 - 6*b*c1*x0 - 6*c2*x0 + 6*c1*x0**2))
+    ln_px1 = lnA + logsumexp([np.log(c1) + np.log((x1-x0)**2),
+                              np.log(c2) + np.log(np.abs(x1-x0)),
+                              np.full_like(x1, np.log(c3))],
+                             b=[np.ones(N), np.sign(x1-x0), np.ones(N)],
+                             axis=0)
+
+    # x2 direction:
+    ln_px2 = -np.log(window_bounds[1][1] - window_bounds[1][0])
+
+    return ln_px1 + ln_px2
+
+
+def ln_d_ln_bg_quadratic_uniform_dp(p, X, window_bounds):
+    a, b = window_bounds[0]
+    x, x2 = X.T
+    N = len(x)
+
+    c1 = p['bg_c1']
+    c2 = p['bg_c2']
+    c3 = p['bg_c3']
+    x0 = p['bg_x0']
+
+    derivs = dict()
+    signs = dict()
+
+    derivs['bg_c1'] = ((6*(2*a**2*(c3 + c2*(x - x0)) + 2*b**2*(c3 + c2*(x - x0)) -
+                          6*x*(c3*(x - 2*x0) + c2*x0*(-x + x0)) - 3*b*(2*c3*x0 + c2*(x - x0)*(x + x0)) +
+                          a*(-3*c2*x**2 - 6*c3*x0 + 3*c2*x0**2 + 2*b*(c3 + c2*x - c2*x0)))) /
+                        ((a - b)*(2*a**2*c1 + 2*a*b*c1 + 2*b**2*c1 + 3*a*c2 + 3*b*c2 + 6*c3 -
+                                  6*((a + b)*c1 + c2)*x0 + 6*c1*x0**2)**2))
+
+    derivs['bg_c2'] = ((6*(2*a**2*c1*(-x + x0) + 2*b**2*c1*(-x + x0) - 6*x*(c3 + c1*(x - x0)*x0) +
+   3*b*(c3 + c1*(x - x0)*(x + x0)) + a*(3*c3 + c1*(x - x0)*(-2*b + 3*(x + x0)))))/
+ ((a - b)*(2*a**2*c1 + 2*a*b*c1 + 2*b**2*c1 + 3*a*c2 + 3*b*c2 + 6*c3 -
+    6*((a + b)*c1 + c2)*x0 + 6*c1*x0**2)**2))
+
+    derivs['bg_c3'] = ((-6*(2*a**2*c1 + 2*b**2*c1 + 3*b*c2 + a*(2*b*c1 + 3*c2) - 6*x*(c2 + c1*x)) +
+  36*c1*(a + b - 2*x)*x0)/((a - b)*(2*a**2*c1 + 2*a*b*c1 + 2*b**2*c1 + 3*a*c2 + 3*b*c2 +
+    6*c3 - 6*((a + b)*c1 + c2)*x0 + 6*c1*x0**2)**2))
+
+    derivs['bg_x0'] = ((6*(6*(c2 + c1*(a + b - 2*x0))*(c3 + (c2 + c1*(x - x0))*(x - x0)) -
+   (c2 + 2*c1*(x - x0))*(2*a**2*c1 + 2*a*b*c1 + 2*b**2*c1 + 3*a*c2 + 3*b*c2 + 6*c3 -
+     6*((a + b)*c1 + c2)*x0 + 6*c1*x0**2)))/
+ ((-a + b)*(2*a**2*c1 + 2*a*b*c1 + 2*b**2*c1 + 3*a*c2 + 3*b*c2 + 6*c3 -
+    6*((a + b)*c1 + c2)*x0 + 6*c1*x0**2)**2))
+
+    # because it's multiplied in the likelihood
+    ln_px2 = -np.log(window_bounds[1][1] - window_bounds[1][0])
+
+    for name in ['bg_c1', 'bg_c2', 'bg_c3', 'bg_x0']:
+        signs[name] = np.sign(derivs[name])
+        derivs[name] = np.log(np.abs(derivs[name])) + ln_px2
+
+    return derivs, signs
+
+
+def ln_bg_uniform(p, X, window_bounds):
+    N = len(X)
+
+    # x1 direction:
+    ln_px1 = -np.log(window_bounds[0][1] - window_bounds[0][0])
+
+    # x2 direction:
+    ln_px2 = -np.log(window_bounds[1][1] - window_bounds[1][0])
+
+    return np.full(N, ln_px1 + ln_px2)
+
+
+def ln_d_ln_bg_uniform_dp(p, X, window_bounds):
+    return dict(), dict()
