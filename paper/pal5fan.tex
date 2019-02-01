@@ -130,17 +130,17 @@ r_1 = \left[\left((x/x_0)^2 + (y/y_0)^2\right)^2 +( z/z_0)^4\right]^{1/4}
 \begin{equation}
 r_2 = \left[\frac{q^2(x^2 + y^2) + z^2)}{z_0^2}\right]^{1/2}
 \end{equation}
-where the scale lengths are $x_0$ = 1.49 kpc, $y_0$ = 0.58 kpc, $z_0$ = 0.4 kpc, and q = 0.6. We include terms up to $n=9$, $l=19$ in the ``self-consistent field" BFE formalism, as this yields a good representation of the density of the bar (\citealt{Banik:2019})\footnote{Note that using lower order terms (e.g. n=6, l = 8) for the basis function expansion does not much change the morphology or kinematics of the Pal 5 stream.}. We explore barred models with pattern speeds of $\Omega_b$ = ($25 - 65$) $\kms$ kpc$^{-1}$ in increments of 1 kpc$^{-1}$, and  we vary the bar mass to be $M_{bar} = 5 \times 10^{9}$ $\msun$ or $M_{bar} = 1 \times 10^{10}$ $\msun$ (\citealt{Portail:2017}). Additionally, we fix the present day angular offset from the Galactic x-axis in the direction of rotation, $\alpha = 27\deg$.
+where the scale lengths are $x_0$ = 1.49 kpc, $y_0$ = 0.58 kpc, $z_0$ = 0.4 kpc, and q = 0.6. We include terms up to $n=9$, $l=19$ in the ``self-consistent field" BFE formalism, as this yields a good representation of the density of the bar (\citealt{Banik:2019})\footnote{Note that using lower order terms (e.g. n=6, l = 8) for the basis function expansion does not much change the morphology or kinematics of the Pal 5 stream.}. We explore barred models with pattern speeds of $\Omega_b$ = ($25 - 65$) $\kms$ kpc$^{-1}$ in increments of 1 kpc$^{-1}$, and  we vary the bar mass to be $M_{bar} = 5 \times 10^{9}$ $\msun$ or $M_{bar} = 1 \times 10^{10}$ $\msun$ (\citealt{Portail:2017}). Additionally, we fix the present day angular offset from the Galactic x-axis in the direction of rotation to $\alpha = 27\deg$.
 \end{itemize}
 
-\citet{wang:2012} construct a bar with a pattern speed of $\Omega_b$ =  60 $\kms$ kpc$^{-1}$, which has a co-rotation radius, $r_{\rm CR} = 3.7$ kpc. However, in this paper, we explore a range of pattern speeds, and this will change the co-rotation radii (faster bars have co-rotation at smaller radii and vice versa).  As bars are not expected to extend beyond their co-rotation radius (\citealt{binney:2008}), we therefore adjust the physical scaling of the bar when varying the pattern speed. %In \citet{wang:2012}, the scale-radius, $r_s$, assumed in the BFE, is  $r_s = 1.1$ kpc. 
-In particular, we  compute the co-rotation radius, $r_{\rm CR},$ based on the mass profiles of the static potential at any given pattern speed, $\Omega_b$. We then scale our bar model for a given pattern speed, $\Omega_b$, by:
+\citet{wang:2012} construct a bar with a pattern speed of $\Omega_b$ =  60 $\kms$ kpc$^{-1}$, which has a co-rotation radius, $r_{\rm CR} = 3.7$ kpc. This is the radius at which $\Omega_0 = \Omega_b$, where $\Omega_0$ is the circular frequency in the total potential. However, in this paper, we explore a {\it range} of pattern speeds, which will lead to different co-rotation radii for different pattern speeds (faster bars have co-rotation at smaller radii and vice versa).  As bars are not expected to extend much beyond their co-rotation radius (\citealt{binney:2008}), we therefore adjust the physical scaling of the bar when varying the pattern speed. %In \citet{wang:2012}, the scale-radius, $r_s$, assumed in the BFE, is  $r_s = 1.1$ kpc. 
+In particular, we  compute the co-rotation radius, $r_{\rm CR},$ based on the mass profiles of the static potential for any given pattern speed, $\Omega_b$. We then scale our bar model for a given pattern speed, $\Omega_b$, by:
 
 \begin{equation} 
 r_{s, \Omega_b}  = r_{{\rm CR}, \Omega_b}/r_{{\rm CR, Wang 2012}}
 \end{equation} 
 
-If this scaling is not included (as for bar models used in \citealt{price:2016b}, \citealt{Pearson:2017}, \citealt{Erkal:2017}, \citealt{Banik:2019}), this creates a too strong bar quadrupole for the faster pattern speeds, and a too weak bar quadrupole for the slower pattern speeds. 
+If this scaling is not included (as the case for bar models in e.g. \citealt{price:2016b}, \citealt{Pearson:2017}, \citealt{Erkal:2017}, \citealt{Banik:2019}), this creates a too strong bar quadrupole for the faster pattern speeds, and a too weak bar quadrupole for the slower pattern speeds. 
 
 In Figure \ref{fig:vcirc}, we show the circular velocity as a function of radius for the barred, three-component Galactic potential with $\Omega_b$ = ($25 - 65$) $\kms$ kpc$^{-1}$. The red lines correspond to the potentials with a bar mass of $M_{bar} = 5 \times 10^{9}$ $\msun$, and the blue lines correspond to potentials with a bar mass of  $M_{bar} = 1 \times 10^{10}$ $\msun$.
 
@@ -159,23 +159,13 @@ To simulate the evolution of Pal 5 in a given potential, we first transform Pal 
 %Put into table 
 %(RA = 229.018 deg, Dec = - 0.24 deg, distance = 22.9 kpc, $v_r$ = -58.7 , pm$_{RA,cosdec}= -2.296$ mas and pm$_{Dec} = -2.257$ mas
 
-We then integrate the cluster backwards in time for 4 Gyr in steps of 0.5 Myr in a given potential. Subsequently, we simulate the forward evolution of Pal 5 using the ``particle-spray" stream generating method developed by \citet{Fardal:2015}, such that the cluster ends at its present day position at $t = 0$. We release two particles through each of the two Lagrange points every 10 Myr. 
+We then integrate the cluster backwards in time for 4 Gyr in steps of 0.5 Myr in a given potential. Subsequently, we simulate the forward evolution of Pal 5 using the ``particle-spray" stream generating method developed by \citet{Fardal:2015}, such that the cluster ends at its present day position at $t = 0$. We release two particles through each of the two Lagrange points every 8 Myr. 
 
-To investigate Pal 5's evolution on a regular orbit, we first run a ``particle-spray" simulations setting $q_z = 0.94$ (\citealt{Bovy:2016}). Subsequently, to we run the same simulation setting $q_z = 0.5$ to induce a chaotic orbit. 
-
-Additionally, we simulate the evolution of Pal 5's stream in the barred potential, where we first integrating the orbit backwards for 4 Gyr. We then create mock streams using the ``particle-spray" method. We vary the pattern speed of the bar, while updating its physical scaling (see Section \ref{sec:potential} and Figure \ref{fig:vcirc}). We do this exercise with a bar mass of $M_{bar} = 5 \times 10^{9}$ $\msun$ and $M_{bar} = 1 \times 10^{10}$ $\msun$.
+To investigate Pal 5's evolution on a regular orbit, we first run a ``particle-spray" simulations setting $q_z = 0.94$ (\citealt{Bovy:2016}). Subsequently, to we run the same simulation setting $q_z = 0.5$ to induce a chaotic orbit. Additionally, we simulate the evolution of Pal 5's stream in the barred potential, where we first integrating the orbit backwards for 4 Gyr, and then create mock streams as described above. We vary the pattern speed of the bar, while updating its physical scaling (see Section \ref{sec:potential} and Figure \ref{fig:vcirc}). We repeat this exercise using bar masses of both $M_{bar} = 5 \times 10^{9}$ $\msun$ and $M_{bar} = 1 \times 10^{10}$ $\msun$.
 
 \subsection{Simulation results}
 \label{sec:sim_results}
-In this Section, we show the results of modeling Pal 5 in a static potentail with varying halo flattening (Section \ref{sec:results_stat}), and in a barred potentials with various pattern speeds (Section \ref{sec:results_barred}). In both cases, we compare the simulations to our data using the density model described in Section \ref{sec:density}.
-
-
-%\label{sec:results_stat}
-%The left panel of Figure \ref{fig:sims} shows the Pal 5 on a regular orbit in a static potential with a flattening of $q_z = 0.94$ (\citealt{bovy:2017}). The leading and trailing arm of Pal 5 are symmetric, as expected (e.g. \citealt{dehnen:2004}, \citealt{Pearson:2015}). In the right panel, we show a stream evolved in a flattened static potential ($q_z = 0.5$). For both scenarios the leading and trailing arm look symmetric, although the arms are ``fanned" out in the chaotic case (\citealt{Price-Whelan:2016}).
-%
-%
-%\label{sec:results_barred}
-%In Figure \ref{fig:sims} we show four different simulated Pal 5 streams that all yield densities and widths comparable to the data. These streams were evolved in a barred potential with pattern speeds of $\Omega_b = (...) \kms$ kpc$^{-1}$. We selected these four examples through visual inspection of the density and width of the data and the simulated streams. 
+In Figure \ref{fig:sims}, we present the morphology (left column) and radial velocities (right column) of the simulated Pal 5 streams in various potentials. The first two rows show Pal 5 evolved in a static potential with two different fattenings (see Section \ref{sec:potential}). The two four last rows show four examples of Pal 5 evolved in barred potentials. We selected these four examples through visual inspection of the density and width of the data and the simulated streams.  
 
 
 
