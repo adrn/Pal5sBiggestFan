@@ -322,9 +322,9 @@ def ln_bg_quadratic_uniform(p, X, window_bounds):
     N = len(x1)
 
     # x1 direction:
-    c1 = p['bg_c1']
-    c2 = p['bg_c2']
-    c3 = p['bg_c3']
+    c1 = np.exp(p['ln_bg_c1'])
+    c2 = np.exp(p['ln_bg_c2'])
+    c3 = np.exp(p['ln_bg_c3'])
     x0 = p['bg_x0']
 
     lnA = np.log(6) - np.log((b - a)*(2*a**2*c1 + 2*a*b*c1 + 2*b**2*c1 + 3*a*c2 + 3*b*c2 + 6*c3 - 6*a*c1*x0 - 6*b*c1*x0 - 6*c2*x0 + 6*c1*x0**2))
@@ -345,26 +345,26 @@ def ln_d_ln_bg_quadratic_uniform_dp(p, X, window_bounds):
     x, x2 = X.T
     N = len(x)
 
-    c1 = p['bg_c1']
-    c2 = p['bg_c2']
-    c3 = p['bg_c3']
+    c1 = np.exp(p['ln_bg_c1'])
+    c2 = np.exp(p['ln_bg_c2'])
+    c3 = np.exp(p['ln_bg_c3'])
     x0 = p['bg_x0']
 
     derivs = dict()
     signs = dict()
 
-    derivs['bg_c1'] = ((6*(2*a**2*(c3 + c2*(x - x0)) + 2*b**2*(c3 + c2*(x - x0)) -
+    derivs['ln_bg_c1'] = ((6*(2*a**2*(c3 + c2*(x - x0)) + 2*b**2*(c3 + c2*(x - x0)) -
                           6*x*(c3*(x - 2*x0) + c2*x0*(-x + x0)) - 3*b*(2*c3*x0 + c2*(x - x0)*(x + x0)) +
                           a*(-3*c2*x**2 - 6*c3*x0 + 3*c2*x0**2 + 2*b*(c3 + c2*x - c2*x0)))) /
                         ((a - b)*(2*a**2*c1 + 2*a*b*c1 + 2*b**2*c1 + 3*a*c2 + 3*b*c2 + 6*c3 -
                                   6*((a + b)*c1 + c2)*x0 + 6*c1*x0**2)**2))
 
-    derivs['bg_c2'] = ((6*(2*a**2*c1*(-x + x0) + 2*b**2*c1*(-x + x0) - 6*x*(c3 + c1*(x - x0)*x0) +
+    derivs['ln_bg_c2'] = ((6*(2*a**2*c1*(-x + x0) + 2*b**2*c1*(-x + x0) - 6*x*(c3 + c1*(x - x0)*x0) +
    3*b*(c3 + c1*(x - x0)*(x + x0)) + a*(3*c3 + c1*(x - x0)*(-2*b + 3*(x + x0)))))/
  ((a - b)*(2*a**2*c1 + 2*a*b*c1 + 2*b**2*c1 + 3*a*c2 + 3*b*c2 + 6*c3 -
     6*((a + b)*c1 + c2)*x0 + 6*c1*x0**2)**2))
 
-    derivs['bg_c3'] = ((-6*(2*a**2*c1 + 2*b**2*c1 + 3*b*c2 + a*(2*b*c1 + 3*c2) - 6*x*(c2 + c1*x)) +
+    derivs['ln_bg_c3'] = ((-6*(2*a**2*c1 + 2*b**2*c1 + 3*b*c2 + a*(2*b*c1 + 3*c2) - 6*x*(c2 + c1*x)) +
   36*c1*(a + b - 2*x)*x0)/((a - b)*(2*a**2*c1 + 2*a*b*c1 + 2*b**2*c1 + 3*a*c2 + 3*b*c2 +
     6*c3 - 6*((a + b)*c1 + c2)*x0 + 6*c1*x0**2)**2))
 
@@ -377,9 +377,12 @@ def ln_d_ln_bg_quadratic_uniform_dp(p, X, window_bounds):
     # because it's multiplied in the likelihood
     ln_px2 = -np.log(window_bounds[1][1] - window_bounds[1][0])
 
-    for name in ['bg_c1', 'bg_c2', 'bg_c3', 'bg_x0']:
+    for name in ['ln_bg_c1', 'ln_bg_c2', 'ln_bg_c3', 'bg_x0']:
         signs[name] = np.sign(derivs[name])
         derivs[name] = np.log(np.abs(derivs[name])) + ln_px2
+
+        if 'bg_c' in name:
+            derivs[name] = derivs[name] + p[name]
 
     return derivs, signs
 
