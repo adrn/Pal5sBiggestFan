@@ -73,15 +73,15 @@
 \item  Emphasize Pal 5 is the only cold stream for which we know the progenitor.
 \item	 Mention other papers: Odenkirchen, \citet{Ibata:2016}, \citet{Ibata:2017}, \citet{Balbinot:2017}, Bernard (PS1: \citealt{Bernard:2016})
 \item	 Mention remaining puzzles: main sequence stars, is the trailing arm thinner, does the leading arm truncate, are the gaps from the bar?
-\item Maybe motivate through chaos, bar etc. that there might be crazy features we haven't seen. 
+\item Maybe motivate through chaos, bar etc. that there might be crazy features we haven't seen due to lack of deeper data of streams.
 \item	We need deeper data, and data further south to fully understand what has created the gaps in Pal 5
 \end{itemize}
 
 	
 %wrapping up intro: 
-In this paper we present the deepest map of Pal 5 to date. \todo{one sentence on DECaLS)}. The data clearly show non-uniformities in both the leading and trailing arm of the stream. In particular, we discover a ``fanned" feature in the leading arm of the stream. We compare the data to a suite of simulated Pal 5 streams using a detailed gaussian mixture density model, and we explore mechanisms that could lead to the formation of the observed features.  
+In this paper we present the deepest map of Pal 5 to date. \todo{one sentence on DECaLS)}. The data clearly show non-uniformities in both the leading and trailing arm of the stream. In particular, we discover a ``fanned" feature in the leading arm of the stream. We compare the data to a suite of simulated Pal 5 mock-streams using a detailed gaussian mixture density model, and we explore mechanisms that could lead to the formation of the observed features.  
 
-The paper is structured as follows: in Section \ref{sec:data}, we present new DECaLS Pal 5 data, and in Section \ref{sec:sim} we describe our simulation setups. We describe our Gaussian mixture model we use to fit the density and width of Pal 5 in Section \ref{sec:density}, and we show our comparisons of the simulations and data using in Section \ref{sec:results}. We discuss the implications of our results and address outstanding questions about Pal 5's morphology in Section \ref{sec:discussion}, and we conclude in Section \ref{sec:conclusion}. 
+The paper is structured as follows: in Section \ref{sec:data}, we present new DECaLS Pal 5 data. In Section \ref{sec:sim} we describe our simulation setups and the results of simulating Pal 5's evolution in both barred and static potentials. We describe our Gaussian mixture model we use to fit the density and width of Pal 5 in Section \ref{sec:density}. We discuss the implications of our results and address outstanding questions about Pal 5's morphology in Section \ref{sec:discussion}, and we conclude in Section \ref{sec:conclusion}. 
 
 
 
@@ -123,16 +123,16 @@ Some features in the distribution of likely Pal~5 members might be due to this v
 
 \section{Simulations}
 \label{sec:sim}
-In order to explore the mechanism leading the the observed morphology of the stream (i.e. the length asymmetry between the leading and trailing arm, as well as the gap in the trailing arm, and the ``fan" in the leading arm), we run a suite of Pal 5 simulations. In particular, we investigate whether Pal 5's ``fan" in the leading arm can be explained due to chaotic regions in the potential (\citealt{Pearson:2015}, \citealt{Price-Whelan:2016}, Yavetz et al., {\it in prep.}), or whether Pal 5 is interacting with the Galactic bar (\citealt{Pearson:2017}, \citealt{Erkal:2017}, \citealt{Banik:2019}). In Section \ref{sec:potential}, we describe the potentials we use to simulate the evolution of Pal 5, and in Section \ref{sec:potential} we describe our simulation setup. 
+To explore the mechanism leading the the observed morphology of the stream (i.e. the length asymmetry between the leading and trailing arm, as well as the gap in the trailing arm, and the ``fan" in the leading arm), we run a suite of Pal 5 simulations. In particular, we investigate whether Pal 5's ``fan" in the leading arm can be explained due to chaotic regions in the potential (\citealt{Pearson:2015}, \citealt{Price-Whelan:2016}, Yavetz et al., {\it in prep.}), or whether Pal 5 is interacting with the Galactic bar (\citealt{Erkal:2017}, \citealt{Pearson:2017}, \citealt{Banik:2019}). In Section \ref{sec:potential}, we describe the potentials we use to simulate the evolution of Pal 5, and in Section \ref{sec:modeling} we describe our simulation setup. We show the results of our analyses in Section \ref{sec:sim_results}.
 
 \subsection{Potential}
 \label{sec:potential}
 We simulate the evolution of Pal 5 in two classes of three-component Galactic potentials: 
 
 \begin{itemize}
-\item[1.] {\bf Static potential}: we use the {\small MWPotential2014} (\citealt{Bovy:2015}) consisting of a Miyamoto-Nagai disk (\citealt{Miyamoto:1975}), a bulge modeled as an exponentially cut off, power-law density profile, and an NFW dark matter halo (\citealt{Navarro:1996}). We vary the flattening of the NFW halo ($q_z = 0.94$ and $q_z = 0.5$) to investigate Pal 5's morphology in on both a regular and chaotic orbit (see Section \ref{sec:modeling}). 
+\item[1.] {\bf Static potential}: we use the {\small MWPotential2014} (\citealt{Bovy:2015}) consisting of a Miyamoto-Nagai disk (\citealt{Miyamoto:1975}), a bulge modeled as an exponentially cut off, power-law density profile, and an NFW dark matter halo (\citealt{Navarro:1996}). We vary the flattening of the NFW halo ($q_z = 0.94$ and $q_z = 0.5$) to investigate Pal 5's morphology on a regular as well as chaotic orbit (see Section \ref{sec:modeling}). 
 
-\item[2.] {\bf  Barred potential}: we use the same disk and halo as in {\small MWPotential2014}, but include a Galactic bar instead of a bulge. Following \citet{wang:2012}, we compute the bar potential as a basis-function expansion (BFE) representation of a triaxial, exponential density profile:
+\item[2.] {\bf  Barred potential}: we use the same disk and halo as in the {\small MWPotential2014}, but include a Galactic bar instead of a bulge. Following \citet{wang:2012}, we compute the bar potential as a basis-function expansion (BFE) representation of a triaxial, exponential density profile:
 
 \begin{equation}
 \rho_{bar} = \rho_0 [{\rm exp} (-r^2_1/2) + r_2^{-1.85} {\rm exp}(-r_2) ]
@@ -145,11 +145,12 @@ r_1 = \left[\left((x/x_0)^2 + (y/y_0)^2\right)^2 +( z/z_0)^4\right]^{1/4}
 \begin{equation}
 r_2 = \left[\frac{q^2(x^2 + y^2) + z^2)}{z_0^2}\right]^{1/2}
 \end{equation}
-where the scale lengths are $x_0$ = 1.49 kpc, $y_0$ = 0.58 kpc, $z_0$ = 0.4 kpc, and q = 0.6. We include terms up to $n=9$, $l=19$ in the ``self-consistent field" BFE formalism, as this yields a good representation of the density of the bar (\citealt{Banik:2019})\footnote{Note that using lower order terms (e.g. n=6, l = 8) for the basis function expansion does not much change the morphology or kinematics of the Pal 5 stream.}. We explore barred models with pattern speeds of $\Omega_b$ = ($25 - 65$) $\kms$ kpc$^{-1}$ in increments of 1 kpc$^{-1}$, and  we vary the bar mass to be $M_{bar} = 5 \times 10^{9}$ $\msun$ or $M_{bar} = 1 \times 10^{10}$ $\msun$ (\citealt{Portail:2017}). Additionally, we fix the present day angular offset from the Galactic x-axis in the direction of rotation to $\alpha = 27\deg$.
+where the scale lengths are $x_0$ = 1.49 kpc, $y_0$ = 0.58 kpc, $z_0$ = 0.4 kpc, and q = 0.6. We include terms up to $n=9$, $l=19$ in the ``self-consistent field" BFE formalism, as this yields a good representation of the density of the bar (\citealt{Banik:2019})\footnote{Note that using lower order terms (e.g. n=6, l = 8) for the basis function expansion does not much change the morphology or kinematics of the Pal 5 stream.}. We explore barred models with pattern speeds of $\Omega_b$ = ($25 - 65$) $\kms$ kpc$^{-1}$ in increments of 1 kpc$^{-1}$, and  we test bar masses of $M_{bar} = 5 \times 10^{9}$ $\msun$ and $M_{bar} = 1 \times 10^{10}$ $\msun$ (\citealt{Portail:2017}). Additionally, we fix the present day angular offset from the Galactic x-axis in the direction of rotation to $\alpha = 27\deg$.
 \end{itemize}
 
-\citet{wang:2012} construct a bar with a pattern speed of $\Omega_b$ =  60 $\kms$ kpc$^{-1}$, which has a co-rotation radius, $r_{\rm CR} = 3.7$ kpc. This is the radius at which $\Omega_0 = \Omega_b$, where $\Omega_0$ is the circular frequency in the total potential. However, in this paper, we explore a {\it range} of pattern speeds, which will lead to different co-rotation radii for different pattern speeds (faster bars have co-rotation at smaller radii and vice versa).  As bars are not expected to extend much beyond their co-rotation radius (\citealt{binney:2008}), we therefore adjust the physical scaling of the bar when varying the pattern speed. %In \citet{wang:2012}, the scale-radius, $r_s$, assumed in the BFE, is  $r_s = 1.1$ kpc. 
-In particular, we  compute the co-rotation radius, $r_{\rm CR},$ based on the mass profiles of the static potential for any given pattern speed, $\Omega_b$. We then scale our bar model for a given pattern speed, $\Omega_b$, by:
+\citet{wang:2012} constructed a bar with a pattern speed of $\Omega_b$ =  60 $\kms$ kpc$^{-1}$, which has a co-rotation radius, $r_{\rm CR} = 3.7$ kpc. This is the radius at which the circular frequency ($\Omega_0$) is equal to the spin of the bar ($\Omega_b$) including the mass of the total potential. In this paper, however, we explore a {\it range} of pattern speeds, which will lead to different co-rotation radii for different pattern speeds (faster bars have co-rotation at smaller radii and vice versa).  As bars are not expected to extend much beyond their co-rotation radius (\citealt{binney:2008}), we therefore adjust the physical scaling of the bar when we vary the pattern speed. %In \citet{wang:2012}, the scale-radius, $r_s$, assumed in the BFE, is  $r_s = 1.1$ kpc. 
+
+In particular, we  compute the co-rotation radius, $r_{\rm CR},$ based on the mass profiles of the static potential for any given pattern speed, $\Omega_b$. We then scale the bar model for a given pattern speed, $\Omega_b$, by:
 
 \begin{equation} 
 r_{s, \Omega_b}  = r_{{\rm CR}, \Omega_b}/r_{{\rm CR, Wang 2012}}
