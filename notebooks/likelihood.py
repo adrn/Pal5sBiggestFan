@@ -387,16 +387,21 @@ def ln_d_ln_bg_quadratic_uniform_dp(p, X, window_bounds):
     return derivs, signs
 
 
-def ln_bg_uniform(p, X, window_bounds):
+def ln_bg_uniform(p, X, window_bounds=None, area=None):
     N = len(X)
 
-    # x1 direction:
-    ln_px1 = -np.log(window_bounds[0][1] - window_bounds[0][0])
+    if window_bounds is not None:
+        # x1 direction:
+        ln_px1 = -np.log(window_bounds[0][1] - window_bounds[0][0])
 
-    # x2 direction:
-    ln_px2 = -np.log(window_bounds[1][1] - window_bounds[1][0])
+        # x2 direction:
+        ln_px2 = -np.log(window_bounds[1][1] - window_bounds[1][0])
 
-    return np.full(N, ln_px1 + ln_px2)
+        ln_area = ln_px1 + ln_px2
+    else:
+        ln_area = -np.log(area)
+
+    return np.full(N, ln_area)
 
 
 def ln_d_ln_bg_uniform_dp(p, X, window_bounds):

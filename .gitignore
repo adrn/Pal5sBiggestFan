@@ -34,3 +34,4 @@ distribute-*.tar.gz
 *.hdf5
 data
 plots
+notebooks/archive
