@@ -3,8 +3,9 @@
 % TODO:
 % -
 
-\documentclass[modern]{aastex62}
+\documentclass[twocolumn]{aastex62}
 
+\usepackage[T1]{fontenc}
 \usepackage{amsmath}
 
 % typography
@@ -41,26 +42,35 @@
 %\accepted{not yet}
 % % Adds "Submitted to " the arguement.
 % \submitjournal{ApJ}
-\shorttitle{Stuff}
-\shortauthors{People}
+\shorttitle{pal~5's biggest fan}
+\shortauthors{bonaca et al.}
 
 %@arxiver{}
 
 \begin{document}\sloppy\sloppypar\raggedbottom\frenchspacing % trust me
 
-\title{Palomar 5's biggest fan}
+\title{Variations in the width, density, and direction of the Palomar~5 tidal tails}
 
-% \author[0000-0003-0872-7098]{Adrian~M.~Price-Whelan}
-% \affiliation{Department of Astrophysical Sciences,
-%              Princeton University, Princeton, NJ 08544, USA}
-% \email{adrn@astro.princeton.edu}
-% \correspondingauthor{Adrian M. Price-Whelan}
+\author[0000-0002-7846-9787]{Ana~Bonaca}
+\affiliation{Center for Astrophysics | Harvard \& Smithsonian, Cambridge, MA 02138, USA}
+\email{ana.bonaca@cfa.harvard.edu}
+\correspondingauthor{Ana Bonaca}
 
-% \author[0000-0002-7846-9787]{Ana Bonaca}
-% \affiliation{Harvard--Smithsonian Center for Astrophysics, Cambridge, MA 02138, USA}
+\author{Sarah~Pearson}
+\affiliation{CCA}
+
+\author[0000-0003-0872-7098]{Adrian~M.~Price-Whelan}
+\affiliation{Department of Astrophysical Sciences, Princeton University, Princeton, NJ 08544, USA}
+
+\author{others}
 
 \begin{abstract}\noindent % trust me
-    Words!
+Stars escaping globular clusters form tidal tails that are predominantly shaped by the global distribution of mass in the Galaxy, but also preserve a historical record of small-scale perturbations.
+Using deep $grz$ photometry from DECaLS, we present highly probable members of the disrupting globular cluster Palomar~5.
+These data yield the cleanest view of a stellar stream beyond $\sim20\,\rm kpc$ and reveal: (1) a wide, low surface-brightness extension of the leading tail, (2) significant density variations along the stream, and (3) sharp changes in the direction of the trailing tail.
+In the fiducial Milky Way model, a rotating bar perturbs the Palomar~5 tails to reproduce the observed stream width and density profiles.
+However, the deviations of the stream track in this simple model are significantly smaller than those observed in the Palomar~5 trailing tail, so future kinematic observations may identify an additional source of perturbation.
+These discoveries open up the possibility of measuring the population of perturbers in the Milky Way, such as dark-matter subhalos, with an ensamble of stellar streams and deep photometry alone.
 \end{abstract}
 
 \keywords{Galaxy: halo --- dark matter ---
@@ -69,7 +79,7 @@
 \section{Introduction}
 \label{sec:intro}
 There are now $\sim$x-x thin stellar stream candidates in the Milky Way (MW), most of which are likely relics of disrupted globular clusters (see e.g. \citealt{Ibata:2019}).
-The only thin MW stellar stream for which we know the progenitor, however, is the Palomar 5 (Pal 5) stream (e.g. \citealt{Odenkirchen:2001}). \ab{there's also NGC5466, so this needs to be reworked}
+The only thin MW stellar stream for which we know the progenitor, however, is the Palomar 5 (Pal~5) stream (e.g. \citealt{Odenkirchen:2001}). \ab{there's also NGC5466, so this needs to be reworked}
 We assume that other thin stellar streams originate from globular clusters, based on their narrow widths, and therefore, small inferred tidal radii. But how thin are these streams actually? 
 
 To date, the deepest maps of thin stellar streams in the MW probe limiting magnitudes of $g \sim 22$ (e.g. \citealt{Bernard:2016}, \citealt{Ibata:2016}, \citealt{deBoer:2018}). Once we explore fainter limiting magnitudes, however, we might expect to discover wider and potentially non-uniform features, surrounding the thin stellar streams. Thus, it is possible that only the densest, thin parts have been uncovered, and the streams could be surrounded by lower surface density material. 
@@ -92,7 +102,7 @@ Interestingly, \citet{Sesar:2016} found evidence that there might be a ``fan" ex
 %wrapping up intro: 
 In this {\it Letter} we present the deepest map of Pal 5 to date. \todo{one sentence on DECaLS)}. The data clearly show non-uniformities in both the leading and trailing arm of the stream. In particular, we discover a ``fanned" feature in the leading arm of Pal 5, beyond the reported truncation of the leading arm (\citealt{Bernard:2016}). We explore various mechanisms that could lead to the formation of the observed features, and in particular we compare the width of the stream data to a suite of simulated Pal 5 mock-streams using a gaussian mixture model.
 
-The {\it Letter} is structured as follows: in Section \ref{sec:data}, we present new DECaLS Pal 5 data. In Section \ref{sec:sim} we describe our simulation setups and the results of simulating Pal 5's evolution in both barred and static potentials. We describe our Gaussian mixture model we use to fit the density and width of Pal 5 in Section \ref{sec:density}. We discuss the implications of our results and address outstanding questions about Pal 5's morphology in Section \ref{sec:discussion}, and we conclude in Section \ref{sec:conclusion}. 
+The {\it Letter} is structured as follows: in Section \ref{sec:data}, we present new DECaLS Pal 5 data. In Section \ref{sec:sim} we describe our simulation setups and the results of simulating Pal 5's evolution in both barred and static potentials. We describe our Gaussian mixture model we use to fit the density and width of Pal 5 in Section . We discuss the implications of our results and address outstanding questions about Pal 5's morphology in Section \ref{sec:discussion}, and we conclude in Section \ref{sec:conclusion}. 
 
 \ab{Points: fan, gaps, track wiggles, mass function(?), qualitative comparison to models in different classes of potentials}
 
@@ -103,8 +113,8 @@ The {\it Letter} is structured as follows: in Section \ref{sec:data}, we present
 
 \begin{figure*}
 \begin{center}
-\includegraphics[width=0.95\textwidth]{fig1_a_map.pdf}
-\includegraphics[width=0.95\textwidth]{fig1_b_cmds.pdf}
+\includegraphics[width=0.85\textwidth]{fig1_a_map.pdf}
+\includegraphics[width=0.85\textwidth]{fig1_b_cmds.pdf}
 \end{center}
 \caption{
 (Top) The Legacy Surveys detection of the Palomar 5 globular cluster in a coordinate system aligned with its tidal tails.
@@ -120,7 +130,7 @@ The fiducial Pal~5 isochrone is offset in every panel so that it matches the loc
 
 \begin{figure*}
 \begin{center}
-\includegraphics[width=0.95\textwidth]{fig2_maps.pdf}
+\includegraphics[width=0.85\textwidth]{fig2_maps.pdf}
 \end{center}
 \caption{
 (Top) The optimized Legacy Surveys detection of the Palomar 5 system reveals an extremely wide, low surface-brightness extension of the leading tail beyond $\rm Dec<-5^\circ$.
@@ -178,7 +188,8 @@ We then scale the bar model for a given pattern speed, $\Omega_b$, by:
 \begin{equation} 
 r_{s, \Omega_b}  = r_{{\rm CR}, \Omega_b}/r_{{\rm CR, Wang 2012}}
 \end{equation} 
-If this scaling is not included (as the case for bar models in e.g. \citealt{price:2016b}, \citealt{Pearson:2017}, \citealt{Erkal:2017}, \citealt{Banik:2019}), this creates a too strong bar quadrupole for the faster pattern speeds, and a too weak bar quadrupole for the slower pattern speeds. 
+If this scaling is not included (as the case for bar models in e.g. %\citealt{price:2016b}, 
+\citealt{Pearson:2017}, \citealt{Erkal:2017}, \citealt{Banik:2019}), this creates a too strong bar quadrupole for the faster pattern speeds, and a too weak bar quadrupole for the slower pattern speeds. 
 
 % In Figure \ref{fig:vcirc}, we show the circular velocity as a function of radius for the barred, three-component Galactic potential with $\Omega_b$ = ($25 - 65$) $\kms$ kpc$^{-1}$. The red lines correspond to the potentials with a bar mass of $M_{bar} = 5 \times 10^{9}$ $\msun$, and the blue lines correspond to potentials with a bar mass of  $M_{bar} = 1 \times 10^{10}$ $\msun$.
 % 
@@ -200,13 +211,13 @@ We release two particles through each of the two Lagrange points every 8 Myr.
 To investigate Pal 5's evolution on a regular orbit, we first run a ``particle-spray" simulations setting $q_z = 0.94$ (\citealt{Bovy:2016}).
 Subsequently, we run the same simulation setting $q_z = 0.5$ to induce a chaotic orbit.
 Additionally, we simulate the evolution of Pal 5's stream in the barred potential, where we first integrating the orbit backwards for 4 Gyr, and then create mock streams as described above.
-We vary the pattern speed of the bar, while updating its physical scaling (see Section \ref{sec:potential} and Figure \ref{fig:vcirc}).
+We vary the pattern speed of the bar, while updating its physical scaling (see Section \ref{sec:potential}. % and Figure \ref{fig:vcirc}).
 We repeat this exercise using bar masses of both $M_{bar} = 5 \times 10^{9}$ $\msun$ and $M_{bar} = 1 \times 10^{10}$ $\msun$.
 
 \subsection{Simulation results}
 \label{sec:sim_results}
 In Figure \ref{fig:sims}, we present the morphology (left column) and radial velocities (right column) of the simulated Pal 5 streams in various potentials.
-The first two rows show Pal 5 evolved in a static potential with two different fattenings (see Section \ref{sec:potential}).
+The first two rows show Pal 5 evolved in a static potential with two different flattenings (see Section \ref{sec:potential}).
 The last rows show four examples of Pal 5 evolved in barred potentials.
 We selected these four examples through visual inspection of the density and width of the data and the simulated streams.  
 
@@ -273,10 +284,11 @@ We selected these four examples through visual inspection of the density and wid
 \label{sec:discussion}
 
 \subsection{Deeper stream data}
-Do all streams look crazy if we get deeper data? Discuss ``stream-fanning", bar, VL2 Banaca paper. 
+Do all streams look crazy if we get deeper data? Discuss ``stream-fanning", bar, VL2 Bonaca paper. 
 
 \subsection{Other perturbers}
-As Pal 5 is moving prograde with respect to the disk it will be subject to interactions with both the bar (\citealt{Hattori:2016}, \citealt{price:2016b}), molecular clouds (\citealt{Amorisco:2016}) and possibly spiral arms (\citealt{Banik:2019}). Additionally, dark matter substructure could be interacting with the stream. Pal 5 apocentric distance is $\sim 18$ kpc, and the cluster is therefore probing the inner part of the Galatic potential. Hence, it might be unlikely that there are many dark matter subhalos in this part of the halo (\citealt{Garrison-Kimmel:2017}). However, the GD1 stellar stream orbit probes a similar region of the Galatic potential, and shows evidence of an interaction with a dark substructure (\citealt{Price-Whelan:2018}, \citealt{Bonaca:2018b}) as the data shows a gap and a ``spur" (\citealt{Yoon:2011}). 
+As Pal 5 is moving prograde with respect to the disk it will be subject to interactions with both the bar (\citealt{Hattori:2016}%, \citealt{price:2016b}
+), molecular clouds (\citealt{Amorisco:2016}) and possibly spiral arms (\citealt{Banik:2019}). Additionally, dark matter substructure could be interacting with the stream. Pal 5 apocentric distance is $\sim 18$ kpc, and the cluster is therefore probing the inner part of the Galatic potential. Hence, it might be unlikely that there are many dark matter subhalos in this part of the halo (\citealt{Garrison-Kimmel:2017}). However, the GD1 stellar stream orbit probes a similar region of the Galatic potential, and shows evidence of an interaction with a dark substructure (\citealt{Price-Whelan:2018}, \citealt{Bonaca:2018b}) as the data shows a gap and a ``spur" (\citealt{Yoon:2011}). 
 
 
 
