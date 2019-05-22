@@ -70,7 +70,7 @@ Using deep $grz$ photometry from DECaLS, we present highly probable members of t
 These data yield the cleanest view of a stellar stream beyond $\sim20\,\rm kpc$ and reveal: (1) a wide, low surface-brightness extension of the leading tail, (2) significant density variations along the stream, and (3) sharp changes in the direction of the trailing tail.
 In the fiducial Milky Way model, a rotating bar perturbs the Palomar~5 tails and can produce stream width and density profiles like those observed.
 However, the deviations of the stream track in this simple model are significantly smaller than those observed in the Palomar~5 trailing tail, so future kinematic observations may identify an additional source of perturbation.
-These discoveries open up the possibility of measuring the population of perturbers in the Milky Way, such as dark-matter subhalos, with an ensamble of stellar streams and deep photometry alone.
+These discoveries open up the possibility of measuring the population of perturbers in the Milky Way, including dark-matter subhalos, with an ensamble of stellar streams and deep photometry alone.
 \end{abstract}
 
 \keywords{Galaxy: halo --- dark matter ---
@@ -79,8 +79,10 @@ These discoveries open up the possibility of measuring the population of perturb
 \section{Introduction}
 \label{sec:intro}
 There are now $\sim$x-x thin stellar stream candidates in the Milky Way (MW), most of which are likely relics of disrupted globular clusters (see e.g. \citealt{Ibata:2019}).
-The only thin MW stellar stream for which we know the progenitor, however, is the Palomar 5 (Pal~5) stream (e.g. \citealt{Odenkirchen:2001}). \ab{there's also NGC5466, so this needs to be reworked}
-We assume that other thin stellar streams originate from globular clusters, based on their narrow widths, and therefore, small inferred tidal radii. But how thin are these streams actually?
+The most prominent thin MW stellar stream for which we know the progenitor, however, is the Palomar 5 (Pal~5) stream (e.g. \citealt{Odenkirchen:2001}).
+% \ab{there's also NGC5466, so this needs to be reworked}
+We assume that other thin stellar streams originate from globular clusters, based on their narrow widths, and therefore, small inferred tidal radii.
+But how thin are these streams actually?
 
 To date, the deepest maps of thin stellar streams in the MW probe limiting magnitudes of $g \sim 22$ (e.g. \citealt{Bernard:2016}, \citealt{Ibata:2016}, \citealt{deBoer:2018}). Once we explore fainter limiting magnitudes, however, we might expect to discover wider and potentially non-uniform features, surrounding the thin stellar streams. Thus, it is possible that only the densest, thin parts have been uncovered, and the streams could be surrounded by lower surface density material.
 
@@ -111,6 +113,12 @@ The {\it Letter} is structured as follows: in Section \ref{sec:data}, we present
 \section{Data}
 \label{sec:data}
 
+- study pal5 in decals
+- pal5 mostly in the desi footprint, observed to standard depth of g=24 for 5sigma sources (check)
+- additional imaging targeted for pal5 (look-up noao program ids)
+- fixed integration time, but variable conditions -> distribution of depths in bricks (quote minimum and median 5sigma depth for grz)
+- the deepest and largest-area coverage of pal5
+
 \begin{figure*}
 \begin{center}
 \includegraphics[width=0.85\textwidth]{fig1_a_map.pdf}
@@ -127,6 +135,26 @@ The fiducial Pal~5 isochrone is offset in every panel so that it matches the loc
 \label{fig:cmds}
 \end{figure*}
 
+- to select likely pal5 stars, we query the database for point sources, satisfying these criteria:
+- we removed stars with large parallaxes, but that's only a small fraction of the sample because the overlap between gaia and this deep data is small
+- main selection in cmd, main sequence of an x Gyr isochrone with metallicity y
+- selected stars shown in top panel of Figure~\ref{fig:cmds}, in pal5 coordinates (best-fitting great circle, cluster at 0,0, stream moving in positive phi1)
+- to increase the contrast, we apply the isochrone selection at two distances: x kpc for $\phi_1<0$ and y kpc for $\phi_1>=0$
+- for the first time, pal5 detected continuously between $-15^\circ$ and $7^\circ$ 
+
+- to further tune our selection, we measure the distance gradient along the stream from the location of pal5's ms turnoff
+- we analyze cmds in xdeg long and ydeg wide boxes following along the stream track (as illustrated in Figure~\ref{fig:cmds})
+- individual cmds are shown in the bottom grid of Figure~\ref{fig:cmds}, overplotted with the isochrone at the adopted distance
+- pal5 track, sgr kicking in in the leading tail
+- pal5 ms evident in all, even field 9 where there is no obvious overdensity in the simply-selected stars
+- indication of low surface-brightness features that may be recovered with these data
+
+- cmds also show that galaxies start creeping in at faint magnitudes
+- not surprising since only used structure, and faint galaxies are $\sim$ point sources
+- in color-color space, stars and galaxies have different loci
+- we select sources with:
+- our z-band coverage is shallower, so to be somewhat homogeneous, we only select stars with $g<23.x$
+- this still increases the contrast of pal5
 
 \begin{figure*}
 \begin{center}
@@ -142,7 +170,17 @@ Some features in the distribution of likely Pal~5 members might be due to this v
 \label{fig:maps}
 \end{figure*}
 
+- Figure~\ref{fig:maps} shows the most likely members of Pal5
+- these were selected to be stars in grz space, and on the Pal5 main sequence
+- isochrone selection was done in xdeg bins of phi1, assuming the distance was constant in each bin, and equal to the interpolated value of the distance derived from the msto locations in Figure~\ref{fig:cmds}
+- with these selections, pal5 stands high above the background between ra x and y
 
+- the revised map of pal5 reveals qualitatively new features
+- first, the leading tail extends past the previous footprint, and also appears to be widening
+- next, the stellar density along the stream varies significantly
+- previously detected gaps at ra, dec =(x,y) and (z,q) now made very prominent
+- finally, the stream track is much better defined, and features sharp turns, e.g., at (ra,dec) = (x,y)
+- we quantify these features in the next section
 
 \section{Simulations}
 \label{sec:sim}
@@ -222,7 +260,7 @@ The last rows show four examples of Pal 5 evolved in barred potentials.
 We selected these four examples through visual inspection of the density and width of the data and the simulated streams.
 
 \begin{figure*}
-\centerline{\includegraphics[width=\textwidth]{simulations.pdf}}
+% \centerline{\includegraphics[width=\textwidth]{simulations.pdf}}
 \caption{\todo{Something like the above, maybe with more bar models. Have separate plot in next section comparing the width and density of these to the width and density of the data using Gaussian mixture model. }}
 \label{fig:sims}
 \end{figure*}
