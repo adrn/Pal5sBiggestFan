@@ -113,11 +113,12 @@ The {\it Letter} is structured as follows: in Section \ref{sec:data}, we present
 \section{Data}
 \label{sec:data}
 
-- study pal5 in decals
-- pal5 mostly in the desi footprint, observed to standard depth of g=24 for 5sigma sources (check)
-- additional imaging targeted for pal5 (look-up noao program ids)
-- fixed integration time, but variable conditions -> distribution of depths in bricks (quote minimum and median 5sigma depth for grz)
-- the deepest and largest-area coverage of pal5
+We study the Palomar~5 system in the photometric catalog of DECam Legacy Survey \citep[DECaLS, part of the DESI Legacy Imaging Surveys,][]{dey2019}.
+The survey was designed to provide deep $grz$ imaging at high galactic latitudes, with the targeted $5\,\sigma$ depth of $g=24$, $r=23.4$, and $z=22.5$.
+In addition to data obtained as a part of the survey, DECaLS also includes imaging from publicly available DECam data in the survey footprint.
+We conducted a targeted survey of Pal~5 whose data products are now a part of DECaLS (NOAO Proposal ID nos. 2014A-0321, PI: Geha; 2014A-0611, PI: Munoz; 2015A-0620, PI: Bonaca).
+The median (minimum) $5\,\sigma$ PSF depth in the Pal~5 region is $g=25.6(25.3)$, $r=25.1(24.8)$, $z=24.1(23.4)$, which makes DECaLS the deepest and largest-area survey of Pal~5.
+
 
 \begin{figure*}
 \begin{center}
@@ -135,7 +136,8 @@ The fiducial Pal~5 isochrone is offset in every panel so that it matches the loc
 \label{fig:cmds}
 \end{figure*}
 
-- to select likely pal5 stars, we query the database for point sources, satisfying these criteria:
+- to select likely pal5 stars, we start with a tractor, forced photometry catalog \citep{lang}
+- we query the catalog for point sources, satisfying these criteria:
 - we removed stars with large parallaxes, but that's only a small fraction of the sample because the overlap between gaia and this deep data is small
 - main selection in cmd, main sequence of an x Gyr isochrone with metallicity y
 - selected stars shown in top panel of Figure~\ref{fig:cmds}, in pal5 coordinates (best-fitting great circle, cluster at 0,0, stream moving in positive phi1)
