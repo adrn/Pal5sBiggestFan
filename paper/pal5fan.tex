@@ -15,6 +15,7 @@
 \newcommand{\gaia}{\textsl{Gaia}}
 \newcommand{\pans}{\textsl{Pan-STARRS}}
 \newcommand{\DR}{\acronym{DR2}}
+\newcommand{\tractor}{\textsl{The Tractor}}
 \newcommand{\msun}{\textrm{M}_\odot}
 \newcommand{\kpc}{\textrm{kpc}}
 \newcommand{\kms}{\ensuremath{\textrm{km}~\textrm{s}^{-1}}}
@@ -136,13 +137,16 @@ The fiducial Pal~5 isochrone is offset in every panel so that it matches the loc
 \label{fig:cmds}
 \end{figure*}
 
-- to select likely pal5 stars, we start with a tractor, forced photometry catalog \citep{lang}
-- we query the catalog for point sources, satisfying these criteria:
-- we removed stars with large parallaxes, but that's only a small fraction of the sample because the overlap between gaia and this deep data is small
-- main selection in cmd, main sequence of an x Gyr isochrone with metallicity y
-- selected stars shown in top panel of Figure~\ref{fig:cmds}, in pal5 coordinates (best-fitting great circle, cluster at 0,0, stream moving in positive phi1)
-- to increase the contrast, we apply the isochrone selection at two distances: x kpc for $\phi_1<0$ and y kpc for $\phi_1>=0$
-- for the first time, pal5 detected continuously between $-15^\circ$ and $7^\circ$ 
+To select likely Pal~5 stars, we first queried the DECaLS catalog for point sources.
+The catalog was constructed using \tractor\ forward-modeling code for source extraction\footnote{\url{https://github.com/dstndstn/tractor}} and a source was classified as \texttt{`PSF'} if the PSF model was preferred to the round exponential model used to represent galaxies\footnote{\url{https://github.com/legacysurvey/legacypipe}}.
+We removed spurious sources by requiring \texttt{allmask\_g==0}, \texttt{allmask\_r==0} and \texttt{brightstarinblob==0}.
+With this clean stellar catalog, we identified stars on Pal~5's main sequence in the dereddened color-magnitude diagram \citep{Schlegel:1998}.
+Specifically, we selected stars following a 11.5\,Gyr MIST isochrone with $\rm [Fe/H] = -1.3$ \citep{Choi:2016} between $20<g<23.7$.
+
+In the top panel of Figure~\ref{fig:cmds} we present the sky distribution of likely Pal~5 main sequence stars.
+The $(\phi_1,\phi_2)$ coordinate frame is oriented along the great circle that best-fits the Pal~5 stream, while keeping the cluster at the origin and its motion in the direction of positive $\phi_1$ \citep{gala}.
+There is a distance gradient along the Pal~5 stream \citep{Ibata:2016}, so to increase its contrast against the field Milky Way stars, we applied the isochrone selection at two distances: 23\,kpc for $\phi_1<=0$ and 19\,kpc for $\phi_1>0$.
+With our map, Pal~5 is continuously detected between $\phi_1=-15^\circ$ and $7^\circ$ for the first time.
 
 - to further tune our selection, we measure the distance gradient along the stream from the location of pal5's ms turnoff
 - we analyze cmds in xdeg long and ydeg wide boxes following along the stream track (as illustrated in Figure~\ref{fig:cmds})
