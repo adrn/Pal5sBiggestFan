@@ -147,22 +147,36 @@ The $(\phi_1,\phi_2)$ coordinate frame is oriented along the great circle that b
 There is a distance gradient along the Pal~5 stream \citep{Ibata:2016}, so to increase its contrast against the field Milky Way stars, we applied the isochrone selection at two distances: 23\,kpc for $\phi_1<=0^\circ$ and 19\,kpc for $\phi_1>0^\circ$.
 With our map, Pal~5 is continuously detected between $\phi_1=-15^\circ$ and $7^\circ$ for the first time.
 
-The color-magnitude diagrams of stars in the Pal~5 stream are shown in the bottom of Figure~\ref{fig:cmds}.
+The color-magnitude diagrams (CMDs) of stars in the Pal~5 stream are shown in the bottom of Figure~\ref{fig:cmds}.
 Each panel contains stars from a $3^\circ$ long and $0.8^\circ$ wide area marked in the top of Figure~\ref{fig:cmds}.
 The Pal~5 main-sequence turn-off at $g\sim20.5$ stands out in all fields, but the depth to which the main sequence is detected varies from $g\sim24$ close to the cluster to $g\sim22$ in the leading tail.
 The non-uniform detection depth is partly due to variable photometric depth (the coverage is shallower in the leading tail), and partly due to contamination from the Sagittarius stellar stream (main-sequence turn-off at $g\sim22$ for $\phi_1\gtrsim-5^\circ$) and faint galaxies ($g\gtrsim23$).
 Despite these challenges, the Pal~5 main-sequence is evident in field~9 ($9^\circ<\phi_1<12^\circ$), even though the leading tail truncates at $\phi_1\sim7^\circ$.
 This indicates that Pal~5 tails may extend beyond the current extent, but at a much lower surface-brightness.
 
-- to refine our selection, we select with variable distance and color-color selection for stars vs galaxies
-- we measure the distance gradient along the stream from the location of pal5's ms turnoff, overplotted with the isochrone at the adopted distance
+To improve our selection of Pal~5 members, we first employ the $z$-band to distinguish between faint stars and galaxies more efficiently.
+In DECam filters, the $g-z$ color of stars bluer than $g-r\lesssim1.2$ is approximately linear with the $g-r$ color \citep[e.g.,][]{dey2019}.
+We adopted the stellar locus of $(g-z)_0 = 1.7\times(g-r)_0 -0.17$.
+On the other hand, galaxies span a wider distribution of redder $g-z$ colors at a fixed $g-r$ color.
+To exclude faint galaxies, we restrict to sources within 0.1\,mag of the stellar locus.
+We limit the sample to sources with $g<23$ to reduce inhomogeneities due to the shallow $z$-band coverage.
+
+To further refine the Pal~5 membership, we next perform the isochrone selection that varies the distance along the stream.
+We start by approximating the distance to the nine segments of the Pal~5 stream indicated in Figure~\ref{fig:cmds} from the locations of their main-sequence turn-offs.
+The adopted distance modulus is indicated in CMD panels at the bottom of Figure~\ref{fig:cmds}, and the corresponding isochrone is shown in orange.
+We perform the updated isochrone selection in $2^\circ$ bins of $\phi_1$ by interpolating the location of the main-sequence selection box between these distance estimates.
+With the improved star--galaxy separation and a selection that accounts for the distance gradient along the stream, Pal~5 tails are prominent between R.A.$\sim223^\circ$ and $\sim245^\circ$ (Figure~\ref{fig:maps}).
+
+% - isochrone selection was done in xdeg bins of phi1, assuming the distance was constant in each bin, and equal to the interpolated value of the distance derived from the msto locations in Figure~\ref{fig:cmds}
+% Figure~\ref{fig:maps} shows the most likely members of Pal~5
+% - to refine our selection, we select with variable distance and color-color selection for stars vs galaxies
+% - we measure the distance gradient along the stream from the location of pal5's ms turnoff, overplotted with the isochrone at the adopted distance
 % - cmds also show that galaxies start creeping in at faint magnitudes
 % - not surprising since only used structure, and faint galaxies are $\sim$ point sources
-- in color-color space,
-- for the colors of interest, the g-z color for stars is a narrow band, while the galaxies are a more diffuse blob at redder g-z
-- we select sources with:
-- our z-band coverage is shallower, so to be somewhat homogeneous, we only select stars with $g<23.x$
-- this still increases the contrast of pal5
+% - and employ the $z$-band to distinguish between faint stars and galaxies more efficiently.
+% - in color-color space,
+% - we select sources with:
+% - these were selected to be stars in grz space, and on the Pal5 main sequence
 
 \begin{figure*}
 \begin{center}
@@ -177,11 +191,6 @@ Some features in the distribution of likely Pal~5 members might be due to this v
 }
 \label{fig:maps}
 \end{figure*}
-
-- Figure~\ref{fig:maps} shows the most likely members of Pal5
-- these were selected to be stars in grz space, and on the Pal5 main sequence
-- isochrone selection was done in xdeg bins of phi1, assuming the distance was constant in each bin, and equal to the interpolated value of the distance derived from the msto locations in Figure~\ref{fig:cmds}
-- with these selections, pal5 stands high above the background between ra x and y
 
 - the revised map of pal5 reveals qualitatively new features
 - first, the leading tail extends past the previous footprint, and also appears to be widening
