@@ -32,6 +32,8 @@ distribute-*.tar.gz
 # Custom
 *.npy
 *.hdf5
+*.pickle
+*.pkl
 data
 plots
 notebooks/archive
