@@ -5,7 +5,7 @@ RM          = rm -rf
 TMP_SUFFS   = pdf aux bbl blg log dvi ps eps out brf
 CHECK_RERUN =
 
-NAME = gd1
+NAME = pal5fan
 
 all: ${NAME}.pdf
 
