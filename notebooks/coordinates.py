@@ -3,16 +3,25 @@ import astropy.units as u
 import astropy.coordinates as coord
 import gala.coordinates as gc
 
-# TODO: can someone add some references as comments for each of these
-# measurements?
-pal5_c = coord.SkyCoord(ra=229.018*u.degree, dec=-0.124*u.degree,
-                        distance=22.9*u.kpc,
-                        pm_ra_cosdec=-2.296*u.mas/u.yr,
-                        pm_dec=-2.257*u.mas/u.yr,
-                        radial_velocity=-58.7*u.km/u.s)
+# These are the nominal Pal 5 cluster values itself
+# pal5_c = coord.SkyCoord(ra=229.018*u.degree, dec=-0.124*u.degree,
+#                         distance=22.9*u.kpc,
+#                         pm_ra_cosdec=-2.296*u.mas/u.yr,
+#                         pm_dec=-2.257*u.mas/u.yr,
+#                         radial_velocity=-58.7*u.km/u.s)
+
+# These are from fitting the sky track of the stream
+pal5_c = coord.SkyCoord(phi1=0*u.deg,
+                        phi2=1.53066768e-02*u.deg,
+                        distance=22.4957324*u.kpc,
+                        pm_phi1_cosphi2=3.07244231*u.mas/u.yr,
+                        pm_phi2=0.637385934*u.mas/u.yr,
+                        radial_velocity=-56.2232384*u.km/u.s,
+                        frame=gc.Pal5PriceWhelan18).transform_to(coord.ICRS)
+pal5_M = 14404 * u.Msun
 
 # Setting Sun's params - should update distance
-v_lsr = [11.1, 24.0, 7.25]*u.km/u.s
+v_lsr = [11.1, 12.24, 7.25]*u.km/u.s
 v_circ = 220 * u.km/u.s
 v_sun = coord.CartesianDifferential(v_lsr + [0, 1, 0] * v_circ)
 galcen_frame = coord.Galactocentric(galcen_distance=8.1*u.kpc,
