@@ -190,6 +190,14 @@ At a fixed distance from the cluster, the trailing tail is denser than the leadi
 Furthermore, both tails feature a prominent gap in the stellar density, located at $\rm R.A.\approx 227^\circ$ and $235^\circ$ for the leading and trailing tail, respectively.
 Finally, the stream track sharply changes direction at $\rm R.A.\approx 226^\circ$ and $233^\circ$.
 
+\section{Density modeling}
+\label{sec:densitymodel}
+% adrn: feel free to move this text / or rename section - I just put it here for now to keep it self-contained
+
+We measure the stream track, width, and surface density using a constrained Gaussian Mixture Model (GMM) to represent both the stream itself and the background stellar density \citep[our model is similar to but distinct from past work that use GMMs to model streams][]{Erkal:2017, Koposov:2019}.
+In detail, we ... \texttt{stan} \citep{stan}.
+
+
 \section{Simulations}
 \label{sec:sim}
 To explore the mechanism leading the the observed morphology of the stream (i.e. the length asymmetry between the leading and trailing arm, as well as the gap in the trailing arm, and the ``fan" in the leading arm), we run a suite of Pal 5 simulations.
@@ -477,7 +485,8 @@ It is a pleasure to thank
     \package{IPython} \citep{ipython},
     \package{matplotlib} \citep{mpl},
     \package{numpy} \citep{numpy},
-    \package{scipy} \citep{scipy}
+    \package{scipy} \citep{scipy},
+    \package{stan} \citep{stan}
 }
 
 \bibliographystyle{aasjournal}
