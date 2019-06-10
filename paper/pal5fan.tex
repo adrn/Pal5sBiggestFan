@@ -256,23 +256,16 @@ We show the results of our analyses in Section \ref{sec:sim_results}.
 We simulate the evolution of Pal 5 in two classes of three-component Galactic potentials:
 
 \begin{itemize}
-\item[1.] {\bf Static potential}: we use the {\small MWPotential2014} (\citealt{Bovy:2015}) consisting of a Miyamoto-Nagai disk (\citealt{Miyamoto:1975}), a bulge modeled as an exponentially cut off, power-law density profile, and an NFW dark matter halo (\citealt{Navarro:1996}).
+\item[1.] {\bf Static potential}: we use the \texttt{MWPotential2014} \citep{Bovy:2015} consisting of a Miyamoto-Nagai disk (\citealt{Miyamoto:1975}), a bulge modeled as an exponentially cut off, power-law density profile, and an axisymmetric NFW dark matter halo (\citealt{Navarro:1996}).
 We vary the flattening of the NFW halo ($q_z = 0.94$ and $q_z = 0.5$) to investigate Pal 5's morphology on a regular as well as chaotic orbit (see Section \ref{sec:modeling}).
 
 \item[2.] {\bf  Barred potential}: we use the same disk and halo as in the {\small MWPotential2014}, but include a Galactic bar instead of a bulge.
 Following \citet{wang:2012}, we compute the bar potential as a basis-function expansion (BFE) representation of a triaxial, exponential density profile:
-
-\begin{equation}
-\rho_{bar} = \rho_0 [{\rm exp} (-r^2_1/2) + r_2^{-1.85} {\rm exp}(-r_2) ]
-\end{equation}
-
-\begin{equation}
-r_1 = \left[\left((x/x_0)^2 + (y/y_0)^2\right)^2 +( z/z_0)^4\right]^{1/4}
-\end{equation}
-
-\begin{equation}
-r_2 = \left[\frac{q^2(x^2 + y^2) + z^2)}{z_0^2}\right]^{1/2}
-\end{equation}
+\begin{align}
+    \rho_{bar} &= \rho_0 [{\rm exp} (-r^2_1/2) + r_2^{-1.85} {\rm exp}(-r_2) ]\\
+    r_1 &= \left[\left((x/x_0)^2 + (y/y_0)^2\right)^2 +( z/z_0)^4\right]^{1/4}\\
+    r_2 &= \left[\frac{q^2(x^2 + y^2) + z^2)}{z_0^2}\right]^{1/2}
+\end{align}
 where the scale lengths are $x_0$ = 1.49 kpc, $y_0$ = 0.58 kpc, $z_0$ = 0.4 kpc, and q = 0.6. We include terms up to $n=9$, $l=19$ in the ``self-consistent field" BFE formalism, as this yields a good representation of the density of the bar (\citealt{Banik:2019})\footnote{Note that using lower order terms (e.g. n=6, l = 8) for the basis function expansion does not much change the morphology or kinematics of the Pal 5 stream.}.
 We explore barred models with pattern speeds of $\Omega_b$ = ($25 - 65$) $\kms$ kpc$^{-1}$ in increments of 1 kpc$^{-1}$, and  we test bar masses of $M_{bar} = 5 \times 10^{9}$ $\msun$ and $M_{bar} = 1 \times 10^{10}$ $\msun$ (\citealt{Portail:2017}).
 Additionally, we fix the present day angular offset from the Galactic x-axis in the direction of rotation to $\alpha = 27\deg$.
@@ -283,7 +276,7 @@ This is the radius at which the circular frequency ($\Omega_0$) is equal to the 
 In this paper, however, we explore a {\it range} of pattern speeds, which will lead to different co-rotation radii for different pattern speeds (faster bars have co-rotation at smaller radii and vice versa).
 As bars are not expected to extend much beyond their co-rotation radius (\citealt{binney:2008}), we therefore adjust the physical scaling of the bar when we vary the pattern speed. %In \citet{wang:2012}, the scale-radius, $r_s$, assumed in the BFE, is  $r_s = 1.1$ kpc.
 
-In particular, we  compute the co-rotation radius, $r_{\rm CR},$ for the mass profiles of the static potential for any given pattern speed, $\Omega_b$.
+In particular, we compute the co-rotation radius, $r_{\rm CR},$ for the mass profiles of the static potential for any given pattern speed, $\Omega_b$.
 We then scale the bar model for a given pattern speed, $\Omega_b$, by:
 \begin{equation}
 r_{s, \Omega_b}  = r_{{\rm CR}, \Omega_b}/r_{{\rm CR, Wang 2012}}
