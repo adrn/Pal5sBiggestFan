@@ -1,12 +1,10 @@
 % Copyright 2019 the authors. All rights reserved.
 
-% TODO:
-% -
-
 \documentclass[twocolumn]{aastex62}
 
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
+\usepackage{float}
 
 % typography
 \setlength{\parindent}{1.\baselineskip}
@@ -34,7 +32,7 @@
 \renewcommand{\vec}[1]{\bs{#1}}
 \newcommand{\mat}[1]{\mathbf{#1}}
 
-\newcommand{\ab}[1]{{\color{red} AB: #1}}
+\newcommand{\ab}[1]{{\color{teal} AB: #1}}
 
 
 \newcommand{\sectionname}{Section}
@@ -171,12 +169,6 @@ On the other hand, galaxies span a wider distribution of redder $g-z$ colors at 
 To exclude faint galaxies, we restrict to sources within 0.1\,mag of the stellar locus.
 We limit the sample to sources with $g<23$ to reduce inhomogeneities due to the shallow $z$-band coverage.
 
-To further refine the Pal~5 membership, we next perform the isochrone selection that varies the distance along the stream.
-We start by approximating the distance to the nine segments of the Pal~5 stream indicated in Figure~\ref{fig:cmds} from the locations of their main-sequence turn-offs.
-The adopted distance modulus is indicated in CMD panels at the bottom of Figure~\ref{fig:cmds}, and the corresponding isochrone is shown in orange.
-We perform the updated isochrone selection in $2^\circ$ bins of $\phi_1$ by interpolating the location of the main-sequence selection box between these distance estimates.
-With the improved star--galaxy separation and a selection that accounts for the distance gradient along the stream, Pal~5 tails are prominent between $\rm R.A.\sim223^\circ$ and $\sim245^\circ$ (Figure~\ref{fig:maps}).
-
 \begin{figure*}
 \begin{center}
 \includegraphics[width=0.85\textwidth]{fig2_map.pdf}
@@ -191,6 +183,12 @@ These features may be evidence of Pal~5's perturbed dynamical history.
 }
 \label{fig:maps}
 \end{figure*}
+
+To further refine the Pal~5 membership, we next perform the isochrone selection that varies the distance along the stream.
+We start by approximating the distance to the nine segments of the Pal~5 stream indicated in Figure~\ref{fig:cmds} from the locations of their main-sequence turn-offs.
+The adopted distance modulus is indicated in CMD panels at the bottom of Figure~\ref{fig:cmds}, and the corresponding isochrone is shown in orange.
+We perform the updated isochrone selection in $2^\circ$ bins of $\phi_1$ by interpolating the location of the main-sequence selection box between these distance estimates.
+With the improved star--galaxy separation and a selection that accounts for the distance gradient along the stream, Pal~5 tails are prominent between $\rm R.A.\sim223^\circ$ and $\sim245^\circ$ (Figure~\ref{fig:maps}).
 
 The DECaLS map of Pal~5 reveals qualitatively new features in the stream.
 First, the leading tail extends to $\rm Dec\sim-7^\circ$, beyond the previously detected edge at $\rm Dec\sim -5^\circ$ \citep{Bernard:2016}.
@@ -378,18 +376,47 @@ We selected these four examples through visual inspection of the density and wid
 
 \section{Discussion}
 \label{sec:discussion}
+- summary: analyzed pal5 tidal tails with deep photometric data
+- unprecedented measurements of width, density, quantified wiggles for the first time
+- qualitative model-comparison: bar perturbation matches some of the global features, but not all
+- here discuss what each of the observed features may imply about additional sources of perturbation
 
-\subsection{Deeper stream data}
-Do all streams look crazy if we get deeper data? Discuss ``stream-fanning", bar, VL2 Bonaca paper.
+- narrow-wide dichotomy in trailing-leading -- seems to be confirming the bar perturbation picture
+- cmd implies debris spread out to even lower surface-brightness present
+- quantitative analysis needed to further constrain bar properties
 
-\subsection{Other perturbers}
-As Pal 5 is moving prograde with respect to the disk it will be subject to interactions with both the bar (\citealt{Hattori:2016}%, \citealt{price:2016b}
-), molecular clouds (\citealt{Amorisco:2016}) and possibly spiral arms (\citealt{Banik:2019}). Additionally, dark matter substructure could be interacting with the stream. Pal 5 apocentric distance is $\sim 18$ kpc, and the cluster is therefore probing the inner part of the Galatic potential. Hence, it might be unlikely that there are many dark matter subhalos in this part of the halo (\citealt{Garrison-Kimmel:2017}). However, the GD1 stellar stream orbit probes a similar region of the Galatic potential, and shows evidence of an interaction with a dark substructure (\citealt{Price-Whelan:2018}, \citealt{Bonaca:2018b}) as the data shows a gap and a ``spur" (\citealt{Yoon:2011}).
+- density variations: confirming the large scale ones from cfht data
+- erkal: large from subhalos, small from gmcs
+- detect them confidently above the background -- crucial for constraining the mass and time of impact -> can test this hypothesis
+% - cumulative number density?
+- small scale
+
+- wiggles: stream track $\sim$ mass enclosed
+- erkal commented change in curvature of the leading tail, also not reproduced in their models
+- these large scale shifts may indicate a change in orbit? sgr infall and increase in the enclosed mass?
+- also see small-scale wiggles all along the trailing tail -- another signature of impacts?
+
+- ultimately, these discoveries bode well for future studies of stellar streams with photometry alone
+- the community has been leveraging the gaia kinematic data to unveil a range of dynamical processes are operating in the milky way (cits)
+- photometric surveys have a larger reach:
+- push this kind of analysis to the outer halo (streams being discovered, cite pandas -- valuable streams for dm tests, less likely to have been affected by baryonic structures, radial info as well)
+- potentially also external galaxies (cite erin for dwarf galaxy streams, sarah for discovery potential of cold streams)
+
+% \subsection{Deeper stream data}
+% Do all streams look crazy if we get deeper data?
+% Discuss ``stream-fanning", bar, VL2 Bonaca paper.
+% 
+% \subsection{Other perturbers}
+% As Pal 5 is moving prograde with respect to the disk it will be subject to interactions with both the bar (\citealt{Hattori:2016}%, \citealt{price:2016b}
+% ), molecular clouds (\citealt{Amorisco:2016}) and possibly spiral arms (\citealt{Banik:2019}). Additionally, dark matter substructure could be interacting with the stream.
+% Pal 5 apocentric distance is $\sim 18$ kpc, and the cluster is therefore probing the inner part of the Galatic potential.
+% Hence, it might be unlikely that there are many dark matter subhalos in this part of the halo (\citealt{Garrison-Kimmel:2017}).
+% However, the GD1 stellar stream orbit probes a similar region of the Galatic potential, and shows evidence of an interaction with a dark substructure (\citealt{Price-Whelan:2018}, \citealt{Bonaca:2018b}) as the data shows a gap and a ``spur" (\citealt{Yoon:2011}).
 
 
 
-\section{Conclusion}
-\label{sec:conclusion}
+% \section{Conclusion}
+% \label{sec:conclusion}
 
 
 \acknowledgements{
