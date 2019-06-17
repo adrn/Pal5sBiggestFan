@@ -1,0 +1,49 @@
+Erkal, Koposov, Belokurov (2017)
+https://ui.adsabs.harvard.edu/abs/2017MNRAS.470...60E/abstract
+
+* cubic splines for the track
+- differentiable, can use gradients in optimization
+- different number of nodes for track, width, density, number determined using aic, with special treatment for density (forced additional nodes to capture small-scale fluctuations)
+- fit in theano, w own hmc sampler
+(- gmm feels more elegant)
+
+* properties of pal5
+- smooth stream, change of curvature 4deg into trailing tail (not as sharp as we find, no comment re leading tail)
+- leading tail increases in width, due to limited coverage unclear what happens beyond 5deg; due to low counts, width at the far trailing end is uncertain (how significant are our measurements? look pretty good by eye ..)
+- surface brightness is low, below contamination from the field for most of the footprint (quantify how much above background in our data, also may be important for gap modeling that we detect the depleted part of the gap above the contamination, so know the density contrast, instead of having just a limit)
+- gap between 4-12deg in the trailing tail, has a density bump at 4deg
+- epicyclic overdensities at ~0.8deg from the cluster, both sides
+- leading tail underdensity 3deg from the cluster
+- another underdensity at 5deg in the leading tail, but likely dust (we don't see this, i think)
+- see similar features in DECaLS data (!), but using DR2, which only had r,z band coverage
+
+* stream models -- smooth
+- lagrange points equidistant -> same number of stars in leading vs trailing (can be affected by rotation?)
+- corollary: extent the same if at same galactocentric distance
+- stream a great circle (galactocentric) if potential spherical, smooth deviation from the great circle if asymmetric
+- smooth model kind of fits the track, but not the density structure (but even the track deviates at ~4deg both sides from the progenitor -> coincides with a disk passage, or sgr or something else big enough that would affect the whole stream / change the orbit -> can we fit the inner and outer part with 2 orbits?)
+- stream density ~r^2 (but doesn't explain the asymmetry in leading & trailing in full)
+- epicycles not predicted to be prominent at the current orbital phase, as too close to the apocenter
+
+* stream models -- perturbed
+- gmc unlikely to have produced a large gap
+- 2 gaps can be caused by two subhalo fly-bys (~1e6 and ~5e7, Sgr too massive, would produce a larger gap, maybe a perturber if it came closer than 10kpc), density and track fit better, width not so much
+- a rotating bar can cause an asymmetry between the densities of the leading and trailing tail, even if pericenter is as far as 7-8kpc, but doesn't seem to produce a gap such as that in the trailing tail
+- prediction: cumulative number density between the arms similar for subhalo impact at phi1<2 and phi1>10, while for the bar at phi1<4 and phi1>>16
+
+* other mechanisms
+- rotating progenitor: co-rotation -> longer stream, counter-rotation -> shorter stream, but both arms symmetric
+- chaos: fans the debris, but also symmetrically for both arms
+- globular clusters: 3x less abundant in the same radial range than subhalos, also less massive, so subhalos preferred
+- variable stripping rate: could explain the smaller gap (especially if pericenter closer than 8kpc, as used here), but they should appear symmetrically in the leading and trailing tail
+
+** discussion
+* stream width
+- detected trailing tail w ~constant width, leading w increasing
+- interpretation if unperturbed: const width -> spherical potential, fanning out -> flattened or triaxial potential
+- subhalo encounter can produce const width, bar can fan out -> potential way to distinguish these effects
+
+* subhalo inference
+- just from gap width, based on erkal+2016, leading tail consistent w 10^6 - 10^7 Msun subhalo, while trailing tail w 10^7 - 10^8 Msun subhalo encounter
+- expect 0.7 detectable gaps from erkal+2016 analysis of subhalo impact rates, detected 2 -> ~ 3x more (similar conclusion in bovy+2017)
+- amorisco+2016 expect 0.65 gaps from gmcs (assuming 8kpc pericenter) -> two detected gaps consistent w the combined rate of subhalo + gmc perturbation
