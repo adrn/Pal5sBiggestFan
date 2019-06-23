@@ -122,8 +122,6 @@ def width_track(omega, m_b, release_every=1, n_particles=1, **kwargs):
                    **kwargs)
     print('done morphology')
 
-    return
-
     c_l = c.transform_to(pal5_lead_frame)
     c_t = c.transform_to(pal5_trail_frame)
 
