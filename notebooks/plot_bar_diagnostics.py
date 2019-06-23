@@ -134,12 +134,9 @@ def width_track(omega, m_b, release_every=1, n_particles=1, **kwargs):
     phi1_bins = np.arange(0, 18+1e-3, 0.75)
     phi2_bins = np.arange(-2, 2+1e-3, 0.1)
 
-#     nwalkers = 64
-#     nburn = 128
-#     nsteps = 256
     nwalkers = 64
-    nburn = 1
-    nsteps = 1
+    nburn = 128
+    nsteps = 256
 
     phi2_min = -2.
     phi2_max = 2.
@@ -309,12 +306,10 @@ def width_track(omega, m_b, release_every=1, n_particles=1, **kwargs):
 def worker(task):
     omega, = task
     width_track(omega*u.km/u.s/u.kpc, m_b=1e10*u.Msun,
-                release_every=16, n_steps=1000)
-#                 release_every=1, n_steps=6000)
+                release_every=1, n_steps=6000)
 
 
-# tasks = [(om, ) for om in np.arange(25, 60+1e-3, 0.5)]
-tasks = [(om, ) for om in np.arange(25, 30+1e-3, 0.5)]
+tasks = [(om, ) for om in np.arange(25, 60+1e-3, 0.25)]
 
 with MultiPool() as pool:
     print(pool.size)
