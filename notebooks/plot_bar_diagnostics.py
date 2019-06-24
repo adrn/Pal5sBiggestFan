@@ -243,7 +243,7 @@ def width_track(omega, m_b, release_every=1, n_particles=1, **kwargs):
     axes[0].set_yticks([-10,-5,0,5, 10])
     axes[0].set_ylim(-10,10)
     axes[0].set_aspect('equal')
-    axes[0].legend(fontsize=16, loc='upper right')
+    axes[0].legend(fontsize=12, loc='upper right')
 
 
 
@@ -309,7 +309,8 @@ def worker(task):
 
 tasks = [(om, ) for om in np.arange(25, 60+1e-3, 0.25)]
 
-with MultiPool() as pool:
+with SerialPool() as pool:
+#with MultiPool() as pool:
     print(pool.size)
     for r in pool.map(worker, tasks):
         pass
