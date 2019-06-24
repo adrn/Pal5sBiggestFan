@@ -115,11 +115,12 @@ def width_track(omega, m_b, release_every=1, n_particles=1, **kwargs):
     particles and unitless a bar_mass, then calls stream generating function, and
     calculates the stream width and track from the simulated streams.
     The function returns width, track and morhpology of streams in separate plots. """
-
+    print(omega)
     c = morphology(omega, m_b,
                    release_every=release_every,
                    n_particles=n_particles,
                    **kwargs)
+
     print('done morphology')
 
     c_l = c.transform_to(pal5_lead_frame)
