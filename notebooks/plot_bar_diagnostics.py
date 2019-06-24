@@ -63,8 +63,10 @@ def morphology(omega, m_b,
                              dt=dt, n_steps=n_steps,
                              release_every=release_every,
                              n_particles=n_particles)
-
-    stream_data.to_hdf5('BarModels_RL{:d}_Mb{:.0e}_Om{:.1f}.hdf5'.format(release_every, m_b.value, omega.value))
+    cache_file = 'BarModels_RL{:d}_Mb{:.0e}_Om{:.1f}.hdf5'.format(release_every, m_b.value, omega.value)
+    if path.exists(cache_file):
+        os.unlink(cache_file)
+    stream_data.to_hdf5(cache_file)
     sim_c = stream_data.to_coord_frame(coord.ICRS,
                                        galactocentric_frame=galcen_frame)
     return sim_c
