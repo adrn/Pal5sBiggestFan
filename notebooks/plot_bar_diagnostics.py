@@ -311,7 +311,7 @@ def worker(task):
                 release_every=1, n_steps=6000)
 
 
-tasks = [(om, ) for om in np.arange(25, 60+1e-3, 0.5)]
+tasks = [(om, ) for om in np.arange(28.0, 60+1e-3, 0.5)]
 
 with SerialPool() as pool:
 #with MultiPool() as pool:
