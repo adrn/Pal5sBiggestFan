@@ -261,6 +261,15 @@ We find the best-fit parameters by optimizing the log-likelihood using the built
 
 Figure~\ref{fig:density-model} shows ...
 
+Figure 3: 2d density model (model to data comparison)
+
+\begin{figure}
+\centerline{\includegraphics[width=\columnwidth]{Placeholder.pdf}}
+\caption{One column with three rows showing: 1) data. 2) 2d density model. 3) Residual. Adrian is working on this on the cluster now. 
+}
+\label{fig:density-model}
+\end{figure}
+
 
 
 \section{Simulations}
@@ -331,16 +340,18 @@ We repeat this exercise using bar masses of both $M_{bar} = 5 \times 10^{9}$ $\m
 
 \subsection{Simulation results}
 \label{sec:sim_results}
-In Figure \ref{fig:sims}, we present the morphology (left column) and radial velocities (right column) of the simulated Pal 5 streams in various potentials.
+In Figure \ref{fig:sims}, we present the morphology of the simulated Pal 5 streams in various potentials.
 The first two rows show Pal 5 evolved in a static potential with two different flattenings (see Section \ref{sec:potential}).
-The last rows show four examples of Pal 5 evolved in barred potentials.
-We selected these four examples through visual inspection of the density and width of the data and the simulated streams.
+The last two rows, we highlight two simulations of mock streams evolved in time-dependent barred potentials. We visually inspected the morphology, track and width of the simulated streams in barred potentials with M$_b = 5\times 10^9$ M$_{\odot}$ and $5\times 10^9$ M$_{\odot}$ as well as pattern speeds in the range of $\Omega_b = 30-60 ~\kms$ kpc$^{-1}$ in increments of $0.5~\kms$ kpc$^{-1}$. In Figure \ref{fig:sims}, we highlight two particular mock-streams as Bar1 (third panel) demonstrates a scenario where the leading arm has been abruptly truncated in its density as compared to the trailing arm which is denser for a longer extent. Bar2 on the other hand, produced a leading arm which is widened  and a trailing stream which has been perturbed by the bar as well. 
 
-\begin{figure*}
-\centerline{\includegraphics[width=\textwidth]{Fig4_sims.pdf}}
-\caption{\todo{Something like the above, maybe with more bar models. Have separate plot in next section comparing the width and density of these to the width and density of the data using Gaussian mixture model. }}
+
+In Figure \ref{fig:model-sim-compare}, we present the track (left), width (middle) and density (right) from our 2D density model of the data (solid black line) as well as the 2D density model of each of our simulated streams shown in Figure \ref{fig:sims}. From the morphology alone (Figure \ref{fig:sims}), the regular stream does not show the widening of the leading arm as seen in the 2D density model of the data. This is seen in width (Figure \ref{fig:model-sim-compare}, left) as well. The chaotic orbit, however, produces a stream which is symmetrically widened for both the leading and trailing arm. \sa{comment on stream tracks - I'll clean and finish this whole section once we have the figures}. 
+
+\begin{figure}
+\centerline{\includegraphics[width=\columnwidth]{Fig4_sims.pdf}}
+\caption{Mock-streams of the Pal 5 stream simulated in a static potential on a regular orbit (top panel), in a static potential on a chaotic orbit (second panel), in a time-dependent barred potential with M$_b = 5\times 10^9$ M$_{\odot}$ and $\Omega_b = 38$ $\kms$ kpc$^{-1}$ (third panel), and in a barred potential with M$_b = 1\times 10^{10}$ M$_{\odot}$ and $\Omega_b = 45$ $\kms$ kpc$^{-1}$ (fourth panel). The regular orbit produces a symmetric and thin leading and trailing arm,  whereas the chaotic orbit leads to a symmetric and widened leading and trailing arm (note that we limit the footprint to show  only the extent of thedata presented in the top panel of Figure \ref{fig:cmds}). The stream evolved in the Bar1 potential leads to a truncated leading arm, while the stream evolved in the Bar2 simulation produces a widened leading arm, and also shows signs of asymmetric perturbations to the trailing arm. }
 \label{fig:sims}
-\end{figure*}
+\end{figure}
 
 
 % \section{Density model}
@@ -392,6 +403,17 @@ We selected these four examples through visual inspection of the density and wid
 %
 % We compute the width and density of both or simulated Pal 5 streams and the DECaLS data fitting the above Gaussian mixture model.
 
+\begin{figure}
+\centerline{\includegraphics[width=\columnwidth]{Placeholder.pdf}}
+\caption{One row with three panels showing:\\
+Track for 2d density model (solid black line) along with inferred track of the simulation points from 2d model (colored lines indicating 4 sims from figure 4). The y axis is deltaphi2 and the x-axis is phi1.\\
+Width for 2d density model (solid black line) along with inferred width of the simulation points from 2d model (colored lines indicating 4 sims from figure 4). The y axis is wphi2 and the x-axis is phi1.\\
+Density for 2d density model (solid black line) along with inferred density of the simulation points from 2d model (colored lines indicating 4 sims from figure 4). The y axis is rho0,phi1 and the x-axis is phi1.
+}
+\label{fig:model-sim-compare}
+\end{figure}
+
+
 
 
 
@@ -409,7 +431,7 @@ The striking asymmetry in the length and width of Pal~5's two tidal arms is imme
 This scenario predicts that the bar sweeps tidal debris from the leading arm to a much wider area. The specific model presented in \citet{Pearson:2017} predicts the presence of low-surface brightness debris beyond $\rm Dec\lesssim-5^\circ$ (previous detection limit).
 Deep, wide-field DECaLS photometry enabled us to trace the leading tail as it fans out to $\rm Dec\sim-7^\circ$, while the color-magnitude diagram implies Pal~5 debris has been spread out to even lower surface-brightness level between $-7^\circ\gtrsim\rm Dec\gtrsim-10^\circ$, thus indicating that Pal~5 has indeed been perturbed by the bar. \sa{I removed the word "confirming".}
 The bar is a prominent perturber that affects objects within 5\,kpc from the Galactic center \citep[e.g., the Ophiuchus stream,][]{Price-Whelan:2016b, Hattori:2016} to the Solar circle and beyond \citep[e.g., local phase-space overdensities][]{Hunt:2018, Monari:2019}.
-Despite recent progress \citep[e.g.,][]{Clarke:2019, Sanders:2019, Bovy:2019}, the bar properties remain somewhat uncertain, so a combination of future deeper imaging along Pal~5's leading tail and a quantitative analysis of its width and density could provide important constraints on the mass and pattern speed of the Galactic bar. \sa{I added a citation to Bovy's new paper. Also should we a little more generous to the recent bar work? Everyone seems to be narrowing in on values close to 40km/s/kpc for the pattern speed.}
+Recent progress investigating the Galactic bar's pattern speed, is converging on a value close to $\Omega_b \sim 40 ~\kms$ kpc$^{-1}$ \citep[e.g.,][]{Clarke:2019, Sanders:2019, Bovy:2019}, however the bar properties remain somewhat uncertain. A combination of future deeper imaging along Pal~5's leading tail and a quantitative analysis of its width and density could provide important constraints on the mass and pattern speed of the Galactic bar. \sa{but only if we account for all perturbers at once (molecular clouds, spiral arms, dm subhalos.}
 
 In addition, streams are excellent record-keepers of small-scale perturbations.
 Encounters with a compact perturber produces a gap in a stellar stream \citep[e.g.,][]{Johnston:2002,Ibata:2002}, and tidal tails of Pal~5 have long been searched for such density variations.
@@ -464,11 +486,6 @@ Initially, extragalactic streams will be detected almost exclusively photometric
 % Hence, it might be unlikely that there are many dark matter subhalos in this part of the halo (\citealt{Garrison-Kimmel:2017}).
 % However, the GD1 stellar stream orbit probes a similar region of the Galatic potential, and shows evidence of an interaction with a dark substructure (\citealt{Price-Whelan:2018}, \citealt{Bonaca:2018b}) as the data shows a gap and a ``spur" (\citealt{Yoon:2011}).
 
-
-
- \section{Conclusion}
- \label{sec:conclusion}
-\sa{maybe a bulleted summary of our findings in the data, density model and sim sections?}
 
 \acknowledgements{
 It is a pleasure to thank
