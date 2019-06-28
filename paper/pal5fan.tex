@@ -41,6 +41,7 @@
 
 \newcommand{\todo}[1]{{\color{red} TODO: #1}}
 \newcommand{\ab}[1]{{\color{teal} AB: #1}}
+\newcommand{\sa}[1]{{\color{magenta} SP: #1}}
 \newcommand{\changes}[1]{{\textbf{#1}}}
 
 % aastex parameters
@@ -92,16 +93,17 @@ As a result, globular cluster streams are excellent tracers of the underlying ti
 Nearby stellar streams have already been used to measure the mass and shape of the Milky Way halo \citep[e.g.,][]{Koposov:2010, Kupper:2015, Bovy:2016}.
 
 However, streams are long-lived and witness the host galaxy evolve, including its gradual increase in mass, its rotating bar, and orbiting dark matter subhalos.
-When simulated in more realistic environments that feature some of these events, the resulting streams are no longer regular \citep[e.g.,][]{Bonaca:2014, Ngan:2015, Price-Whelan:2016b}.
-Recently, \citet{Price-Whelan:2018} detected gaps and off-the-stream features in the GD-1 stellar stream that could be signatures of perturbation \citep{Bonaca:2018b}.
+When simulated in more realistic environments that feature some of these events, the resulting streams are no longer 
+%regular 
+thin, coherent structures \citep[e.g.,][]{Bonaca:2014, Ngan:2015, Price-Whelan:2016b}. Recently, \citet{Price-Whelan:2018} detected gaps and off-the-stream features in the GD-1 stellar stream that could be signatures of perturbation \citep{Bonaca:2018b}.
 This discovery establishes stellar streams as a cosmological probe of dark matter on small scales.
-However, streams can also be affected by baryonic perturbers, such as giant molecular clouds \citep{Amorisco:2016}, or even naturally develop features in its density profile during cluster disruption \citep[e.g.,][]{Kupper:2008, Just:2009}.
-To measure the abundance of dark-matter subhalos from stream perturbations, we need to confirm the origin of these perturbations first.
+However, streams can also be affected by baryonic perturbers, such as giant molecular clouds \citep{Amorisco:2016}, the Galatic bar \citep{Pearson:2017}, spiral arms \citep{Banik:2019}, or even naturally develop features in its density profile during cluster disruption \citep[e.g.,][]{Kupper:2008, Just:2009}. Additionally, stream debris can spread out and ``fan'' more rapidly in phase space if streams are evolving on non-regular orbits \citep[e.g.,][]{Pearson:2015, Fardal:2015, Price-Whelan:2016}.
+To measure the abundance of dark-matter subhalos from stream perturbations, we need to confirm the origin of stream perturbations first.
 
 In this paper, we reassess tidal tails of the Palomar~5 (Pal~5) globular cluster \citep{Odenkirchen:2001, Rockosi:2002}.
 The Pal~5 stream features density variations not reproduced in a static model of the Milky Way, but neither their significance nor their origin have been established \citep{Carlberg:2012, Bernard:2016, Ibata:2016, Erkal:2017}.
-Arguably, Pal~5 provides the best opportunity for disentangling different mechanisms that shape the stream as it has a surviving progenitor, but such an endeavor requires a robust map of the entire tidal debris.
-Pal~5 is too far to enable efficient membership selection based on \gaia\ proper motions, while accurate mapping using the existing photometry is limited because the catalogs are either wide, but shallow \citep{Bernard:2016}, or deep, but narrow \citep{Ibata:2016}.
+Arguably, Pal~5 provides the best opportunity for disentangling different mechanisms that shape the stream as it has a surviving progenitor. Such an endeavor, however, requires a robust map of the entire tidal debris.
+Pal~5 is located too far away ($d = 23$ kpc: \citealt{Dotter:2011}) to enable efficient membership selection based on \gaia\ proper motions, while accurate mapping using the existing photometry is limited because the catalogs are either wide, but shallow \citep{Bernard:2016}, or deep, but narrow \citep{Ibata:2016}.
 To confidently identify Pal~5 members over a wide area, we use deep, wide-field photometry from the DECam Legacy Survey (\S\ref{sec:data}).
 In \S\ref{sec:densitymodel} we use the updated map of Pal~5 to quantify how the stream track, its width and density vary along the stream.
 We then explore how these properties change across Pal~5 models simulated in a range of Galactic potentials (\S\ref{sec:sim_results}) and conclude with a discussion of perturbers that jointly could have caused the observed Pal~5 features (\S\ref{sec:discussion}).
@@ -248,7 +250,7 @@ For the background density, we use a constant plus a constrained GMM in which $J
 In more detail, we set up a 2D, rectangular grid over the given sky field with node spacing $\Delta_{\textrm{bg}} = XX^\circ$ at locations $\bs{\mu}_j$ and fixed (circular) standard deviations $h_{\textrm{bg}} = w_{\textrm{bg}} = \Delta_{\textrm{bg}}$.
 We only include the amplitudes of each background Gaussian node as free parameters, which, along with the constant value, adds an additional $1+J$ parameters to the total model.
 
-To compare and fit this model to the data, we use this model to predict the stellar number counts in a pixelized histogram representation of the map shown in Figure~\ref{maps}; We set the pixel size of to $0.2^\circ$.
+To compare and fit this model to the data, we use this model to predict the stellar number counts in a pixelized histogram representation of the map shown in Figure~\ref{fig:map}; We set the pixel size of to $0.2^\circ$.
 We use a Poisson likelihood to compare the predicted counts (from the density model described above) to the pixelized map of Pal 5.
 We use a binary-valued 2D selection function (constructed by finding all pixels with $\leq 2$ stars) to mask the model in regions that are not observed.
 We implement this stellar surface density model in the \texttt{stan} \citep{stan} probabilistic programming language, which, through automatic differentiation, provides derivatives of the model likelihood with respect to all model parameters that aide in optimization or sampling over this high-dimensional model.
@@ -261,11 +263,19 @@ We find the best-fit parameters by optimizing the log-likelihood using the built
 Figure~\ref{fig:density-model} shows ...
 
 
+\begin{figure}
+\centerline{\includegraphics[width=\columnwidth]{Placeholder.pdf}}
+\caption{One column with three rows showing: 1) data. 2) 2d density model. 3) Residual. Adrian is working on this on the cluster now. 
+}
+\label{fig:density-model}
+\end{figure}
+
+
 
 \section{Simulations}
 \label{sec:sim}
-To explore the mechanism leading the the observed morphology of the stream (i.e. the length asymmetry between the leading and trailing arm, as well as the gap in the trailing arm, and the ``fan" in the leading arm), we run a suite of Pal 5 simulations.
-In particular, we investigate whether Pal 5's ``fan" in the leading arm can be explained due to chaotic regions in the potential (\citealt{Pearson:2015}, \citealt{Price-Whelan:2016}, Yavetz et al., {\it in prep.}), or whether Pal 5 is interacting with the Galactic bar (\citealt{Erkal:2017}, \citealt{Pearson:2017}, \citealt{Banik:2019}).
+To explore the mechanism leading the the observed morphology of the stream (i.e. the length asymmetry between the leading and trailing arm, as well as the gap in the trailing arm, and the ``fan'' in the leading arm), we run a suite of Pal 5 simulations.
+In particular, we investigate whether Pal 5's ``fan'' in the leading arm can be explained due to chaotic regions in the potential (\citealt{Pearson:2015}, \citealt{Price-Whelan:2016}, Yavetz et al., {\it in prep.}), or whether Pal 5 is interacting with the Galactic bar (\citealt{Erkal:2017}, \citealt{Pearson:2017}, \citealt{Banik:2019}).
 In Section \ref{sec:potential}, we describe the potentials we use to simulate the evolution of Pal 5, and in Section \ref{sec:modeling} we describe our simulation setup.
 We show the results of our analyses in Section \ref{sec:sim_results}.
 
@@ -285,7 +295,7 @@ Following \citet{wang:2012}, we compute the bar potential as a basis-function ex
     r_2 &= \left[\frac{q^2(x^2 + y^2) + z^2)}{z_0^2}\right]^{1/2}
 \end{align}
 where the scale lengths are $x_0$ = 1.49 kpc, $y_0$ = 0.58 kpc, $z_0$ = 0.4 kpc, and q = 0.6. We include terms up to $n=9$, $l=19$ in the ``self-consistent field" BFE formalism, as this yields a good representation of the density of the bar (\citealt{Banik:2019})\footnote{Note that using lower order terms (e.g. n=6, l = 8) for the basis function expansion does not much change the morphology or kinematics of the Pal 5 stream.}.
-We explore barred models with pattern speeds of $\Omega_b$ = ($25 - 65$) $\kms$ kpc$^{-1}$ in increments of 1 kpc$^{-1}$, and  we test bar masses of $M_{bar} = 5 \times 10^{9}$ $\msun$ and $M_{bar} = 1 \times 10^{10}$ $\msun$ (\citealt{Portail:2017}).
+We explore barred models with pattern speeds of $\Omega_b$ = ($30 - 60$) $\kms$ kpc$^{-1}$ in increments of 0.5 $\kms$ kpc$^{-1}$, and  we test bar masses of $M_{bar} = 5 \times 10^{9}$ $\msun$ and $M_{bar} = 1 \times 10^{10}$ $\msun$ (\citealt{Portail:2017}).
 Additionally, we fix the present day angular offset from the Galactic x-axis in the direction of rotation to $\alpha = 27\deg$.
 \end{itemize}
 
@@ -293,14 +303,13 @@ Additionally, we fix the present day angular offset from the Galactic x-axis in 
 This is the radius at which the circular frequency ($\Omega_0$) is equal to the spin of the bar ($\Omega_b$) including the mass of the total potential.
 In this paper, however, we explore a {\it range} of pattern speeds, which will lead to different co-rotation radii for different pattern speeds (faster bars have co-rotation at smaller radii and vice versa).
 As bars are not expected to extend much beyond their co-rotation radius (\citealt{binney:2008}), we therefore adjust the physical scaling of the bar when we vary the pattern speed. %In \citet{wang:2012}, the scale-radius, $r_s$, assumed in the BFE, is  $r_s = 1.1$ kpc.
-
 In particular, we compute the co-rotation radius, $r_{\rm CR},$ for the mass profiles of the static potential for any given pattern speed, $\Omega_b$.
 We then scale the bar model for a given pattern speed, $\Omega_b$, by:
-\begin{equation}
+\begin{equation}\label{eq:scale}
 r_{s, \Omega_b}  = r_{{\rm CR}, \Omega_b}/r_{{\rm CR, Wang 2012}}
 \end{equation}
-If this scaling is not included (as the case for bar models in e.g. %\citealt{price:2016b},
-\citealt{Pearson:2017}, \citealt{Erkal:2017}, \citealt{Banik:2019}), this creates a too strong bar quadrupole for the faster pattern speeds, and a too weak bar quadrupole for the slower pattern speeds.
+If the scaling in Equation \ref{eq:scale} is not included (as the case for bar models in e.g. %\citealt{price:2016b},
+\citealt{Pearson:2017}, \citealt{Erkal:2017}, \citealt{Banik:2019}), the bar will have a too strong quadrupole for faster pattern speeds, and a too weak bar quadrupole for  slower pattern speeds.
 
 % In Figure \ref{fig:vcirc}, we show the circular velocity as a function of radius for the barred, three-component Galactic potential with $\Omega_b$ = ($25 - 65$) $\kms$ kpc$^{-1}$. The red lines correspond to the potentials with a bar mass of $M_{bar} = 5 \times 10^{9}$ $\msun$, and the blue lines correspond to potentials with a bar mass of  $M_{bar} = 1 \times 10^{10}$ $\msun$.
 %
@@ -318,9 +327,8 @@ If this scaling is not included (as the case for bar models in e.g. %\citealt{pr
 
 To simulate the evolution of Pal 5 in a given potential, we first transform Pal 5's observed 6D phase space coordinates into a Galactocentric frame by assuming $v_{lsr} = (11.1, 24.0, 7.25) ~\kms$,  $v_{circ} = 220  ~\kms$ and a distance from the Sun to the Galactic center of 8.1 kpc.
 At the present, Palomar~5 globular cluster is at: RA = 229.018 deg, Dec = - 0.24 deg, distance = 22.9 kpc, $v_r$ = -58.7 , pm$_{RA,cosdec}= -2.296$ mas and pm$_{Dec} = -2.257$ mas.
-We then integrate the cluster backwards in time for 4 Gyr in steps of 0.5 Myr in the potentials described in Section \ref{sec:potential}.
-Subsequently, we simulate the forward evolution of Pal 5 using the ``particle-spray" stream generating method developed by \citet{Fardal:2015}, such that the cluster ends at its present day position at $t = 0$.
-We release two particles through each of the two Lagrange points every 8 Myr.
+We then integrate the cluster backwards in time for 3 Gyr in steps of 0.5 Myr in the potentials described in Section \ref{sec:potential}.
+Subsequently, we simulate the forward evolution of Pal 5 using the ``particle-spray" stream generating method developed by \citet{Fardal:2015} implemented in the \package{gala} package (\citealt{gala}), such that the cluster ends at its present day position at $t = 0$. We release two particles through each of the two Lagrange points from the progenitor every time step (i.e. 2 particles every 0.5 Myr for 3 Gyr). We include the self-gravity of the cluster by adapting a Plummer profile to the Pal 5 cluster with size = 4 pc and a of mass 14,404 M$_{\odot}$. 
 
 To investigate Pal 5's evolution on a regular orbit, we first run a ``particle-spray" simulations setting $q_z = 0.94$ (\citealt{Bovy:2016}).
 Subsequently, we run the same simulation setting $q_z = 0.5$ to induce a chaotic orbit.
@@ -328,18 +336,24 @@ Additionally, we simulate the evolution of Pal 5's stream in the barred potentia
 We vary the pattern speed of the bar, while updating its physical scaling (see Section \ref{sec:potential}. % and Figure \ref{fig:vcirc}).
 We repeat this exercise using bar masses of both $M_{bar} = 5 \times 10^{9}$ $\msun$ and $M_{bar} = 1 \times 10^{10}$ $\msun$.
 
+\sa{Will stste that we didn't actually fit for the track, density or width in our simulations} 
+
 \subsection{Simulation results}
 \label{sec:sim_results}
-In Figure \ref{fig:sims}, we present the morphology (left column) and radial velocities (right column) of the simulated Pal 5 streams in various potentials.
+\sa{In progres..}\\
+In Figure \ref{fig:sims}, we present the morphology of the simulated Pal 5 streams in various potentials.
 The first two rows show Pal 5 evolved in a static potential with two different flattenings (see Section \ref{sec:potential}).
-The last rows show four examples of Pal 5 evolved in barred potentials.
-We selected these four examples through visual inspection of the density and width of the data and the simulated streams.
+The last two rows, we highlight two simulations of mock streams evolved in time-dependent barred potentials. We visually inspected the morphology, track and width of the simulated streams in barred potentials with M$_{\rm bar} = 5\times 10^9$ M$_{\odot}$ and $5\times 10^9$ M$_{\odot}$ as well as pattern speeds in the range of $\Omega_b = 30-60 ~\kms$ kpc$^{-1}$ in increments of $0.5~\kms$ kpc$^{-1}$. In Figure \ref{fig:sims}, we highlight two particular mock-streams as Bar1 (third panel) demonstrates a scenario where the leading arm has been abruptly truncated in its density as compared to the trailing arm which is denser for a longer extent. Bar2 on the other hand, produced a leading arm which is widened  and a trailing stream which has been perturbed by the bar as well. 
 
-\begin{figure*}
-% \centerline{\includegraphics[width=\textwidth]{simulations.pdf}}
-\caption{\todo{Something like the above, maybe with more bar models. Have separate plot in next section comparing the width and density of these to the width and density of the data using Gaussian mixture model. }}
+In Figure \ref{fig:model-sim-compare}, we present the track (left), width (middle) and density (right) from our 2D density model of the data (solid black line) as well as the 2D density model of each of our simulated streams shown in Figure \ref{fig:sims}. From the morphology alone (Figure \ref{fig:sims}), the regular stream does not show the widening of the leading arm as seen in the 2D density model of the data. This is seen in width (Figure \ref{fig:model-sim-compare}, left) as well. The chaotic orbit, however, produces a stream which is symmetrically widened for both the leading and trailing arm. \sa{comment on stream tracks - I'll clean and finish this whole section once we have the figures}. 
+
+While our exploration of mock-streams evolved in various potentials can individually recreate some of the observed features presented in Figure \ref{fig:map}, none of the presented simulations reproduce all gaps, fans, tracks nor density profile simultaneously. Note, however, that we did fit for the stream track, width nor density and our simulations here meant to demonstrate how various effects can play a role in shaping the Pal 5 stream. 
+
+\begin{figure}
+\centerline{\includegraphics[width=\columnwidth]{Fig4_sims.pdf}}
+\caption{Mock-streams of the Pal 5 stream simulated in a static potential on a regular orbit (top panel), in a static potential on a chaotic orbit (second panel), in a time-dependent barred potential with M$_{\rm bar} = 5\times 10^9$ M$_{\odot}$ and $\Omega_b = 38$ $\kms$ kpc$^{-1}$ (third panel), and in a barred potential with M$_{\rm bar} = 1\times 10^{10}$ M$_{\odot}$ and $\Omega_b = 45$ $\kms$ kpc$^{-1}$ (fourth panel). The regular orbit produces a symmetric and thin leading and trailing arm,  whereas the chaotic orbit leads to a symmetric and widened leading and trailing arm (note that we limit the footprint to show  only the extent of thedata presented in the top panel of Figure \ref{fig:cmds}). The stream evolved in the Bar1 potential leads to a truncated leading arm, while the stream evolved in the Bar2 simulation produces a widened leading arm, and also shows signs of asymmetric perturbations to the trailing arm. }
 \label{fig:sims}
-\end{figure*}
+\end{figure}
 
 
 % \section{Density model}
@@ -391,27 +405,50 @@ We selected these four examples through visual inspection of the density and wid
 %
 % We compute the width and density of both or simulated Pal 5 streams and the DECaLS data fitting the above Gaussian mixture model.
 
+\begin{figure}
+\centerline{\includegraphics[width=\columnwidth]{Placeholder.pdf}}
+\caption{One row with three panels showing:\\
+Track for 2d density model (solid black line) along with inferred track of the simulation points from 2d model (colored lines indicating 4 sims from figure 4). The y axis is deltaphi2 and the x-axis is phi1.\\
+Width for 2d density model (solid black line) along with inferred width of the simulation points from 2d model (colored lines indicating 4 sims from figure 4). The y axis is wphi2 and the x-axis is phi1.\\
+Density for 2d density model (solid black line) along with inferred density of the simulation points from 2d model (colored lines indicating 4 sims from figure 4). The y axis is rho0,phi1 and the x-axis is phi1.
+}
+\label{fig:model-sim-compare}
+\end{figure}
+
+
 
 
 
 \section{Discussion}
 \label{sec:discussion}
+\sa{Do we want to state how streams might all look messed up as we get deeper maps?  }
 We presented deep $grz$ photometry of the Palomar~5 tidal tails from the Legacy Surveys catalog that enables the cleanest selection of Pal~5 members to date.
-Our flexible, 2D modeling of the debris' spatial distribution yielded unprecedented measurements of the width and density along the tidal tails, and revealed for the first time changes in the direction of the trailing tail.
-Different models of stellar streams that are globally perturbed separately capture many of the features observed in Pal~5, including an asymmetry in the length and the width of the leading and trailing tail.
-However, these models fail to reproduce the observed gaps in the stream density and the wiggles of its track.
+Our flexible, 2D modeling of the debris' spatial distribution yielded unprecedented measurements of the width and density along the tidal tails, and revealed 
+%for the first time 
+changes in the direction of the trailing tail. \sa{wondering if unprecedented is too strong of a word? I also commented out "for the first time" as I thought it could be omitted.}
+Our different simulations
+%models 
+of stellar streams
+%that are globally perturbed 
+separately capture many of the features observed in Pal~5, including an asymmetry in the length and the width of the leading and trailing tail.
+However, these specific simulations fail to reproduce the observed gaps in the stream density and the wiggles of its track.
 In this section we discuss perturbing mechanisms that could jointly explain this transformed view of the Pal~5 stream.
 % \ab{rephrase as needed once the rest of the analysis is in place}
 
 The striking asymmetry in the length and width of Pal~5's two tidal arms is immediately obvious from Figure~\ref{fig:map}.
-\citet{Pearson:2017} showed that the short leading arm, first reported in \citet{Bernard:2016}, may be truncated through repeated perturbation by the Milky Way bar. 
-This scenario predicts that the bar sweeps tidal debris from the leading arm to a much wider area, and predicts the presence of low-surface brightness debris beyond $\rm Dec\lesssim-5^\circ$ (previous detection limit).
-Deep, wide-field DECaLS photometry enabled us to trace the leading tail as it fans out to $\rm Dec\sim-7^\circ$, while the color-magnitude diagram implies Pal~5 debris has been spread out to even lower surface-brightness level between $-7^\circ\gtrsim\rm Dec\gtrsim-10^\circ$, thus confirming Pal~5 has been perturbed by the bar.
-The bar is a prominent perturber that affects objects within 5\,kpc from the Galactic center \citep[e.g., the Ophiuchus stream,][]{Price-Whelan:2016b, Hattori:2016} to the Solar circle and beyond \citep[e.g., local phase-space overdensities][]{Hunt:2018, Monari:2019}.
-Despite recent progress \citep[e.g.,][]{Clarke:2019, Sanders:2019}, the bar properties remain somewhat uncertain, so a combination of future deeper imaging along Pal~5's leading tail and a quantitative analysis of its width and density will provide important constraints on the mass and pattern speed of the Galactic bar.
+\citet{Pearson:2017} showed that the short leading arm, first reported in \citet{Bernard:2016}, may be truncated through a perturbation by the Milky Way's Galactic bar. 
+%SP removed the word "repeated" as the leading arm can by truncated on just one pericentric passage.
+This scenario predicts that the bar sweeps tidal debris from the leading arm to a much wider area. 
+%The specific model presented in \citet{Pearson:2017} predicts the presence of low-surface brightness debris beyond $\rm Dec\lesssim-5^\circ$ (previous detection limit).
+Deep, wide-field DECaLS photometry enabled us to trace the leading tail as it fans out to $\rm Dec\sim-7^\circ$, while the color-magnitude diagram implies Pal~5 debris has been spread out to even lower surface-brightness level between $-7^\circ\gtrsim\rm Dec\gtrsim-10^\circ$, and in Section \ref{sec:sim_results}, we showed that this low surface-brightness feature can be induced if Pal~5 has been perturbed by the bar. 
+%SP: I removed the word "confirming".
 
-In addition, streams are excellent record-keepers of small-scale perturbations.
-Encounter with a compact perturber produces a gap in a stellar stream \citep[e.g.,][]{Johnston:2002,Ibata:2002}, and tidal tails of Pal~5 have long been searched for such density variations.
+The bar is a prominent perturber that affects objects within 5\,kpc from the Galactic center \citep[e.g., the Ophiuchus stream,][]{Price-Whelan:2016b, Hattori:2016} to the Solar circle and beyond \citep[e.g., local phase-space overdensities][]{Hunt:2018, Monari:2019}.
+Recent progress investigating the Galactic bar's pattern speed, is converging on a value close to $\Omega_b \sim 40 ~\kms$ kpc$^{-1}$ \citep[e.g.,][]{Clarke:2019, Sanders:2019, Bovy:2019}, however the bar properties remain somewhat uncertain. A combination of future deeper imaging along Pal~5's leading tail and a quantitative analysis of its width and density could provide important constraints on the mass and pattern speed of the Galactic bar. Careful modeling of interactions with the Milky Way's spiral arms and molecular clouds, however, would be necessary (\citealt{Banik:2019}, \citealt{Amorisco:2016}. 
+% SP added last sentence above and changed transition below: we have to account for all perturbers at once (molecular clouds, spiral arms, dm subhalos)
+
+In fact, streams are excellent record-keepers of small-scale perturbations.
+Encounters with a compact perturber produces a gap in a stellar stream \citep[e.g.,][]{Johnston:2002,Ibata:2002}, and tidal tails of Pal~5 have long been searched for such density variations.
 The findings so far have been conflicting, with the number of gaps reported in Pal~5 ranging from five \citep{Carlberg:2012} to no gaps \citep{Ibata:2016}.
 With DECaLS photometry, we confirm the large-scale density variations reported by \citet{Erkal:2017}: the two most prominent underdensities in Pal~5 are a $\sim5^\circ$ gap in the trailing and a $\sim1^\circ$ gap in the leading tail. 
 \ab{update gap sizes}
@@ -419,10 +456,11 @@ The presence of gaps by itself does not distinguish the nature of the perturber,
 Based on mass arguments, \citet{Erkal:2017} suggested that the large gap in Pal~5 originates from a dark-matter subhalo encounter, while the small gap may have been produced by a molecular cloud.
 In addition to the perturber's mass, details of the gap profile also depend on the time since the encounter and its impact parameter \citep{Erkal:2015}.
 Our dataset enables a confident measurement of the gap profile above the Milky Way field contamination \ab{quantify a bit?}, which opens up the possibility of disentangling different encounter parameters.
-Ultimately, such modeling will determine the nature of Pal~5's small-scale perturbers and measure the abundance of low-mass dark-matter subhalos in the Milky Way halo.
+%SP thinks the sentence below can be omitted. 
+%Ultimately, such modeling will determine the nature of Pal~5's small-scale perturbers and measure the abundance of low-mass dark-matter subhalos in the Milky Way halo. 
 
-The depth of the DECaLS catalog also allows for a more confidently determined stream track and reveals its surprising deviations: a global change in Pal~5's curvature $\sim5^\circ$ from the cluster, and $\sim20'$ oscillations, or wiggles, in the trailing tail (Figure~\ref{}).
-Neither of these features is reproduced in our models, even those that have been perturbed by a rotating bar \ab{confirm this with the new simulations} (\citealt{Erkal:2017} models feature a similar discrepancy).
+The depth of the DECaLS catalog also allows for a more confidently determined stream track and reveals its surprising deviations: a global change in Pal~5's curvature $\sim5^\circ$ from the cluster, and $\sim20'$ oscillations, or wiggles, in the trailing tail (Figure~\ref{fig:density-model}).
+Neither of these features is reproduced in our simulations, even those that have been perturbed by a rotating bar \ab{confirm this with the new simulations} (\citealt{Erkal:2017} models feature a similar discrepancy).
 Fisher information considerations in a static gravitational potential imply that the stream track encodes the enclosed mass at the current location of the stream \citep{Bonaca:2018}.
 The change in the Pal~5's curvature occurs at a nearly symmetric position along the leading and the trailing tail, so this may indicate a sudden change in the enclosed mass inside Pal~5's orbit.
 For example, when a stream encounters a massive object, its overall orbit can change and produce a misalignment between the proper motions and the stream track \citep{Erkal:2018, Koposov:2019}.
@@ -432,18 +470,27 @@ Measuring the relative angle between the proper-motion vector and the stream tra
 Similarly, the small-scale wiggle in the trailing tail may be another signature of an impact, especially as it coincides with a very prominent gap (Figure~\ref{}).
 During the encounter, nearby stream stars receive a velocity kick that changes their orbital energies and opens a gap in the stellar stream \citep[e.g.,][]{Erkal:2015b}.
 In addition, stream stars affected by the perturber can be displaced from the original stream track \citep{Bonaca:2018b}.
-Simultaneous modeling of the Pal~5 stream track and its density profile should determine the origin of the trailing tail gap.
+Simultaneous fitting the Pal~5 stream track and its density profile could determine the origin of the trailing tail gap.
 Should the encounter scenario be confirmed, track wiggles may put additional constraints on the impact geometry.
 
-Despite revolutionizing our account of the Pal~5's history, the most important implications of our discoveries may be regarding the future studies of stellar streams in general.
+
+%%%%%%%Sp I'd omit the lines below%%%%
+%Despite advancing 
+%revolutionizing 
+%our account of Pal~5's history, the most important implications of our discoveries may be regarding the future studies of stellar streams in general. 
+%\sa{I changed "revolutionizing" to "advancing", but I am also not sure we even advances the account Pal 5's history as we didn't find (or attempted to find) a scenario that reproduced all Pal 5 features. }
 % Perhaps most importantly, our discoveries bode well for future studies of stellar streams.
+
 As valuable tracers for 3D mapping of matter in galaxies, streams have already provided constraints on the mass of the Large Magellanic Cloud \citep{Erkal:2019} and revealed the presence of a yet unidentified, low-mass object in the Milky Way halo \citep{Bonaca:2018b}.
 Both of these studies relied on the kinematic data from the \gaia\ mission for a confident identification of the stream's member stars.
 In this work we have shown that deep photometry alone can be similarly leveraged to cleanly map tidal debris.
-Within the Milky Way, this will enable measuring the abundance of low-mass perturbers in the outer halo by studying distant streams that typically reside outside of \gaia's scope \citep[cf.][]{Ibata:2019}.
-These streams are less likely to have been affected by baryonic structures \citep[e.g.,][]{Banik:2019}, so their dynamical models will more directly constrain the nature of dark matter.
-Prominent stellar streams have also been discovered outside of the Local Group \citep[e.g.,][]{Martinez-Delgado:2010, Kado-Fong:2018}, while future surveys are primed to find the more numerous, low-mass accretion events \citep{Pearson:2019}.
-Initially, extragalactic streams will be detected almost exclusively photometrically, but our results suggest that will still allow precise three-dimensional mapping of their host galaxies, and thus provide a unique test of the $\Lambda$CDM cosmology.
+Within the Milky Way, this can enable measuring the abundance of low-mass perturbers in the outer halo by studying distant streams that typically reside outside of \gaia's scope \citep[cf.][]{Ibata:2019}.
+ Streams at greater galactocentric radii are less likely to have been affected by baryonic structures \citep[e.g.,][]{Banik:2019}, so their dynamical models will more directly constrain the nature of dark matter.
+Prominent stellar streams have also been discovered outside of the Local Group \citep[e.g.,][]{Martinez-Delgado:2010, Kado-Fong:2018}, while future surveys are primed to find the more numerous, low-mass steams \citep{Pearson:2019}. 
+%SP: I removed the word accretion events, as pearson19 discussed GC streams.
+Initially, extragalactic streams will be detected almost exclusively photometrically, but our results suggest that will still allow precise three-dimensional mapping of their host galaxies, and thus provide a unique test of the $\Lambda$CDM cosmology. \sa{I don't agree with this last sentence as we didn't do any potential fitting or 3d mapping in this paper. }
+
+
 
 
 
@@ -459,13 +506,9 @@ Initially, extragalactic streams will be detected almost exclusively photometric
 % However, the GD1 stellar stream orbit probes a similar region of the Galatic potential, and shows evidence of an interaction with a dark substructure (\citealt{Price-Whelan:2018}, \citealt{Bonaca:2018b}) as the data shows a gap and a ``spur" (\citealt{Yoon:2011}).
 
 
-
-% \section{Conclusion}
-% \label{sec:conclusion}
-
-
 \acknowledgements{
-It is a pleasure to thank
+It is a pleasure to thank... 
+This work was performed in part during the Gaia19 workshop and the 2019 Santa Barbara Gaia Sprint (also supported by the Heising-Simons Foundation), both hosted by the Kavli Institute for Theoretical Physics at the University of California, Santa Barbara. The Flatiron Institute is supported by the Simons Foundation. 
 
 
 % \appendix

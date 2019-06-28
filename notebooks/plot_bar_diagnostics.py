@@ -63,7 +63,10 @@ def morphology(omega, m_b,
                              dt=dt, n_steps=n_steps,
                              release_every=release_every,
                              n_particles=n_particles)
-
+    cache_file = 'BarModels_RL{:d}_Mb{:.0e}_Om{:.1f}.hdf5'.format(release_every, m_b.value, omega.value)
+    if path.exists(cache_file):
+        os.unlink(cache_file)
+    stream_data.to_hdf5(cache_file)
     sim_c = stream_data.to_coord_frame(coord.ICRS,
                                        galactocentric_frame=galcen_frame)
     return sim_c
@@ -308,7 +311,7 @@ def worker(task):
                 release_every=1, n_steps=6000)
 
 
-tasks = [(om, ) for om in np.arange(25, 60+1e-3, 0.25)]
+tasks = [(om, ) for om in np.arange(28.0, 60+1e-3, 0.5)]
 
 with SerialPool() as pool:
 #with MultiPool() as pool:
