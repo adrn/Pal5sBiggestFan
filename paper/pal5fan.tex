@@ -76,8 +76,9 @@
 Stars that escape globular clusters form tidal tails that are predominantly shaped by the global distribution of mass in the Galaxy, but also preserve a historical record of small-scale perturbations.
 Using deep $grz$ photometry from DECaLS, we present highly probable members of the tidal tails associated with the disrupting globular cluster Palomar~5.
 These data yield the cleanest view of a stellar stream beyond $\sim20\,\rm kpc$ and reveal: (1) a wide, low surface-brightness extension of the leading tail, (2) significant density variations along the stream, and (3) sharp changes in the direction of the trailing tail.
-In the fiducial Milky Way model, a rotating bar perturbs the Palomar~5 tails and can produce stream similar width and density profiles to those observed.
-However, the deviations of the stream track in this simple model are significantly smaller than those observed in the Palomar~5 trailing tail, so future kinematic observations may identify an additional source of perturbation. \sa{Think this former sentence is slightly confusing as it's saying the models cannot reproduce the observed wiggle, but that future observations will help.}
+In the fiducial Milky Way model, a rotating bar perturbs the Palomar~5 tails and can produce streams with similar width and density profiles to those observed.
+However, the deviations of the stream track in this simple model are significantly smaller than those observed in the Palomar~5 trailing tail, so future kinematic observations may identify an additional source of perturbation. 
+%SP: I think this former sentence is slightly confusing as it's saying the models cannot reproduce the observed wiggle, but that future observations will help, but might be OK.
 These discoveries open up the possibility of measuring the population of perturbers in the Milky Way, including dark-matter subhalos, with an ensamble of stellar streams and deep photometry alone.
 \end{abstract}
 
@@ -103,7 +104,7 @@ To measure the abundance of dark-matter subhalos from stream perturbations, we n
 In this paper, we reassess tidal tails of the Palomar~5 (Pal~5) globular cluster \citep{Odenkirchen:2001, Rockosi:2002}.
 The Pal~5 stream features density variations not reproduced in a static model of the Milky Way, but neither their significance nor their origin have been established \citep{Carlberg:2012, Bernard:2016, Ibata:2016, Erkal:2017}.
 Arguably, Pal~5 provides the best opportunity for disentangling different mechanisms that shape the stream as it has a surviving progenitor. Such an endeavor, however, requires a robust map of the entire tidal debris.
-Pal~5 is located too far ($d = 23$ kpc: \citealt{Dotter:2011}) to enable efficient membership selection based on \gaia\ proper motions, while accurate mapping using the existing photometry is limited because the catalogs are either wide, but shallow \citep{Bernard:2016}, or deep, but narrow \citep{Ibata:2016}.
+Pal~5 is located too far from the Sun ($d = 23$ kpc: \citealt{Dotter:2011}) to enable efficient membership selection based on \gaia\ proper motions, while accurate mapping using the existing photometry is limited because the catalogs are either wide, but shallow \citep{Bernard:2016}, or deep, but narrow \citep{Ibata:2016}.
 To confidently identify Pal~5 members over a wide area, we use deep, wide-field photometry from the DECam Legacy Survey (\S\ref{sec:data}).
 In \S\ref{sec:densitymodel} we use the updated map of Pal~5 to quantify how the stream track, its width and density vary along the stream.
 We then explore how these properties change across Pal~5 models simulated in a range of Galactic potentials (\S\ref{sec:sim_results}) and conclude with a discussion of perturbers that jointly could have caused the observed Pal~5 features (\S\ref{sec:discussion}).
@@ -238,7 +239,7 @@ Figure~\ref{fig:density-model} shows ...
 
 \section{Simulations}
 \label{sec:sim}
-To explore the mechanism leading the the observed morphology of the stream (i.e. the length asymmetry between the leading and trailing arm, as well as the gap in the trailing arm, and the widening of the leading arm), we run a suite of Pal~5 simulations.
+To explore the mechanism producing the observed morphology of the stream (i.e. the length asymmetry between the leading and trailing arm, as well as the gap in the trailing arm, and the widening of the leading arm), we run a suite of Pal~5 simulations.
 In particular, we investigate whether Pal~5's wide leading arm can be explained due to chaotic regions in the potential, or whether an interaction with the Galactic bar can explain the asymmetric stream width. 
 In Section \ref{sec:potential}, we describe the potentials we use to simulate the evolution of Pal~5, and in Section \ref{sec:modeling} we describe our simulation setup.
 We show the results of our analyses in Section \ref{sec:sim_results}.
@@ -266,10 +267,10 @@ Additionally, we fix the present day angular offset from the Galactic x-axis in 
 
 Note that \citet{wang:2012} constructed a bar with a pattern speed of $\Omega_b$ =  60 $\kms$ kpc$^{-1}$, which has a co-rotation radius, $r_{\rm CR} = 3.7$ kpc.
 %This is the radius at which the circular frequency ($\Omega_0$) is equal to the spin of the bar ($\Omega_b$) including the mass of the total potential.
-In this paper, however, we explore a range of pattern speeds, which will lead to different co-rotation radii for different pattern speeds (faster bars have co-rotation at smaller radii and vice versa).
+In this paper, however, we explore a range of pattern speeds, which will lead to different co-rotation radii for different pattern speeds. % (faster bars have co-rotation at smaller radii and vice versa).
 As bars are not expected to extend much beyond their co-rotation radius (\citealt{binney:2008}), we therefore adjust the physical scaling of the bar when we vary the pattern speed. %In \citet{wang:2012}, the scale-radius, $r_s$, assumed in the BFE, is  $r_s = 1.1$ kpc.
 In particular, we compute the co-rotation radius, $r_{\rm CR},$ for the mass profiles of the static potential for any given pattern speed, $\Omega_b$.
-We then scale the bar model for a given pattern speed, $\Omega_b$, by:
+We then scale the bar potential for a given pattern speed, $\Omega_b$:
 \begin{equation}\label{eq:scale}
 r_{s, \Omega_b}  = r_{{\rm CR}, \Omega_b}/r_{{\rm CR, Wang 2012}}
 \end{equation}
@@ -289,15 +290,16 @@ If the scaling in Equation \ref{eq:scale} is not included (e.g. in %\citealt{pri
 \label{sec:modeling}
 \sa{Att. APW: describe stream track fitting...}
 To simulate the evolution of Pal~5 in a given potential, we first transform Pal~5's observed 6D phase space coordinates into a Galactocentric frame by assuming $v_{lsr} = (11.1, 24.0, 7.25) ~\kms$,  $v_{circ} = 220  ~\kms$ and a distance from the Sun to the Galactic center of 8.1 kpc.
-At present day, the Pal~5 globular cluster is located at: RA = 229.0264 deg, Dec = $-0.1368$ deg, at a distance of $d$ = 22.50 kpc. Its moving with a radial velocity of $v_r = -56.2 \kms$, and has proper motions of pm$_{RA,cosdec}= -2.21$ mas yr$^{-1}$ and pm$_{Dec} = -2.23$ mas yr$^{-1}$. \sa{Check references for these values - I took them from gala.coordinates.pal5$_c$ in notebook}
+At present day, the Pal~5 globular cluster is located at: RA = 229.0264 deg, Dec = $-0.1368$ deg, at a distance of $d$ = 22.50 kpc. It is moving with a radial velocity of $v_r = -56.2 \kms$, and has proper motions of pm$_{RA,cosdec}= -2.21$ mas yr$^{-1}$ and pm$_{Dec} = -2.23$ mas yr$^{-1}$. \sa{Check references for these values - I took them from gala.coordinates.pal5$_c$ in notebook}
 %RA = 229.018 deg, Dec = - 0.24 deg, at a distance of $d$ = 22.9 kpc. Its moving with a radial velocity of $v_r = -58.7 \kms$, and has proper motions of pm$_{RA,cosdec}= -2.296$ mas yr$^{-1}$ and pm$_{Dec} = -2.257$ mas yr$^{-1}$.
-We integrate the cluster backwards in time for 3 Gyr in steps of 0.5 Myr (see potentials in Section \ref{sec:potential}).
-Subsequently, we simulate the forward evolution of Pal~5 using the ``particle-spray'' stream generating method developed by \citet{Fardal:2015} and implemented in the \package{gala} package (\citealt{gala}), such that the cluster ends at its present day position at $t = 0$. We release two particles through each of the two Lagrange points from the progenitor every time step (i.e. 2 particles every 0.5 Myr for 3 Gyr). We account for the self-gravity of the Pal~5 cluster by including the cluster as a Plummer profile with size = 4 pc and a of mass 14,404 M$_{\odot}$. 
+We integrate the cluster backwards in time for 3 Gyr in steps of 0.5 Myr. % (see potentials in Section \ref{sec:potential}).
+Subsequently, we simulate the forward evolution of Pal~5 using the ``particle-spray'' stream generating method developed by \citet{Fardal:2015} and implemented in the \package{gala} package (\citealt{gala}), such that the cluster ends at its present day position at $t = 0$. We release two particles through each of the two Lagrange points from the progenitor every time step. % (i.e. 2 particles every 0.5 Myr for 3 Gyr). 
+We account for the self-gravity of the Pal~5 cluster by including the cluster as a Plummer profile with size = 4 pc and a mass, $m_p = $ 14,404 M$_{\odot}$. 
 
 To investigate Pal~5's evolution on a regular orbit, we first run a ``particle-spray'' simulations setting $q_z = 0.94$ (\citealt{Bovy:2016}).
 Subsequently, we run the same simulation setting $q_z = 0.5$ to induce a chaotic orbit.
 Additionally, we simulate the evolution of Pal~5's stream in barred potentials, where we first integrating the orbit backwards for 3 Gyr, and then create mock streams as described above.
-We vary the pattern speed of the bar, while updating its physical scaling (see Section \ref{sec:potential}, % and Figure \ref{fig:vcirc}).
+We vary the pattern speed of the bar, while updating its physical scaling (see Section \ref{sec:potential}), % and Figure \ref{fig:vcirc}).
 and we repeat this exercise using bar masses of both M$_{\rm bar} = 5 \times 10^{9}$ $\msun$ and M$_{\rm bar} = 1 \times 10^{10}$ $\msun$.
 
 \sa{Will stste that we didn't actually fit for the track, density or width in our simulations} 
@@ -307,17 +309,18 @@ and we repeat this exercise using bar masses of both M$_{\rm bar} = 5 \times 10^
 \sa{In progres..}\\
 In Figure \ref{fig:sims}, we present the morphology of the simulated Pal~5 streams in various potentials.
 The first two rows show Pal~5 evolved in a static potential with two different flattenings ($q_z = 0.94$ and $q_z = 0.5$).
-In the last two rows, we highlight two particular simulations of mock streams evolved in time-dependent barred potentials. Before selecting these two examples, we visually inspected the morphology, track and width of the simulated streams in the barred potentials. 
+In the last two rows, we highlight two particular simulations of mock streams evolved in time-dependent barred potentials. To select these two examples, we visually inspected the morphology, track and width of the simulated streams in the barred potentials. 
 %with M$_{\rm bar} = 5\times 10^9$ M$_{\odot}$ and $5\times 10^9$ M$_{\odot}$ as well as pattern speeds in the range of $\Omega_b = 30-60 ~\kms$ kpc$^{-1}$ in increments of $0.5~\kms$ kpc$^{-1}$.
 %In Figure \ref{fig:sims}, we highlight two particular mock-streams as 
-The stream evolved in the Bar1 example (third panel) demonstrates a scenario where the leading arm has been abruptly truncated in its density as compared to the trailing arm which is denser at further distances from the cluster. The mock stream evolved in Bar2. on the other hand, produced a leading arm which is widened and a trailing stream which has been perturbed by the bar as well. 
+The stream evolved in the Bar1 example (third panel) demonstrates a scenario where the leading arm has been abruptly truncated in its density as compared to the trailing arm. % which is denser at further distances from the cluster. 
+The mock stream evolved in Bar2, on the other hand, produced a leading arm which is widened and a trailing stream which has been perturbed by the bar as well. 
 
 In Figure \ref{fig:model-sim-compare}, we present the track (left), width (middle) and density (right) from our 2D density model of the data (solid black line) as well as the 2D density model of each of our simulated streams shown in Figure \ref{fig:sims} (colored lines). %From the morphology alone (Figure \ref{fig:sims}), 
 The regular stream reproduce the widening of the leading arm which is clearly seen in the 2D density model of the data. 
 %This is seen in width (Figure \ref{fig:model-sim-compare}, left) as well. 
-While the chaotic orbit produces a stream which is widened, this effect is symmetric and occurs for both the leading and trailing arm (see xx line in Figure \ref{fig:model-sim-compare}). Thus, this simulation does reproduce the asymmetry in length nor density of the leading and trailing arm. \sa{I'll finish this section for the barred sims once we have plot.}
+While the chaotic orbit produces a stream which is widened, this effect is symmetric and affects both the leading and trailing arm (see xx line in Figure \ref{fig:model-sim-compare}). Thus, this simulation does reproduce the asymmetry in length nor density of the leading and trailing arm. \sa{I'll finish this section for the barred sims once we have plot.}
 
-While our exploration of mock-streams evolved in various potentials can individually reproduce some of the observed features presented in Figure \ref{fig:map}, none of the presented simulations reproduce all gaps, the widening of the leading arm, the stream tracks nor density profile simultaneously. Note, however, that we did not individually fit for the stream track, width nor density and our simulations are therefore only meant to demonstrate how various effects can play a role in shaping the Pal~5 stream. 
+While the mock-streams evolved in various potentials can individually reproduce some of the observed features presented in Figure \ref{fig:map}, none of the presented simulations reproduce all gaps, the widening of the leading arm, the stream tracks nor density profile, simultaneously. Note, however, that we did not individually fit for the stream track, width nor density, and that the simulations presented in the Section are meant to demonstrate how various effects can play a role in shaping the Pal~5 stream. 
 
 \begin{figure}
 % \centerline{\includegraphics[width=\columnwidth]{Fig4_sims.pdf}}
@@ -389,7 +392,7 @@ Density for 2d density model (solid black line) along with inferred density of t
 
 \section{Discussion}
 \label{sec:discussion}
-\sa{Do we want to emphasize how streams might all look messed up as we get deeper maps?  }
+\sa{Do we want to emphasize how streams might all look ``messed up'' as we get deeper maps?  }
 We presented deep $grz$ photometry of the Palomar~5 tidal tails from the Legacy Surveys catalog that enables the cleanest selection of Pal~5 members to date.
 Our flexible, 2D modeling of the debris' spatial distribution yielded unprecedented measurements of the width and density along the tidal tails, and revealed 
 %for the first time 
@@ -412,7 +415,7 @@ Deep, wide-field DECaLS photometry enabled us to trace the leading tail as it fa
 %SP: I removed the word "confirming".
 
 The bar is a prominent perturber that affects objects within 5\,kpc from the Galactic center \citep[e.g., the Ophiuchus stream,][]{Price-Whelan:2016b, Hattori:2016} to the Solar circle and beyond \citep[e.g., local phase-space overdensities][]{Hunt:2018, Monari:2019}.
-Recent progress investigating the Galactic bar, is converging on a pattern speed close to $\Omega_b \sim 40 ~\kms$ kpc$^{-1}$ \citep[e.g.,][]{Clarke:2019, Sanders:2019, Bovy:2019}, however the bar properties remain somewhat uncertain. A combination of future deeper imaging along Pal~5's leading tail and a quantitative analysis of its width and density could provide important constraints on the mass and pattern speed of the Galactic bar. Careful modeling of interactions with the Milky Way's spiral arms and molecular clouds, however, would be necessary as well (\citealt{Banik:2019}, \citealt{Amorisco:2016}. 
+Recent progress investigating the Galactic bar, is converging on a pattern speed close to $\Omega_b \sim 40 ~\kms$ kpc$^{-1}$ \citep[e.g.,][]{Clarke:2019, Sanders:2019, Bovy:2019}, however the bar properties remain somewhat uncertain. A combination of future deeper imaging along Pal~5's leading tail and a quantitative analysis of its width and density could provide important constraints on the mass and pattern speed of the Galactic bar. Careful modeling of interactions with the Milky Way's spiral arms and molecular clouds, however, would simultaneously be necessary (\citealt{Banik:2019}, \citealt{Amorisco:2016}). 
 % SP added last sentence above and changed transition below: we have to account for all perturbers at once (molecular clouds, spiral arms, dm subhalos)
 
 Encounters with a compact perturber can produce a gap in a stellar stream \citep[e.g.,][]{Johnston:2002,Ibata:2002}. As streams are excellent record-keepers of small-scale perturbations, the tidal tails of Pal~5 have long been searched for such density variations.
