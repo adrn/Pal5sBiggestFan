@@ -38,34 +38,34 @@ functions{
 }
 
 data {
-		// number of pixels in the density map
-		int n_pix;
-		// number counts of objects in pixels
-		int hh[n_pix];
+	// number of pixels in the density map
+	int n_pix;
+	// number counts of objects in pixels
+	int hh[n_pix];
 
-		// selection function for each pixel
-		real S[n_pix];
+	// selection function for each pixel
+	real S[n_pix];
 
-		// the x locations of pixels
-		vector[n_pix] x;
-		// the y locations of pixels
-		vector[n_pix] y;
+	// the x locations of pixels
+	vector[n_pix] x;
+	// the y locations of pixels
+	vector[n_pix] y;
 
-		// ----------------------------------------------------------
-		// Stream nodes:
+	// ----------------------------------------------------------
+	// Stream nodes:
 
-		// number of nodes
-		int n_nodes;
+	// number of nodes
+	int n_nodes;
 
-		// nodes locations along rigid polynomial
-		vector[n_nodes] phi1_nodes;
-		vector[n_nodes] phi2_nodes_init;
+	// nodes locations along rigid polynomial
+	vector[n_nodes] phi1_nodes;
+	vector[n_nodes] phi2_nodes_init;
 
-		// width of nodes: along rigid polynomial, h
-		vector[n_nodes] h_nodes;
+	// width of nodes: along rigid polynomial, h
+	vector[n_nodes] h_nodes;
 
     // ----------------------------------------------------------
-		// Background nodes:
+	// Background nodes:
 
     // number of nodes
     int n_bg_nodes;
@@ -75,8 +75,8 @@ data {
     real bg_w;
 
     // nodes locations along rigid polynomial
-		vector[n_bg_nodes] bg_phi1_nodes;
-		vector[n_bg_nodes] bg_phi2_nodes;
+	vector[n_bg_nodes] bg_phi1_nodes;
+	vector[n_bg_nodes] bg_phi2_nodes;
 }
 
 transformed data {
@@ -95,8 +95,8 @@ transformed data {
 
     C_bg = get_cov(bg_h, bg_w);
     for (i in 1:n_pix) {
-			  bg_xy[1] = x[i];
-				bg_xy[2] = y[i];
+		bg_xy[1] = x[i];
+		bg_xy[2] = y[i];
         for (j in 1:n_bg_nodes) {
             bg_node_xy[1] = bg_phi1_nodes[j];
             bg_node_xy[2] = bg_phi2_nodes[j];
@@ -149,6 +149,10 @@ transformed parameters {
     }
 
 	for (i in 1:n_pix) {
+        if (S[i] == 0) {
+            xmod[i] = negative_infinity();
+            continue;
+        }
 		xy[1] = x[i];
 		xy[2] = y[i];
 	    for (j in 1:n_nodes) {
