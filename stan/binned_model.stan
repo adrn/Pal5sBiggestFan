@@ -44,7 +44,7 @@ data {
     int hh[n_pix];
 
     // selection function for each pixel
-    real S[n_pix];
+    real log_S[n_pix];
 
     // the x locations of pixels
     vector[n_pix] x;
@@ -80,7 +80,7 @@ data {
 }
 
 transformed data {
-    real log_S[n_pix] = log(S); // selection function
+    // real log_S[n_pix] = log(S); // selection function
     // matrix[2,2] R[n_nodes];
     matrix[2,2] C_bg;
 
@@ -149,10 +149,10 @@ transformed parameters {
     }
 
     for (i in 1:n_pix) {
-        if (S[i] == 0) {
-            xmod[i] = negative_infinity();
-            continue;
-        }
+        // if (S[i] == 0) {
+        //     xmod[i] = negative_infinity();
+        //     continue;
+        // }
         xy[1] = x[i];
         xy[2] = y[i];
         for (j in 1:n_nodes) {
@@ -170,7 +170,6 @@ transformed parameters {
             tmp_bg[j] = bg_log_a_nodes[j] + bg_ln_norm[j][i];
         }
         log_bg_int[i] = log_sum_exp(ln_bg_val, log_sum_exp(tmp_bg));
-
         xmod[i] = log_sum_exp(log_gd1_int[i], log_bg_int[i]) + log_S[i];
       }
 }
