@@ -9,20 +9,23 @@ functions{
         return C;
     }
 
-    matrix get_R(int i, int N, vector x, vector y) {
-        matrix[2,2] R;
+    matrix get_R(int i, int i0, int N, vector x, vector y) {
+        // Compute the node rotation matrix at the i-th point
+        matrix[2, 2] R;
         vector[2] dxy;
         real theta;
+        int j;
 
+        j = i + i0;
         if (i == 1) {
-            dxy[1] = (x[i+1] - x[i]);
-            dxy[2] = (y[i+1] - y[i]);
+            dxy[1] = (x[j+1] - x[j]);
+            dxy[2] = (y[j+1] - y[j]);
         } else if (i == N) {
-            dxy[1] = (x[i] - x[i-1]);
-            dxy[2] = (y[i] - y[i-1]);
+            dxy[1] = (x[j] - x[j-1]);
+            dxy[2] = (y[j] - y[j-1]);
         } else {
-            dxy[1] = (x[i+1] - x[i-1]);
-            dxy[2] = (y[i+1] - y[i-1]);
+            dxy[1] = (x[j+1] - x[j-1]);
+            dxy[2] = (y[j+1] - y[j-1]);
         }
         dxy /= sqrt(sum(square(dxy)));
         theta = atan2(dxy[2], dxy[1]);
@@ -55,14 +58,15 @@ data {
     // Stream nodes:
 
     // number of nodes
-    int n_nodes;
+    int t_n_nodes;
+    int l_n_nodes;
 
     // nodes locations along rigid polynomial
-    vector[n_nodes] phi1_nodes;
-    vector[n_nodes] phi2_nodes_init;
+    vector[t_n_nodes + l_n_nodes] phi1_nodes;
+    vector[t_n_nodes + l_n_nodes] phi2_nodes_init;
 
     // width of nodes: along rigid polynomial, h
-    vector[n_nodes] h_nodes;
+    vector[t_n_nodes + l_n_nodes] h_nodes;
 
     // ----------------------------------------------------------
     // Background nodes:
@@ -70,7 +74,7 @@ data {
     // number of nodes
     int n_bg_nodes;
 
-    // width and height standard deiations
+    // width and height standard deviations
     real bg_h;
     real bg_w;
 
@@ -80,17 +84,18 @@ data {
 }
 
 transformed data {
-    // real log_S[n_pix] = log(S); // selection function
-    // matrix[2,2] R[n_nodes];
+    int n_nodes = t_n_nodes + l_n_nodes;
+
     matrix[2,2] C_bg;
 
     vector[2] bg_node_xy;
     vector[2] bg_xy;
     vector[n_pix] bg_ln_norm[n_bg_nodes];
 
-    // pre-compute rotation matrices
+    // HACK:
+    // vector<lower=-0.3, upper=0.3>[n_nodes] d_phi2_nodes;
     // for (i in 1:n_nodes) {
-    //     R[i] = get_R(i, n_nodes, phi1_nodes, phi2_nodes);
+    //     d_phi2_nodes[i] = 0.;
     // }
 
     C_bg = get_cov(bg_h, bg_w);
@@ -129,13 +134,13 @@ transformed parameters {
 
     vector[n_nodes] phi2_nodes;
 
-    matrix[2,2] R[n_nodes];
+    matrix[2, 2] R[n_nodes];
 
     real ln_bg_val;
 
     // Un-log some things
     vector[n_nodes] w_nodes;
-    matrix[2,2] C[n_nodes];
+    matrix[2, 2] C[n_nodes];
 
     // Background
     ln_bg_val = log(bg_val);
@@ -144,8 +149,12 @@ transformed parameters {
     phi2_nodes = phi2_nodes_init + d_phi2_nodes;
 
     // Re-compute node rotation matrices
-    for (i in 1:n_nodes) {
-        R[i] = get_R(i, n_nodes, phi1_nodes, phi2_nodes);
+    for (i in 1:t_n_nodes) {
+        R[i] = get_R(i, 0, t_n_nodes, phi1_nodes, phi2_nodes);
+    }
+    for (i in 1:l_n_nodes) {
+        R[t_n_nodes + i] = get_R(i, t_n_nodes, l_n_nodes,
+                                 phi1_nodes, phi2_nodes);
     }
 
     for (i in 1:n_pix) {
@@ -172,8 +181,8 @@ transformed parameters {
 model {
     // Priors
     for (n in 1:n_nodes) {
-        log_w_nodes[n] ~ normal(-1, 0.2)T[-1.8, 0.];
-        d_phi2_nodes[n] ~ normal(0, 0.1)T[-0.3, 0.3];
+        log_w_nodes[n] ~ normal(-1, 0.2)T[-3, 0.];
+        d_phi2_nodes[n] ~ normal(0, 0.1)T[-0.5, 0.5];
     }
 
     // Background priors
@@ -182,7 +191,7 @@ model {
     // like a regularization term to force amplitudes to 0
     // target += -log_a_nodes;
     target += -sum(bg_log_a_nodes);
-    target += -sum(log_w_nodes);
+    // target += -sum(log_w_nodes);
 
     //Likelihood
     hh ~ poisson_log(xmod);
