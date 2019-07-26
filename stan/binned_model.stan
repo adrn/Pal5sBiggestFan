@@ -109,7 +109,7 @@ transformed data {
 parameters {
     // Stream model:
     vector<lower=-0.3, upper=0.3>[n_nodes] d_phi2_nodes;
-    vector<lower=-1.8, upper=0.>[n_nodes] log_w_nodes;
+    vector<lower=-2.5, upper=0.>[n_nodes] log_w_nodes;
     vector<lower=-8, upper=8>[n_nodes] log_a_nodes;
 
     // Background:
@@ -149,10 +149,6 @@ transformed parameters {
     }
 
     for (i in 1:n_pix) {
-        // if (S[i] == 0) {
-        //     xmod[i] = negative_infinity();
-        //     continue;
-        // }
         xy[1] = x[i];
         xy[2] = y[i];
         for (j in 1:n_nodes) {
@@ -183,7 +179,10 @@ model {
     // Background priors
     bg_val ~ uniform(1e-1, 1e3);
 
-    // target += -log_a_nodes; // like a regularization term to force amplitudes to 0
+    // like a regularization term to force amplitudes to 0
+    // target += -log_a_nodes;
+    target += -sum(bg_log_a_nodes);
+    target += -sum(log_w_nodes);
 
     //Likelihood
     hh ~ poisson_log(xmod);
