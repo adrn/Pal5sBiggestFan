@@ -184,6 +184,8 @@ def run_it_all(c, name, h_phi1=0.75*u.deg,
             phi1_mask = (X[:, 0] > l) & (X[:, 0] <= (r + _h_phi1))
             phi2_mask, phi2_lim = get_phi2_mask(X[phi1_mask])
             binX = X[phi1_mask][phi2_mask]
+            if len(binX) < 1:
+                continue
             cache['N'].append(len(binX))
             cache['phi1_c'].append(0.5 * (l + r))
 
