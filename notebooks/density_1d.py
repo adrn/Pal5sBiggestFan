@@ -18,9 +18,10 @@ from coordinates import pal5_lead_frame, pal5_trail_frame
 def get_phi2_mask(X):
     min_ = X[:, 1].min() + 0.15
     max_ = X[:, 1].max() - 0.15
+
     if (max_ - min_) < 1.:
-        min_ += 1
-        max_ -= 1
+        min_ -= 0.5
+        max_ += 0.5
 
     return (X[:, 1] > min_) & (X[:, 1] < max_), (min_, max_)
 
