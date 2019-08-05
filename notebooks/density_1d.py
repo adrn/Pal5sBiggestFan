@@ -185,6 +185,7 @@ def run_it_all(c, name, h_phi1=0.75*u.deg,
             phi2_mask, phi2_lim = get_phi2_mask(X[phi1_mask])
             binX = X[phi1_mask][phi2_mask]
             if len(binX) < 1:
+                print("skipping bin {} at phi1={}".format(i, 0.5*(l+r)))
                 continue
             cache['N'].append(len(binX))
             cache['phi1_c'].append(0.5 * (l + r))
