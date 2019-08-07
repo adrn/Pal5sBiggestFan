@@ -99,7 +99,7 @@ def lnprior(p):
         return -np.inf
 
     lp += ln_truncnorm(mu_s, 0, 1, -1, 1)
-    lp += ln_truncnorm(lnstd_s, -0.5, 1, -2.5, 1.5)
+    # lp += ln_truncnorm(lnstd_s, -0.5, 1, -2.5, 1.5)
 
     for pp in bg_p:
         lp += ln_normal(pp, 0, 5)
