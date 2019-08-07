@@ -18,9 +18,10 @@ from coordinates import pal5_lead_frame, pal5_trail_frame
 def get_phi2_mask(X):
     min_ = X[:, 1].min() + 0.15
     max_ = X[:, 1].max() - 0.15
+
     if (max_ - min_) < 1.:
-        min_ += 1
-        max_ -= 1
+        min_ -= 0.5
+        max_ += 0.5
 
     return (X[:, 1] > min_) & (X[:, 1] < max_), (min_, max_)
 
@@ -184,6 +185,9 @@ def run_it_all(c, name, h_phi1=0.75*u.deg,
             phi1_mask = (X[:, 0] > l) & (X[:, 0] <= (r + _h_phi1))
             phi2_mask, phi2_lim = get_phi2_mask(X[phi1_mask])
             binX = X[phi1_mask][phi2_mask]
+            if len(binX) < 1:
+                print("skipping bin {} at phi1={}".format(i, 0.5*(l+r)))
+                continue
             cache['N'].append(len(binX))
             cache['phi1_c'].append(0.5 * (l + r))
 
