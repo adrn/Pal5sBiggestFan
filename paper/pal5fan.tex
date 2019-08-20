@@ -238,16 +238,16 @@ Figure~\ref{fig:density-model} shows ...
 
 
 
-\section{Simulations}
+\section{Simulations of Pal 5's evolution}
 \label{sec:sim}
-To explore the mechanism producing the observed morphology of the stream (i.e. the length asymmetry between the leading and trailing arm, as well as the gap in the trailing arm, and the widening of the leading arm), we run a suite of Pal~5 simulations.
-In particular, we investigate whether Pal~5's wide leading arm can be explained due to chaotic regions in the potential, or whether torques from the Galactic bar can explain the stream width. 
+To explore the mechanism that produces the observed morphology of the Pal 5 stream, we run a suite of Pal~5 simulations.
+In particular, we investigate whether Pal~5's wide leading arm can be explained due to chaotic regions in the potential, or whether torques from the Galactic bar are necessary to explain the width of the leading arm. We further investigate what might have caused the length asymmetry between the leading and trailing arm, as well as the gap in the trailing arm. 
 In Section \ref{sec:potential}, we describe the potentials we use to simulate the evolution of Pal~5, and in Section \ref{sec:modeling} we describe our simulation setup.
 We show the results of our analyses in Section \ref{sec:sim_results}.
 
 \subsection{Potential}
 \label{sec:potential}
-\sa{To save word counts, I could just refer to other papers for the BFE representation? Let me know what you think.}
+%\sa{To save word counts, I could just refer to other papers for the BFE representation? Let me know what you think.}
 We simulate the evolution of Pal~5 in two classes of three-component Galactic potentials:
 
 \begin{itemize}
@@ -255,14 +255,14 @@ We simulate the evolution of Pal~5 in two classes of three-component Galactic po
 We vary the flattening of the NFW halo ($q_z = 0.94$ and $q_z = 0.5$) to investigate Pal~5's morphology on a regular as well as chaotic orbit (see Section \ref{sec:modeling}).
 
 \item[2.] {\bf  Barred potentials}: we use the same disk and halo as in the \texttt{MWPotential2014} \citep{Bovy:2015}, but include a Galactic bar instead of a bulge.
-Following \citet{wang:2012}, we compute the bar potential as a basis-function expansion (BFE) representation of a triaxial, exponential density profile:
+Following \citet{wang:2012}, we compute the barred potential as a basis-function expansion (BFE) representation of a triaxial, exponential density profile:
 \begin{align}
     \rho_{\rm bar} &= \rho_0 [{\rm exp} (-r^2_1/2) + r_2^{-1.85} {\rm exp}(-r_2) ]\\
     r_1 &= \left[\left((x/x_0)^2 + (y/y_0)^2\right)^2 +( z/z_0)^4\right]^{1/4}\\
     r_2 &= \left[\frac{q^2(x^2 + y^2) + z^2)}{z_0^2}\right]^{1/2}
 \end{align}
 where the scale lengths are $x_0$ = 1.49 kpc, $y_0$ = 0.58 kpc, $z_0$ = 0.4 kpc, and q = 0.6. We include terms up to $n=6$, $l=6$ in the ``self-consistent field'' BFE formalism\footnote{\citet{Banik:2019} found that using higher order terms (e.g. n=9, l = 19) for the basis function expansion yields a better representation of the density of the bar. Our simulations of Pal~5, however, show that this difference does not much change the morphology or kinematics of the Pal~5 stream.}.
-We explore barred models with pattern speeds of $\Omega_b$ = ($30 - 60$) $\kms$ kpc$^{-1}$ in increments of 0.5 $\kms$ kpc$^{-1}$, and  we test bar masses of M$_{\rm bar} = 5 \times 10^{9}$ $\msun$ and M$_{\rm bar} = 1 \times 10^{10}$ $\msun$ (\citealt{Portail:2017}).
+We explore barred potentials with pattern speeds of $\Omega_b$ = ($30 - 60$) $\kms$ kpc$^{-1}$ in increments of 0.5 $\kms$ kpc$^{-1}$, and we test bar masses of M$_{\rm bar} = 5 \times 10^{9}$ $\msun$ and M$_{\rm bar} = 1 \times 10^{10}$ $\msun$ (\citealt{Portail:2017}).
 Additionally, we fix the present day angular offset from the Galactic x-axis in the direction of rotation to $\alpha = 27\deg$.
 \end{itemize}
 
@@ -276,7 +276,7 @@ We then scale the bar potential for a given pattern speed, $\Omega_b$:
 r_{s, \Omega_b}  = r_{{\rm CR}, \Omega_b}/r_{{\rm CR, Wang 2012}}
 \end{equation}
 If the scaling in Equation \ref{eq:scale} is not included (e.g. as the case in %\citealt{price:2016b},
-\citealt{Pearson:2017}, \citealt{Erkal:2017}, \citealt{Banik:2019}), the bar will have a too strong quadrupole for faster pattern speeds, and a too weak bar quadrupole for  slower pattern speeds.
+\citealt{Pearson:2017}, \citealt{Erkal:2017}, \citealt{Banik:2019}), the bar will have a too strong quadrupole for faster pattern speeds, and a too weak bar quadrupole for  slower pattern speeds. \sa{Att. APW I checked in potential.py to see if we do this correctly. Can you check also? It looks like we just set the r$_s$ in the SCF potential to the scaling in eq. \ref{eq:scale}.}
 
 % In Figure \ref{fig:vcirc}, we show the circular velocity as a function of radius for the barred, three-component Galactic potential with $\Omega_b$ = ($25 - 65$) $\kms$ kpc$^{-1}$. The red lines correspond to the potentials with a bar mass of $M_{\rm bar} = 5 \times 10^{9}$ $\msun$, and the blue lines correspond to potentials with a bar mass of  $M_{\rm bar} = 1 \times 10^{10}$ $\msun$.
 %
@@ -290,7 +290,8 @@ If the scaling in Equation \ref{eq:scale} is not included (e.g. as the case in %
 \subsection{Stream modeling}
 \label{sec:modeling}
 \sa{Att. APW: maybe edit stream track fitting text...}\\
-To simulate the evolution of Pal~5 in a given potential, we first fit the stream track of Pal 5 in the static potential. We use the Pal~5's observed 6D phase space coordinates (see table 1 in \citealt{Pearson:2017} and references therein) to initialize the track fit and transform our fitted 6D phase space coordinates into a Galactocentric frame by assuming $v_{lsr} = (11.1, 24.0, 7.25) ~\kms$,  $v_{circ} = 220  ~\kms$ and a distance from the Sun to the Galactic center of 8.1 kpc. The 6D phase space values from the stream track fit for Pal 5 at present day are RA = 229.0264 deg, Dec = $-0.1368$ deg,  $d$ = 22.50 kpc, $v_r = -56.2 \kms$, pm$_{RA,cosdec}= -2.21$ mas yr$^{-1}$ and pm$_{Dec} = -2.23$ mas yr$^{-1}$. Thus, in order to fit the stream track, Pal 5's 6D phase space coordinates differ slightly from the observed quantities. This could indicate that we need to update the potential parameters, but carefully fitting the potential is beyond the scope of this paper (see e.g. \citealt{Kupper:2015}).  
+To simulate the evolution of Pal~5 in a given potential, we first fit the stream track of Pal 5 in the static potential. We use Pal~5's observed 6D phase space coordinates (see table 1 in \citealt{Pearson:2017} and references therein) to initialize the track fit and transform our fitted 6D phase space coordinates into a Galactocentric frame by assuming $v_{lsr} = (11.1, 24.0, 7.25) ~\kms$,  $v_{circ} = 220  ~\kms$ and a distance from the Sun to the Galactic center of 8.1 kpc. The 6D phase space values from the stream track fit for Pal 5 at present day are RA = 229.0264 deg, Dec = $-0.1368$ deg,  $d$ = 22.50 kpc, $v_r = -56.2 ~\kms$, pm$_{\rm RA,cosdec}= -2.21$ mas yr$^{-1}$ and pm$_{Dec} = -2.23$ mas yr$^{-1}$. Thus, in order to fit the stream track, Pal 5's 6D phase space coordinates differ slightly from the observed quantities. This indicates that we need to update the potential parameters, but carefully fitting the potential is beyond the scope of this paper (see e.g. \citealt{Kupper:2015}).  
+
 %RA = 229.018 deg, Dec = - 0.24 deg, at a distance of $d$ = 22.9 kpc. Its moving with a radial velocity of $v_r = -58.7 \kms$, and has proper motions of pm$_{RA,cosdec}= -2.296$ mas yr$^{-1}$ and pm$_{Dec} = -2.257$ mas yr$^{-1}$.
 We integrate the cluster backwards in time for 3 Gyr in steps of 0.5 Myr. % (see potentials in Section \ref{sec:potential}).
 Subsequently, we simulate the forward evolution of Pal~5 using the ``particle-spray'' stream generating method developed by \citet{Fardal:2015} and implemented in the \package{gala} package (\citealt{gala}), such that the cluster ends at its present day position at $t = 0$. We release two particles through each of the two Lagrange points from the progenitor at every time step. % (i.e. 2 particles every 0.5 Myr for 3 Gyr). 
@@ -306,22 +307,22 @@ and we repeat this exercise using bar masses of both M$_{\rm bar} = 5 \times 10^
 
 \subsection{Simulation results}
 \label{sec:sim_results}
-\sa{In progres..}\\
-In Figure \ref{fig:sims}, we present the morphology of the simulated Pal~5 streams in various potentials.
-The first two rows show Pal~5 evolved in a static potential with two different flattenings ($q_z = 0.94$ and $q_z = 0.5$).
-In the last two rows, we highlight two particular simulations of mock streams evolved in time-dependent barred potentials. To select these two examples, we visually inspected the morphology, track and width of the simulated streams in the barred potentials. 
-%with M$_{\rm bar} = 5\times 10^9$ M$_{\odot}$ and $5\times 10^9$ M$_{\odot}$ as well as pattern speeds in the range of $\Omega_b = 30-60 ~\kms$ kpc$^{-1}$ in increments of $0.5~\kms$ kpc$^{-1}$.
-%In Figure \ref{fig:sims}, we highlight two particular mock-streams as 
-The stream evolved in the Bar1 example (third panel) demonstrates a scenario where the leading arm has been abruptly truncated in its density as compared to the trailing arm. % which is denser at further distances from the cluster. 
-The mock stream evolved in Bar2, on the other hand, produced a leading arm which is widened and a trailing stream which has been perturbed by the bar as well. 
+In the top row of Figure \ref{fig:sims}, we present the morphology of the simulated Pal~5 mock streams evolved in the static potentials with two different flattenings ($q_z = 0.94$ and $q_z = 0.5$) as well as two examples of mock-streams evolved in the ``light'' (M$_{\rm bar} = 5\times 10^9$ M$_{\odot}$) and ``massive'' (M$_{\rm bar} = 1\times 10^{10}$ M$_{\odot}$) time-dependent barred potentials. All mock-streams are visualized in the coordinate system aligned with Pal 5's tidal tails (see also Figure \ref{fig:cmds}), and the leading arm is located at positive $\phi_1$. The three bottom rows of Figure \ref{fig:sims} show the stream track (second row), stream number density (third row), and the stream width (fourth row) of the simulated mock-streams (black) as well as of the data (blue shaded region). 
+%The two left columns show Pal~5 evolved in a static potential with two different halo flattenings ($q_z = 0.94$ and $q_z = 0.5$).
+%In the third and fourth columns, we highlight two particular simulations of mock streams evolved in time-dependent barred potentials. 
 
-In Figure \ref{fig:model-sim-compare}, we present the track (left), width (middle) and density (right) from our 2D density model of the data (solid black line) as well as the 2D density model of each of our simulated streams shown in Figure \ref{fig:sims} (colored lines). %From the morphology alone (Figure \ref{fig:sims}), 
-The regular stream reproduce the widening of the leading arm which is clearly seen in the 2D density model of the data. 
-%This is seen in width (Figure \ref{fig:model-sim-compare}, left) as well. 
-While the chaotic orbit produces a stream which is widened, this effect is symmetric and affects both the leading and trailing arm (see xx line in Figure \ref{fig:model-sim-compare}). Thus, this simulation does not reproduce the asymmetry in length nor the density of the leading and trailing arm. \sa{I'll finish this section for the barred sims once we have plot.}
+We used the flattened ($q_z = 0.94$) static potential (left column, Figure \ref{fig:sims}) to fit the track of the stream (see Section \ref{sec:modeling}), and it is therefore not surprising that the track (second row) of the mock-stream evolved on a regular orbit (left column, black) looks similar to the track of the data (blue).  However, while the data (Figure \ref{fig:sims}), left column, third row, blue) shows variability in the number density of stars, the ``Regular" mock-stream (black) has a symmetric leading and trailing arm with a similar number of stars in both directions from the cluster (black). In the fourth row of Figure \ref{fig:sims}, it is clear that the ``Regular'' mock-stream (left) does not re-produce the width of the observed stream (blue). While the overall trends of the trailing arm (negative $\phi_1$) are reproduced, the leading arm of the simulated stream is too narrow as compared to the data. 
 
-While the mock-streams evolved in various potentials can individually reproduce some of the observed features presented in Figure \ref{fig:map}, none of the presented simulations reproduce all gaps, the widening of the leading arm, the stream tracks nor density profile, simultaneously. Note, however, that we did not individually fit for the stream track, width nor density, and that the simulations presented in the Section are meant to demonstrate how various effects can play a role in shaping the Pal~5 stream. 
+For the mock-stream evolved on a chaotic orbit in the static potential with a highly flattened halo  ($q_z = 0.5$), the track of the leading arm (second column, second row, black) deviates slightly from the observed stream track (blue) indicating that the shape of the halo might not be this flattened in reality. 
 
+
+The track (second row) of the simulated mock-stream (black) looks similar to the track of the data (blue). 
+number of stars in both the leading and trailing arm 
+
+
+We selected the two examples of mock-streams evolved in barred potentials (see ``Light bar'' and ``Massive'' columns in Figure \ref{fig:sims}) of through visual inspection of the morphology, track and width of the simulated streams in the barred potentials. The ``Light bar''  (M$_{\rm bar} = 5\times 10^{9}$ M$_{\odot}$, $\Omega_b = 38 ~\kms$ kpc$^{-1}$) stream simulation demonstrates a scenario in which the morphology of the mock-stream shows a leading arm which has been abruptly truncated in its density as compared to the trailing arm.  The mock stream evolved in a potential including the  ``Massive bar'' (M$_{\rm bar} = 1\times 10^{10}$ M$_{\odot}$, $\Omega_b = 45 ~\kms$ kpc$^{-1}$), on the other hand, produced a leading arm which is widened and a trailing stream which has been perturbed by the bar as well. 
+
+%In Figure \ref{fig:sims}, we chose to include the two particular mock-streams evolved in the ``light''' and ``massive'' barred potentials after  visual inspection of the morphology, track and width of the simulated streams. 
 % \begin{figure}
 % \centerline{\includegraphics[width=\columnwidth]{Fig4_sims.pdf}}
 % \caption{Mock-streams of the Pal~5 stream simulated in a static potential on a regular orbit (top panel), in a static potential on a chaotic orbit (second panel), in a time-dependent barred potential with M$_{\rm bar} = 5\times 10^9$ M$_{\odot}$ and $\Omega_b = 38$ $\kms$ kpc$^{-1}$ (third panel), and in a barred potential with M$_{\rm bar} = 1\times 10^{10}$ M$_{\odot}$ and $\Omega_b = 45$ $\kms$ kpc$^{-1}$ (fourth panel). The regular orbit produces a symmetric and thin leading and trailing arm,  whereas the chaotic orbit leads to a symmetric and widened leading and trailing arm (note that we limit the footprint to show  only the extent of thedata presented in the top panel of Figure \ref{fig:cmds}). The stream evolved in the Bar1 potential leads to a truncated leading arm, while the stream evolved in the Bar2 simulation produces a widened leading arm, and also shows signs of asymmetric perturbations to the trailing arm. }
@@ -332,10 +333,24 @@ While the mock-streams evolved in various potentials can individually reproduce 
 \begin{center}
 \includegraphics[width=\textwidth]{model_comparison.pdf}
 \end{center}
-\caption{
+\caption{\sa{Should we use the same axis limits as in Figure \ref{fig:cmds} for the top y-row (4 to $-4$ and all x-rows $-20$ to 15 deg)? Should we find a way to highlight/``blow up" the wiggles in the tracks?}
 }
 \label{fig:sims}
 \end{figure*}
+
+%with M$_{\rm bar} = 5\times 10^9$ M$_{\odot}$ and $5\times 10^9$ M$_{\odot}$ as well as pattern speeds in the range of $\Omega_b = 30-60 ~\kms$ kpc$^{-1}$ in increments of $0.5~\kms$ kpc$^{-1}$.
+%In Figure \ref{fig:sims}, we highlight two particular mock-streams as 
+%The stream evolved in the Bar1 example (third panel) demonstrates a scenario where the leading arm has been abruptly truncated in its density as compared to the trailing arm. % which is denser at further distances from the cluster. 
+%The mock stream evolved in Bar2, on the other hand, produced a leading arm which is widened and a trailing stream which has been perturbed by the bar as well. 
+
+In Figure \ref{fig:sims}, we present the track (left), width (middle) and density (right) from our 2D density model of the data (solid black line) as well as the 2D density model of each of our simulated streams shown in Figure \ref{fig:sims} (colored lines). %From the morphology alone (Figure \ref{fig:sims}), 
+The regular stream reproduce the widening of the leading arm which is clearly seen in the 2D density model of the data. 
+%This is seen in width (Figure \ref{fig:model-sim-compare}, left) as well. 
+While the chaotic orbit produces a stream which is widened, this effect is symmetric and affects both the leading and trailing arm (see xx line in Figure \ref{fig:model-sim-compare}). Thus, this simulation does not reproduce the asymmetry in length nor the density of the leading and trailing arm. \sa{I'll finish this section for the barred sims once we have plot.}
+
+While the mock-streams evolved in various potentials can individually reproduce some of the observed features presented in Figure \ref{fig:map}, none of the presented simulations reproduce all gaps, the widening of the leading arm, the stream tracks nor density profile, simultaneously. Note, however, that we did not individually fit for the stream track, width nor density, and that the simulations presented in the Section are meant to demonstrate how various effects can play a role in shaping the Pal~5 stream. 
+
+
 
 
 % \section{Density model}
