@@ -68,6 +68,7 @@
 \affiliation{Flatiron Institute, Center for Computational Astrophysics, NY 10010, USA}
 
 \author[0000-0003-0872-7098]{Adrian~M.~Price-Whelan}
+\affiliation{Flatiron Institute, Center for Computational Astrophysics, NY 10010, USA}
 \affiliation{Department of Astrophysical Sciences, Princeton University, Princeton, NJ 08544, USA}
 
 \author{others}
@@ -188,60 +189,49 @@ Finally, the stream track sharply changes direction at $\rm R.A.\approx 226^\cir
 
 \section{Stream density modeling}
 \label{sec:densitymodel}
-% adrn: feel free to move this text / or rename section - I just put it here for now to keep it self-contained
 
-We quantify the variations along the Pal~5 stream and measure the stream track, width, and surface density using a constrained Gaussian Mixture Model (GMM) to represent both the stream itself and the background stellar density \citep[our model is similar to, but more flexible than, past work that use GMMs to model streams][]{Erkal:2017, Koposov:2019}.
-In detail, our model for the stream surface density consists of a set of $K$, 2D Gaussians---``nodes''---that are equally spaced in the Pal~5 coordinate system longitude, $\phi_1$, with an interval $\Delta$.
-The $\phi_1$ locations of each node are fixed, but the $K$ $\phi_2$ locations are included as independent parameters in the model along with each node amplitude $\alpha_k$.
-Each node has two width parameters: $h_k$, which defines the along-stream standard-deviation of each node, and $w_k$, which defines the standard-deviation in the perpendicular direction; We fix $h_k = \Delta$ to ensure some overlap between the nodes.
-We set the rotation of each Gaussian such that the $h_k$ direction is parallel to the local tangent of the stream track---that is, for a given node $k$ at location $\bs{\mu}_k = (\phi_{1,k}, \phi_{2,k})$, we find the local tangent (using $\bs{\mu}_{k+1} - \bs{\mu}_k$) and construct the rotation matrix $\mat{R}$ to go from the Gaussian node axes to this tangent-aligned coordinate system such that the covariance matrix of each node is given by $\mat{C}_k = \mat{R}_k \, \mat{C}'_k \, \transpose{\mat{R}}_k$, where
-\begin{equation}
-    \mat{C}'_k =
-    \begin{pmatrix}
-        h_k^2 & 0 \\
-        0 & w_k^2
-    \end{pmatrix} \quad .
-\end{equation}
+We quantify the variations along the Pal 5 stream and measure the stream track, width, and surface density by constructing a joint model of the stream and background stellar density.
+In bins of $\phi_1$, we model the (CMD-filtered) density disitrbution in $\phi_2$ using a single Gaussian component for the stream and a linearly varying background \citep[similar to the density modeling described in][]{Price-Whelan:2018}.
+We initialize bin centers between $\phi_1 \in (-20, 10)^\circ$ with a spacing of $h_{\phi_1} = 0.75^\circ$, but when modeling the density in $\phi_2$ in any bin, use partially overlapping bins of width $1.5\,h_{\phi_1}$.
 
-The total surface density for this stream model at any location $\bs{x}$ is given by
-\begin{equation}
-    \rho(\bs{x}) = \sum_k^K \alpha_k \, \mathcal{N}(\bs{x} \given \bs{\mu}_k, \mat{C}_k)
-\end{equation}
-where $\mathcal{N}(\bs{\mu}, \mat{C})$ represents the multivariate (2D) normal distribution with mean $\bs{\mu}$ and covariance $\mat{C}$.
-This model has $3 K$ free parameters associated with the nodes ($\alpha_k$, $\phi_{2, k}$, and $w_k$) which are all allowed to vary independently (that is, unlike the models in \cite{Erkal:2017} and \cite{Koposov:2019}, the node properties are not tied together by a spline or other function).
+In detail, within each $\phi_1$ bin, we construct a model for the CMD-filtered density distribution in $\phi_2$ as
+\begin{align}
+    p(\phi_2 \given \bs{\theta}) &=
+        f \, p_{\textrm{str}}(\phi_2 \given \mu, \sigma) +
+        (1-f) \, p_{\textrm{bg}}(\phi_2 \given a, b) \\
+    p_{\textrm{str}}(\phi_2 \given \mu, \sigma) &=
+        \mathcal{N}(\phi_2 \given \mu, \sigma^2)\\
+    p_{\textrm{bg}}(\phi_2 \given a, b) &\propto
+        a \, \phi_2 + b
+\end{align}
+where $\bs{\theta} = (f, \mu, \sigma, a, b)$ are the density model parameters, $f$ is the fraction of stars in Pal 5 in the current bin, $\mu$ is the stream centroid (track), $\sigma$ is the stream width, $a, b$ are parameters of the linear background model, and $\mathcal{N}(x \given \mu, \sigma^2)$ denotes the normal distribution over $x$ with mean $\mu$ and variance $\sigma^2$.
+We assume uniform prior probability distributions, $\mathcal{U}(\alpha, \beta)$ (defined over the domain $(\alpha, \beta)$), for $(f, a, b)$, a Gaussian prior on $\mu$ to keep it close to the initialized stream track, and a prior that is uniform in $\ln \sigma$ for the stream width,
+\begin{align}
+    p(f) &= \mathcal{U}(f \given 0, 1)\\
+    p(\mu) &= \mathcal{N}(\mu \given \mu_0, 1^\circ)\\
+    p(\sigma) &= \mathcal{U}(\ln\sigma \given -10, 10)\\
+    p(a) &= \mathcal{U}(a \given -10, 10)\\
+    p(b) &= \mathcal{U}(b \given -10, 10)\\
+    p(\bs{\theta}) &= p(f) \, p(\mu) \, p(\sigma) \, p(a) \, p(b)
+\end{align}
+where $\mu_0$ is the initialized location of the stream track in any bin.
 
-The background stellar density in this region of the sky does not vary substantially over the field (see, e.g., Figure~\ref{fig:map}), but displays some gradients with sky position that cannot be represented by a purely uniform background.
-We therefore also include a flexible background model into our model for the total stellar surface density of this field that we simultaneously infer with the stream density model parameters.
-For the background density, we use a constant plus a constrained GMM in which $J$, 2D, circular Gaussian nodes are fixed to a 2D grid of locations over the field, and we fit for the amplitudes of each background Gaussian node, $\alpha_j$.
-In more detail, we set up a 2D, rectangular grid over the given sky field with node spacing $\Delta_{\textrm{bg}} = XX^\circ$ at locations $\bs{\mu}_j$ and fixed (circular) standard deviations $h_{\textrm{bg}} = w_{\textrm{bg}} = \Delta_{\textrm{bg}}$.
-We only include the amplitudes of each background Gaussian node as free parameters, which, along with the constant value, adds an additional $1+J$ parameters to the total model.
-
-To compare and fit this model to the data, we use this model to predict the stellar number counts in a pixelized histogram representation of the map shown in Figure~\ref{fig:map}; We set the pixel size of to $0.2^\circ$.
-We use a Poisson likelihood to compare the predicted counts (from the density model described above) to the pixelized map of Pal~5.
-We use a binary-valued 2D selection function (constructed by finding all pixels with $\leq 2$ stars) to mask the model in regions that are not observed.
-We implement this stellar surface density model in the \texttt{stan} \citep{stan} probabilistic programming language, which, through automatic differentiation, provides derivatives of the model likelihood with respect to all model parameters that aide in optimization or sampling over this high-dimensional model.
-After some experimentation, we set the stream node spacing $\Delta = XX^\circ$.
-We initialize the stream node locations by setting the node coordinates by eye, but the node latitude locations, $\phi_{2, k}$, are allowed to move within $\pm 1^\circ$ of each initialized position.
-We find the best-fit parameters by optimizing the log-likelihood using the built-in BFGS optimizer \citep{Press:2007}.
-
-\todo{adrn: fill the XX's in the above section}
-
-Figure~\ref{fig:density-model} shows ...
-
-
-\begin{figure}
-% \centerline{\includegraphics[width=\columnwidth]{Placeholder.pdf}}
-\caption{One column with three rows showing: 1) data. 2) 2d density model. 3) Residual. Adrian is working on this on the cluster now. 
-}
-\label{fig:density-model}
-\end{figure}
-
+We use an ensemble Markov Chain Monte Carlo (MCMC) sampler \texttt{emcee} \citep{Foreman-Mackey:2013} to generate samples from the posterior probability distribution over our model parameters
+\begin{align}
+    p(\bs{\theta} \given {\phi_2}_N) &\propto
+        p(\bs{\theta}) \, \prod_n^N p(\phi_{2, n} \given \bs{\theta})
+\end{align}
+where ${\phi_2}_N$ are the $\phi_2$ positions of all $N$ CMD-filtered stars in the given $\phi_1$ bin.
+We use 64 walkers in the sampler and, for a given $\phi_1$ bin, initialize the positions of the walkers by sampling from a small Gaussian (with dispersion $10^{-4}$) around the fiducial parameter position $\bs{\theta}_0 = (0.2, \mu_0, 0.1^\circ, 0, 1)$, with $\mu_0$ determined by binning the $\phi_2$ distribution and taking the bin center with the most number of stars.
+We initially burn-in the samplers for 512 steps, then reset and re-run for an additional 1024 steps.
+We then compute the median and (16, 84)th percentile parameter values in each $\phi_1$ bin.
+Figure~\ref{fig:sims} shows the result of running this density model on the data (blue lines and confidence intervals) compared to the four different Pal 5 simulations described in Section~\ref{sec:sim} (shown as black markers).
 
 
 \section{Simulations of Pal 5's evolution}
 \label{sec:sim}
 To explore the mechanism that produces the observed morphology of the Pal 5 stream, we run a suite of Pal~5 simulations.
-In particular, we investigate whether Pal~5's wide leading arm can be explained due to chaotic regions in the potential, or whether torques from the Galactic bar are necessary to explain the width of the leading arm. We further investigate what might have caused the length asymmetry between the leading and trailing arm, as well as the gap in the trailing arm. 
+In particular, we investigate whether Pal~5's wide leading arm can be explained due to chaotic regions in the potential, or whether torques from the Galactic bar are necessary to explain the width of the leading arm. We further investigate what might have caused the length asymmetry between the leading and trailing arm, as well as the gap in the trailing arm.
 In Section \ref{sec:potential}, we describe the potentials we use to simulate the evolution of Pal~5, and in Section \ref{sec:modeling} we describe our simulation setup.
 We show the results of our analyses in Section \ref{sec:sim_results}.
 
