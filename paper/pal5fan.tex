@@ -211,9 +211,9 @@ We assume uniform prior probability distributions, $\mathcal{U}(\alpha, \beta)$ 
 \begin{align}
     p(f) &= \mathcal{U}(f \given 0, 1)\\
     p(\mu) &= \mathcal{N}(\mu \given \mu_0, 1^\circ)\\
-    p(\sigma) &= \mathcal{U}(\ln\sigma \given -10, 10)\\
-    p(a) &= \mathcal{U}(a \given -10, 10)\\
-    p(b) &= \mathcal{U}(b \given -10, 10)\\
+    p(\sigma) &= \mathcal{U}(\ln\sigma \given {-10}, 10)\\
+    p(a) &= \mathcal{U}(a \given {-10}, 10)\\
+    p(b) &= \mathcal{U}(b \given {-10}, 10)\\
     p(\bs{\theta}) &= p(f) \, p(\mu) \, p(\sigma) \, p(a) \, p(b)
 \end{align}
 where $\mu_0$ is the initialized location of the stream track in any bin.
