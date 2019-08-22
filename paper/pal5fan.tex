@@ -78,7 +78,7 @@
 \begin{abstract}\noindent % trust me
 Stars that escape globular clusters form tidal tails that are predominantly shaped by the global distribution of mass in the Galaxy, but also preserve a historical record of small-scale perturbations.
 Using deep $grz$ photometry from DECaLS, we present highly probable members of the tidal tails associated with the disrupting globular cluster Palomar~5.
-These data yield the cleanest view of a stellar stream beyond $\sim20\,\rm kpc$ and reveal: (1) a wide, low surface-brightness extension of the leading tail, (2) significant density variations along the stream, and (3) sharp changes in the direction of the trailing tail.
+These data yield the cleanest view of a stellar stream beyond $\sim20\,\rm kpc$ and reveal: (1) a wide, low surface-brightness extension of the leading tail, (2) significant density variations along the stream, and (3) sharp changes in the direction of both the leading and the trailing tail.
 In the fiducial Milky Way model, a rotating bar perturbs the Palomar~5 tails and can produce streams with similar width and density profiles to those observed.
 %SP should we mention that chaos can make the stream wide?
 However, the deviations of the stream track in this simple model are significantly smaller than those observed in the Palomar~5 trailing tail, so future kinematic observations may identify an additional source of perturbation.
@@ -102,7 +102,7 @@ When simulated in more realistic environments that feature some of these events,
 %regular
 thin, coherent structures \citep[e.g.,][]{Bonaca:2014, Ngan:2015, Price-Whelan:2016b}. Recently, \citet{Price-Whelan:2018} detected gaps and off-the-stream features in the GD-1 stellar stream that could be signatures of perturbation \citep{Bonaca:2018b}.
 This discovery establishes stellar streams as a cosmological probe of dark matter on small scales.
-However, streams can also be affected by baryonic perturbers, such as giant molecular clouds \citep{Amorisco:2016}, the Galatic bar \citep{Pearson:2017}, spiral arms \citep{Banik:2019}, or even naturally develop features in their density profile during cluster disruption \citep[e.g.,][]{Kupper:2008, Just:2009}. Additionally, stream debris can spread out rapidly in phase space if their progenitors are evolving on non-regular orbits \citep[e.g.,][]{Pearson:2015, Fardal:2015, Price-Whelan:2016}.
+However, streams can also be affected by baryonic perturbers, such as giant molecular clouds \citep{Amorisco:2016}, the Galactic bar \citep{Pearson:2017}, spiral arms \citep{Banik:2019}, and even naturally develop features in their density profile during cluster disruption \citep[e.g.,][]{Kupper:2008, Just:2009}. Additionally, stream debris can spread out rapidly in phase space if their progenitors are evolving on non-regular orbits \citep[e.g.,][]{Pearson:2015, Fardal:2015, Price-Whelan:2016}.
 To measure the abundance of dark-matter subhalos from stream perturbations, we need to confirm the origin of stream perturbations first.
 
 In this paper, we reassess tidal tails of the Palomar~5 (Pal~5) globular cluster \citep{Odenkirchen:2001, Rockosi:2002}.
@@ -150,7 +150,7 @@ The $(\phi_1,\phi_2)$ coordinate frame is oriented along the great circle that b
 There is a distance gradient along the Pal~5 stream \citep{Ibata:2016}, so to increase its contrast against the field Milky Way stars, we applied the isochrone selection at two distances: 23\,kpc for $\phi_1<=0^\circ$ and 19\,kpc for $\phi_1>0^\circ$.
 With our map, Pal~5 is continuously detected between $\phi_1=-15^\circ$ and $7^\circ$ for the first time.
 
-The color-magnitude diagrams (CMDs) of stars in the Pal~5 stream are shown in the bottom of Figure~\ref{fig:cmds}.
+The color-magnitude diagrams (CMDs) of stars in different regions of the Pal~5 stream are shown in the bottom of Figure~\ref{fig:cmds}.
 Each panel contains stars from a $3^\circ$ long and $0.8^\circ$ wide area marked in the top of Figure~\ref{fig:cmds}.
 The Pal~5 main-sequence turn-off at $g\sim20.5$ stands out in all fields, but the depth to which the main sequence is detected varies from $g\sim24$ close to the cluster to $g\sim22$ in the leading tail.
 The non-uniform detection depth is partly due to variable photometric depth (the coverage is shallower in the leading tail), and partly due to contamination from the Sagittarius stellar stream (main-sequence turn-off at $g\sim22$ for $\phi_1\gtrsim-5^\circ$) and faint galaxies ($g\gtrsim23$) \sa{is this a good spot to mention that there are 3000$\pm 100$ stars between $20<g<23$?}.
@@ -237,7 +237,7 @@ In particular, we investigate whether Pal~5's wide leading arm can be explained 
 In Section~\ref{sec:potential}, we describe the potentials we use to simulate the evolution of Pal~5, and in Section~\ref{sec:modeling} we describe our simulation setup.
 We show the results of our analyses in Section \ref{sec:sim_results}.
 
-\subsection{Potential}
+\subsection{Gravitational potentials}
 \label{sec:potential}
 %\sa{To save word counts, I could just refer to other papers for the BFE representation? Let me know what you think.}
 We simulate the evolution of Pal~5 in two classes of three-component Galactic potentials:
@@ -279,18 +279,18 @@ If the scaling in Equation \ref{eq:scale} is not included \citep[as in, e.g.,][]
 % \end{figure}
 
 
-\subsection{Stream modeling}
+\subsection{Stream simulation setup}
 \label{sec:modeling}
 
 To simulate the evolution of Pal~5 in a given potential model, we first fit the stream track of Pal 5 in the static potential---that is, we fit for Pal 5 initial conditions that generate mock stream models that fit the observed sky track of the stream (Section~\ref{sec:densitymodel}).
 We use the observed 6D phase space coordinates of the Pal 5 cluster (see table 1 in \citealt{Pearson:2017} and references therein) to initialize the track fit and transform our fitted 6D phase space coordinates into a Galactocentric frame by assuming $v_{lsr} = (11.1, 24.0, 7.25) ~\kms$,  $v_{circ} = 220~\kms$, and a distance from the Sun to the Galactic center of 8.1 kpc (\citealt{Schonrich:2010}, \citealt{Schonrich:2012}). 
-The best-fit present-day kinematics of Pal 5 that reproduce the observed sky track in the static potential are $\alpha = 229.0264^\circ$, $\delta = -0.1368^\circ$, $d = 22.5~\kpc$, $v_r = -56.2~\kms$, $\mu_\alpha \, \cos\delta = -2.21~\masyr$, and $\mu_\delta = -2.23~\masyr$.
+The best-fit present-day kinematics of Pal 5 that reproduce the observed sky track in the static potential are $\alpha = 229.0264^\circ$, $\delta = -0.1368^\circ$, $d = 22.5~\kpc$, $v_r = -56.2~\kms$, $\mu_{\alpha\,\cos\delta} = -2.21~\masyr$, and $\mu_\delta = -2.23~\masyr$.
 % Thus, in order to fit the stream track, Pal 5's 6D phase space coordinates differ slightly from the observed quantities. This indicates that we need to update the potential parameters, but carefully fitting the potential is beyond the scope of this paper (see e.g. \citealt{Kupper:2015}).
 
 We integrate the best-fit cluster phase-space parameters backwards in time for 3 Gyr in steps of 0.5 Myr to generate the orbit of the progenitor system. % (see potentials in Section \ref{sec:potential}).
 Subsequently, we simulate the forward evolution of Pal~5 using the ``particle-spray'' stream generating method developed by \citet{Fardal:2015} and implemented in the \package{gala} package \citep{gala}, such that the cluster ends at its present day position at $t = 0$.
 We release two particles near each of the two Lagrange points from the progenitor at every time step with the \citet{Fardal:2015} stream distribution function. % (i.e. 2 particles every 0.5 Myr for 3 Gyr).
-We account for the self-gravity of the Pal~5 cluster by including a Plummer mass component with a half-mass radius of $r_h = 4~\textrm{pc}$ and a mass, $\textrm{M}_p = 14,404~\msun$.
+We account for the self-gravity of the Pal~5 cluster by including a Plummer mass component with a half-mass radius of $r_h = 4~\textrm{pc}$ and a mass, $\textrm{M}_p = 14,404~\msun$ \ab{is this the initial mass? could probably cite where both the mass and rh come from}.
 
 To investigate Pal~5's evolution on a regular orbit, we first run a ``particle-spray'' simulation in the static potential, setting $q_z = 0.94$ \citep{Bovy:2016}.
 Subsequently, we run the same simulation setting $q_z = 0.5$ to place Pal 5 on a strongly chaotic orbit.
