@@ -105,13 +105,13 @@ This discovery establishes stellar streams as a cosmological probe of dark matte
 However, streams can also be affected by baryonic perturbers, such as giant molecular clouds \citep{Amorisco:2016}, the Galactic bar \citep{Pearson:2017}, spiral arms \citep{Banik:2019}, and even naturally develop features in their density profile during cluster disruption \citep[e.g.,][]{Kupper:2008, Just:2009}. Additionally, stream debris can spread out rapidly in phase space if their progenitors are evolving on non-regular orbits \citep[e.g.,][]{Pearson:2015, Fardal:2015, Price-Whelan:2016}.
 To measure the abundance of dark-matter subhalos from stream perturbations, we need to confirm the origin of stream perturbations first.
 
-In this paper, we reassess tidal tails of the Palomar~5 (Pal~5) globular cluster \citep{Odenkirchen:2001, Rockosi:2002}.
+In this paper, we reassess the tidal tails of the Palomar~5 (Pal~5) globular cluster \citep{Odenkirchen:2001, Rockosi:2002}.
 The Pal~5 stream features density variations not reproduced in a static model of the Milky Way, but neither their significance nor their origin have been established \citep{Carlberg:2012, Bernard:2016, Ibata:2016, Erkal:2017}.
 Arguably, Pal~5 provides the best opportunity for disentangling different mechanisms that shape the stream as it has a surviving progenitor. Such an endeavor, however, requires a robust map of the entire tidal debris.
 Pal~5 is located too far from the Sun to enable efficient membership selection based on \gaia\ proper motions, while accurate mapping using the existing photometry is limited because the catalogs are either wide, but shallow \citep{Bernard:2016}, or deep, but narrow \citep{Ibata:2016}.
 To confidently identify Pal~5 members over a wide area, we use deep, wide-field photometry from the DECam Legacy Survey (\S\ref{sec:data}).
 In \S\ref{sec:densitymodel} we use the updated map of Pal~5 to quantify how the stream track, its width and density vary along the stream.
-We then explore how these properties change across Pal~5 models simulated in a range of Galactic potentials (\S\ref{sec:sim_results}) and conclude with a discussion of perturbers that jointly could have caused the observed Pal~5 features (\S\ref{sec:discussion}).
+We then explore how these properties change across Pal~5 models simulated in a range of Galactic potentials (\S\ref{sec:sim}) and conclude with a discussion of perturbers that jointly could have caused the observed Pal~5 features (\S\ref{sec:discussion}).
 
 
 \section{Data}
@@ -128,7 +128,7 @@ We then explore how these properties change across Pal~5 models simulated in a r
 The regions are labeled in the top left of each panel, and their sky locations are marked in the top panel.
 A stellar population consistent with Pal~5 is evident in every region, although its prominence varies between the fields.
 There is a distance gradient along the stream, with the end of the trailing tail ($\phi_1\sim-15^\circ$) being the most distant, and end of the leading tail ($\phi_1\sim10^\circ$) the closest.
-The fiducial Pal~5 isochrone is offset in every panel so that it matches the location of the main sequence, and the difference in distance modulus from the fiducial Pal~5 value is indicated in the top left.
+The fiducial Pal~5 isochrone is offset in every panel so that it matches the location of the main sequence, and the difference in distance modulus from the fiducial Pal~5 value is indicated in the top left \sa{should be note the inferred distance under the mag offset also?}.
 }
 \label{fig:cmds}
 \end{figure*}
@@ -148,12 +148,12 @@ Specifically, we selected stars following an 11.5\,Gyr MIST isochrone with $\rm 
 In the top panel of Figure~\ref{fig:cmds} we present the sky distribution of likely Pal~5 main sequence stars.
 The $(\phi_1,\phi_2)$ coordinate frame is oriented along the great circle that best-fits the Pal~5 stream, while keeping the cluster at the origin and its motion in the direction of positive $\phi_1$ \citep{gala}.
 There is a distance gradient along the Pal~5 stream \citep{Ibata:2016}, so to increase its contrast against the field Milky Way stars, we applied the isochrone selection at two distances: 23\,kpc for $\phi_1<=0^\circ$ and 19\,kpc for $\phi_1>0^\circ$.
-With our map, Pal~5 is continuously detected between $\phi_1=-15^\circ$ and $7^\circ$ for the first time.
+With our map, Pal~5 is continuously detected between $\phi_1=-15^\circ$ and $7^\circ$ for the first time. \sa{Should we state which part is "for the first time"? e.g. is it the extra degrees in the leading arm? maybe contrast it against Barnard 2016.}
 
 The color-magnitude diagrams (CMDs) of stars in different regions of the Pal~5 stream are shown in the bottom of Figure~\ref{fig:cmds}.
 Each panel contains stars from a $3^\circ$ long and $0.8^\circ$ wide area marked in the top of Figure~\ref{fig:cmds}.
 The Pal~5 main-sequence turn-off at $g\sim20.5$ stands out in all fields, but the depth to which the main sequence is detected varies from $g\sim24$ close to the cluster to $g\sim22$ in the leading tail.
-The non-uniform detection depth is partly due to variable photometric depth (the coverage is shallower in the leading tail), and partly due to contamination from the Sagittarius stellar stream (main-sequence turn-off at $g\sim22$ for $\phi_1\gtrsim-5^\circ$) and faint galaxies ($g\gtrsim23$) \sa{is this a good spot to mention that there are 3000$\pm 100$ stars between $20<g<23$?}.
+The non-uniform detection depth is partly due to variable photometric depth (the coverage is shallower in the leading tail), and partly due to contamination from the Sagittarius stellar stream (main-sequence turn-off at $g\sim22$ for $\phi_1\gtrsim-5^\circ$) and faint galaxies ($g\gtrsim23$). 
 Despite these challenges, the Pal~5 main-sequence is evident even in field~9 ($9^\circ<\phi_1<12^\circ$), beyond the apparent leading tail truncation at $\phi_1\sim7^\circ$.
 This indicates that Pal~5 tails may be longer than previously thought.
 
@@ -183,7 +183,7 @@ These features may be evidence of Pal~5's perturbed dynamical history. \sa{Did w
 
 The DECaLS map of Pal~5 reveals qualitatively new features in the stream.
 First, the leading tail extends to $\rm Dec\sim-7^\circ$, beyond the previously detected edge at $\rm Dec\sim -5^\circ$ \citep{Bernard:2016}.
-This newly detected extension of the leading tail is very wide ($\sigma\sim 0.25^\circ$) and in stark contrast with the trailing tail at the same distance from the cluster ($\sigma\sim 0.1^\circ$).
+This newly detected extension of the leading tail is very wide ($\sigma\sim 0.25^\circ$) and in stark contrast with the trailing tail at the same distance from the cluster ($\sigma\sim 0.1^\circ$). \sa{should we call it a ``fan" in the leading arm - if we refer to it as a fan in the figure? And I still think it'd be OK to label features you mention below in the figure itself.}
 Next, there are significant variations in the stellar density along the stream.
 At a fixed distance from the cluster, the trailing tail is denser than the leading tail.
 Furthermore, both tails feature a prominent gap in the stellar density, located at $\rm R.A.\approx 227^\circ$ and $235^\circ$ for the leading and trailing tail, respectively.
@@ -227,20 +227,20 @@ where ${\phi_2}_N$ are the $\phi_2$ positions of all $N$ CMD-filtered stars in t
 We use 64 walkers in the sampler and, for a given $\phi_1$ bin, initialize the positions of the walkers by sampling from a small Gaussian (with dispersion $10^{-4}$) around the fiducial parameter position $\bs{\theta}_0 = (0.2, \mu_0, 0.1^\circ, 0, 1)$, with $\mu_0$ determined by binning the $\phi_2$ distribution and taking the bin center with the most number of stars.
 We initially burn-in the samplers for 512 steps, then reset and re-run for an additional 1024 steps.
 We then compute the median and (16, 84)th percentile parameter values in each $\phi_1$ bin.
-Figure~\ref{fig:sims} shows the result of running this density model on the data (blue lines and confidence intervals) compared to the four different Pal 5 simulations described in Section~\ref{sec:sim} (shown as black markers).
+Figure~\ref{fig:sims} shows the result of running this density model on the data (blue lines and confidence intervals) compared to the four different Pal 5 simulations described in Section~\ref{sec:sim} (shown as black markers). \sa{As Ana suggested, we could add a data figure, discuss it and mention that there are 3000$\pm 100$ stars between $20<g<23$ as part of the density discussion}.
 
 
 \section{Simulations of Pal 5's evolution}
 \label{sec:sim}
 To explore plausible mechanisms that could produce the observed morphology of the Pal 5 stream, we run a suite of Pal~5 simulations.
-In particular, we investigate whether Pal~5's wide leading arm can be explained due to chaotic regions in the potential, or whether torques from the Galactic bar are necessary to explain the width of the leading arm. We further investigate what might have caused the length asymmetry between the leading and trailing arm, as well as the gap in the trailing arm.
+In particular, we investigate whether Pal~5's wide leading arm can be explained due to chaotic regions in the potential, or whether torques from the Galactic bar are necessary to explain its width. We further investigate what might have caused the length asymmetry between the leading and trailing arm, as well as the gap in the trailing arm.
 In Section~\ref{sec:potential}, we describe the potentials we use to simulate the evolution of Pal~5, and in Section~\ref{sec:modeling} we describe our simulation setup.
 We show the results of our analyses in Section \ref{sec:sim_results}.
 
 \subsection{Gravitational potentials}
 \label{sec:potential}
 %\sa{To save word counts, I could just refer to other papers for the BFE representation? Let me know what you think.}
-We simulate the evolution of Pal~5 in two classes of three-component Galactic potentials:
+We simulate the evolution of Pal~5 in two classes of three-component Galactic potentials implemented in the  \package{gala} package \citep{gala}:
 
 \begin{itemize}
 \item[1.] {\bf Static potentials}: we use the \texttt{MWPotential2014} \citep{Bovy:2015} consisting of a Miyamoto-Nagai disk (\citealt{Miyamoto:1975}), a bulge modeled as an exponentially cut off, power-law density profile, and an axisymmetric NFW dark matter halo (\citealt{Navarro:1996}).
@@ -315,11 +315,7 @@ The top row shows the spatial distribution of tracer particles, while rows 2 thr
 These models individually reproduce many of the features observed in Pal~5 (blue lines, reproduced from Figure\ref{fig:adrian}), but no model matches all of the features simultaneously.
 % Simulated Pal 5 streams (black) compared to The Legacy Surveys data of Pal 5 (blue) using the 1d density model described in Section \ref{sec:densitymodel} for four mock-streams evolved on a regular orbit (column 1) and a chaotic orbit (column 2) in static potentials as well as in ``Light'' (column 3) and ``Massive" (column 4) barred potentials with pattern speeds of $\Omega_b = 38 ~\kms$ kpc$^{-1}$ anc $\Omega_b = 45 ~\kms$ kpc$^{-1}$, respectively. We chose to visualize the two particular mock-streams in barred potentials, as they demonstrates two distinct interaction scenarios between Pal 5 and the Galactic bar: ``Light bar'' (M$_{\rm bar} = 5\times 10^{9}~\msun$): a truncated leading arm and mostly unperturbed trailing arm, ``Massive bar'' (M$_{\rm bar} = 1\times 10^{10}~\msun$): a widened leading arm
 % The top row shows the morphology of the simulated streams. The second row shows the stream track of the simulated mock streams as well as the stream track of the data. The third row shows the number density of stars in the simulated mock-streams and in the data, and the fourth row shows the width of the simulated mock-streams (black) ass well as the width of the leading and trailing arm of the data (blue). \\
-\sa{Should we use the same axis limits as in Figure \ref{fig:cmds} for the top y-row (4 to $-4$ and all x-rows $-20$ to 15 deg)? \\
-Should we find a way to highlight/``blow up" the wiggles in the tracks? \\
-Maybe make the sim. points 10 x lager in the top row?\\
-Should I have a concluding description of what we see in the figure in the last sentence of the caption? }
-}
+\sa{As Ana suggested, maybe add a line showing the wiggles in the track by subtracting the observed track, and plot Delta phi2?}}
 \label{fig:sims}
 \end{figure*}
 
@@ -333,7 +329,7 @@ we chose a flattening of $q_z = 0.5$  in order to investigate the morphology of 
 We selected two specific examples of mock-streams evolved in barred potentials (see ``light bar'' and ``massive bar'' columns in Figure \ref{fig:sims}) through visual inspection of the morphology, track and width of the simulated streams for streams evolved in the time-potentials with bar pattern speeds ranging from $\Omega_b = 30$--$60~\kmskpc$. The ``light bar''  ($\textrm{M}_{\rm bar} = 5\times 10^{9}~\msun$, $\Omega_b = 38 ~\kmskpc$) mock-stream simulation demonstrates a scenario in which the leading arm has been abruptly truncated (see also \citealt{Price-Whelan:2016b}, \citealt{Pearson:2017}, \citealt{Erkal:2017}). This truncation is apparent in both the morphology (top row) number density of stars (third row), as well as in the width of the mock-stream (fourth row). In particular, the number of stars in the leading arm at $\phi_1 > 2.5$ is low when compared to the data (blue).
 The width of the trailing mock-stream matches the observed data well, and the part of the leading arm that has not been truncated also follows the overall trends of the data.
 
-The mock stream evolved in a potential including the  ``massive bar'' (M$_{\rm bar} = 1\times 10^{10}~\msun$, $\Omega_b = 45~\kmskpc$), demonstrates a scenario in which the leading arm has been widened by the bar (fourth row), to a similar width as observed in the data. In this scenario, the leading arm has not been truncated and there is a high number density of stars in the leading as well as trailing arm. The bar has, however, induced over- and under-densities throughout both the leading and trailing arm (third row). While this is also seen in the data, the mock-stream visualized here does not follow the ``wiggles'' of the data exactly. Interestingly, for this particular pattern speed, the bar has shifted the stream track of the trailing arm (see second row). This effect is apparent in the data on small scales where the track also appears to be ``wiggling''. Thus, this mock stream demonstrates a scenario in which both the leading and trailing arms have been perturbed by the bar, and where the leading arm width is similar to the width of the data.
+The mock stream evolved in a potential including the  ``massive bar'' (M$_{\rm bar} = 1\times 10^{10}~\msun$, $\Omega_b = 45~\kmskpc$), demonstrates a scenario in which the leading arm has been widened by the bar (fourth row), to a similar width as observed in the data. In this scenario, the leading arm has not been truncated and there is a high number density of stars in the leading as well as trailing arm. The bar has, however, induced over- and under-densities (``gaps'') throughout both the leading and trailing arm (third row). While this is also seen in the data, the mock-stream visualized here does not follow the gaps seen in the data exactly (located at $\rm R.A.\approx 227^\circ$ and $235^\circ$ for the leading and trailing tail, respectively, which is equivalent to $\phi_1 \approx 2.5^\circ$ and $-7^\circ$). Interestingly, for this particular pattern speed, the bar has shifted the stream track of the trailing arm (see second row). This effect is apparent in the data on small scales where the track also appears to be ``wiggling''. Thus, this mock stream demonstrates a scenario in which both the leading and trailing arms have been perturbed by the bar, and where the leading arm width is similar to the width of the data.
 
 While none of the above mock-stream simulations reproduce all aspects of the data simultaneously, they do provide insight into the mechanisms that could be perturbing the stream. In the next Section we discuss the implications of our results.
 
@@ -424,12 +420,12 @@ While none of the above mock-stream simulations reproduce all aspects of the dat
 
 \section{Discussion}
 \label{sec:discussion}
-\sa{Do we want to emphasize how streams might all look ``messed up'' as we get deeper maps?}
-We presented deep $grz$ photometry of the Palomar~5 tidal tails from the Legacy Surveys catalog that enables the cleanest selection of Pal~5 members to date.
-One-dimensional modeling of the debris' spatial distribution revealed significant changes in the width and density along the tidal tails, as well as changes in their direction.
-Stream simulations in different gravitational potentials separately capture many of the features observed in Pal~5, including an asymmetry in the length and the width of the leading and trailing tail.
+%\sa{Do we want to emphasize how streams might all look ``messed up'' as we get deeper maps?}
+We presented deep $grz$ photometry of the Palomar~5 tidal tails from the Legacy Surveys catalog that enables the cleanest selection of Pal~5 members to date. This detailed view has revealed Pal~5 as a complex system, adding to the numerous examples of stellar streams (e.g. \citealt{Sesar:2016}, \citealt{Bonaca:2019a}) which deviate from the simple dynamical structures they were once thought to be. \sa{I added this past sentence to address my ``messy streams comment'' but don't like it as it is.... Maybe if it's tweaked ?}
+One-dimensional modeling of the Pal 5 debris' spatial distribution revealed significant changes in the width and density along the tidal tails, as well as changes in their direction.
+Stream simulations in different gravitational potentials separately capture many of the features observed in Pal~5, including gaps and an asymmetry in the length and the width of the leading and trailing tail.
 However, these simulations fail to reproduce the specific observed gaps in the stream density and the specific wiggles of its track.
-In this section we discuss perturbing mechanisms that could jointly explain this transformed view of the Pal~5 stream.
+In this section we discuss perturbing mechanisms that could jointly explain this transformed view of the Pal~5 stream. \sa{the sims do produce gaps and wiggles, so i think it's important that it stands out that we mean the very *specific* gaps and wiggles aren't reproduced. But if you think that's clear I'm okay with the previous section.}
 
 The striking asymmetry in the length and width of Pal~5's two tidal arms is immediately obvious from Figure~\ref{fig:map}.
 \citet{Pearson:2017} showed that the short leading arm, first reported in \citet{Bernard:2016}, may be truncated through a perturbation by the Milky Way's Galactic bar.
