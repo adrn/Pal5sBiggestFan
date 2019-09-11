@@ -148,7 +148,8 @@ Specifically, we selected stars following an 11.5\,Gyr MIST isochrone with $\rm 
 In the top panel of Figure~\ref{fig:cmds} we present the sky distribution of likely Pal~5 main sequence stars.
 The $(\phi_1,\phi_2)$ coordinate frame is oriented along the great circle that best-fits the Pal~5 stream, while keeping the cluster at the origin and its motion in the direction of positive $\phi_1$ \citep{gala}.
 There is a distance gradient along the Pal~5 stream \citep{Ibata:2016}, so to increase its contrast against the field Milky Way stars, we applied the isochrone selection at two distances: 23\,kpc for $\phi_1<=0^\circ$ and 19\,kpc for $\phi_1>0^\circ$.
-With our map, Pal~5 is continuously detected between $\phi_1=-15^\circ$ and $7^\circ$ for the first time. \sa{Should we state which part is "for the first time"? e.g. is it the extra degrees in the leading tail? Do we need to cite Bovy's new pal 5 paper?}
+With our map, Pal~5 is continuously detected between $\phi_1=-15^\circ$ and $7^\circ$.
+% for the first time. \sa{Should we state which part is "for the first time"? e.g. is it the extra degrees in the leading tail? Do we need to cite Bovy's new pal 5 paper?}
 
 The color-magnitude diagrams (CMDs) of stars in different regions of the Pal~5 stream are shown in the bottom of Figure~\ref{fig:cmds}.
 Each panel contains stars from a $3^\circ$ long and $0.8^\circ$ wide area marked in the top of Figure~\ref{fig:cmds}.
@@ -302,7 +303,8 @@ The best-fit present-day kinematics of Pal 5 that reproduce the observed sky tra
 We integrate the best-fit cluster phase-space parameters backwards in time for 3 Gyr in steps of 0.5 Myr to generate the orbit of the progenitor system. % (see potentials in Section \ref{sec:potential}).
 Subsequently, we simulate the forward evolution of Pal~5 using the ``particle-spray'' stream generating method developed by \citet{Fardal:2015} and implemented in the \package{gala} package \citep{gala}, such that the cluster ends at its present day position at $t = 0$.
 We release two particles near each of the two Lagrange points from the progenitor at every time step with the \citet{Fardal:2015} stream distribution function. % (i.e. 2 particles every 0.5 Myr for 3 Gyr).
-We account for the self-gravity of the Pal~5 cluster by including a Plummer mass component with a half-mass radius of $r_h = 4~\textrm{pc}$ and an effective mass, $\textrm{M}_p = 14,404~\msun$. This mass was obtained from the stream track fitting and sets the scaling between the Lagrange points for the modified ``particle spray'' method (\citealt{Fardal:2015}) (for comparison \citet{Ibata:2017} reports $12,200 \pm 200~\msun$ in the present day cluster and tails combined).
+We account for the self-gravity of the Pal~5 cluster by including a Plummer mass component with a half-mass radius of $r_h = 4~\textrm{pc}$ and an effective mass, $\textrm{M}_p = 14,404~\msun$. This mass was obtained from the stream track fitting and sets the scaling between the Lagrange points for the modified ``particle spray'' method (\citealt{Fardal:2015}).
+This is comparable to $12,200 \pm 200~\msun$ that \citet{Ibata:2017} report for the present-day mass of the cluster and tails combined.
 % \ab{is this the initial mass? could probably cite where both the mass and rh come from} \sa{This is from the coordinates.py script, not sure where APW got the value? Ibata 2017 says $1.2 \times 10^{4}$ for cluster+stream.}.
 
 To investigate Pal~5's evolution on a regular orbit, we first run a ``particle-spray'' simulation in the static potential, setting $q_z = 0.94$ \citep{Bovy:2016}.
@@ -442,7 +444,16 @@ However, these simulations fail to reproduce the specific observed gaps in the s
 In this section we discuss perturbing mechanisms that could jointly explain this transformed view of the Pal~5 stream.
 
 The striking asymmetry in the length and width of Pal~5's two tidal arms is immediately obvious from Figure~\ref{fig:map}.
-\citet{Pearson:2017} showed that the short leading tail, first reported in \citet{Bernard:2016}, may be truncated through a perturbation by the Milky Way's Galactic bar.
+Recently, \citet{Starkman:2019} reported an extension of Pal~5's leading tail that nearly matches the extent of the trailing tail based on a selection of main sequence stars that have proper motions similar the Pal~5 cluster.
+This choice of sparse tracers limits the confidence in estimating both the width and the density along the tails.
+So while our deep photometry also indicates the leading tail extending further (Figure~\ref{fig:map}), this extension has a significantly larger width and lower surface density.
+At a fixed density threshold, we confirm the original \citet{Bernard:2016} discovery that Pal~5's leading tail is only half as long as the trailing tail.
+% - fan cmd indicates pal5 stars in this extension, but at significantly lower density, not easily interpretable from smoothed sparse distribution
+% first reported in \citet{Bernard:2016},
+% identified an extension main sequence turn-off stars with proper motions similar to that of the Pal~5 cluster.
+% - starkman, gaia pm, msto -> few stars, not confident for density or width variations
+
+\citet{Pearson:2017} showed that Pal~5's short leading tail may be truncated through a perturbation by the Milky Way's Galactic bar.
 This scenario predicts that the bar sweeps tidal debris from the leading tail to a much wider area.
 Deep, wide-field DECaLS photometry enabled us to trace the leading tail as it fans out to $\rm Dec\sim-7^\circ$, while the color-magnitude diagram implies Pal~5 debris has been spread out to even lower surface-brightness level between $-7^\circ\gtrsim\rm Dec\gtrsim-10^\circ$.
 In Section \ref{sec:sim_results}, we showed that this low surface-brightness feature can indeed be induced if Pal~5 has been perturbed by the bar.
