@@ -200,6 +200,19 @@ We quantify the variations along the Pal 5 stream and measure the stream track, 
 In bins of $\phi_1$, we model the (CMD-filtered) density disitrbution in $\phi_2$ using a single Gaussian component for the stream and a linearly varying background \citep[similar to the density modeling described in][]{Price-Whelan:2018}.
 We initialize bin centers between $\phi_1 \in (-20, 10)^\circ$ with a spacing of $h_{\phi_1} = 0.75^\circ$, but when modeling the density in $\phi_2$ in any bin, use partially overlapping bins of width $1.5\,h_{\phi_1}$.
 
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.8\columnwidth]{observed_profiles.pdf}
+\end{center}
+\caption{
+Members of the Pal~5 stream, in a coordinate system aligned with the stream, used for 1D density modeling (top row).
+The inferred stream track and its residual from second-order polynomial fits to each tidal arm (rows 2 and 3, respectively) show sharp changes in the tails' direction (``wiggles'').
+The density profile (row 4) is asymmetric overall, and features two prominent underdensities (``gaps'').
+The trailing tail remains thin even far from the cluster, while the leading has a marked increase in width past $\phi_1\gtrsim5^\circ$ (the ``fan'', row 5).
+}
+\label{fig:profiles}
+\end{figure}
+
 In detail, within each $\phi_1$ bin, we construct a model for the CMD-filtered density distribution in $\phi_2$ as
 \begin{align}
     p(\phi_2 \given \bs{\theta}) &=
@@ -231,20 +244,18 @@ where ${\phi_2}_N$ are the $\phi_2$ positions of all $N$ CMD-filtered stars in t
 We use 64 walkers in the sampler and, for a given $\phi_1$ bin, initialize the positions of the walkers by sampling from a small Gaussian (with dispersion $10^{-4}$) around the fiducial parameter position $\bs{\theta}_0 = (0.2, \mu_0, 0.1^\circ, 0, 1)$, with $\mu_0$ determined by binning the $\phi_2$ distribution and taking the bin center with the most number of stars.
 We initially burn-in the samplers for 512 steps, then reset and re-run for an additional 1024 steps.
 We then compute the median and (16, 84)th percentile parameter values in each $\phi_1$ bin.
-Figure~\ref{fig:sims} shows the result of running this density model on the data (blue lines and confidence intervals) compared to the four different Pal 5 simulations described in Section~\ref{sec:sim} (shown as black markers). \sa{As Ana suggested, we could add a data figure, discuss it and mention that there are 3000$\pm 100$ stars between $20<g<23$ as part of the density discussion}.
+% \sa{As Ana suggested, we could add a data figure, discuss it and mention that there are 3000$\pm 100$ stars between $20<g<23$ as part of the density discussion}.
 
-\begin{figure}
-\begin{center}
-\includegraphics[width=0.8\columnwidth]{observed_profiles.pdf}
-\end{center}
-\caption{
-Members of the Pal~5 stream, in a coordinate system aligned with the stream, used for 1D density modeling (top row).
-The inferred stream track and its residual from second-order polynomial fits to each tidal arm (rows 2 and 3, respectively) show sharp changes in the tails' direction (``wiggles'').
-The density profile (row 4) is asymmetric overall, and features two prominent underdensities (``gaps'').
-The trailing tail remains thin even far from the cluster, while the leading has a marked increase in width past $\phi_1\gtrsim5^\circ$ (the ``fan'', row 5).
-}
-\label{fig:adrian}
-\end{figure}
+Figure~\ref{fig:profiles} shows the results of running this density model on the observed distribution of Pal~5 members (top row).
+In the second row, we compare the inferred stream track (solid blue line and confidence interval) to the second-order polynomial fits of the leading and the trailing arm (dotted line).
+While these low-order polynomials capture the general curvature of Pal~5, the stream track sharply changes direction at several locations.
+These wiggles are more easily evident in track deviation from the polynomial fits (third row).
+Two of the wiggles appear almost symmetrically in the leading and trailing tails at $\phi_1\approx3.5^\circ$ and $\phi_1\approx-4.5^\circ$, respectively, while the trailing tail has another wiggle at $\phi_1\approx-13^\circ$.
+
+% In rows 2 to 5, blue lines and confidence intervals show the inferred stream track, its residuals from second-order polynomial fits to the leading and trailing arm, the total number of member stars, and width, respectively.
+
+To summarize, 
+In Section~\ref{sec:sim} we run the same density model on four different Pal~5 simulations and compare it to the observed Pal~5 results in Figure~\ref{fig:sims}.
 
 
 \section{Simulations of Pal 5's evolution}
@@ -331,7 +342,7 @@ In Figure~\ref{fig:sims} we summarize the results of our suite of Pal~5 simulati
 \caption{
 Properties of four Pal~5 simulations: ``Regular'' (static potential and a regular orbit), ``Chaotic'' (static potential and a chaotic orbit), ``Light bar'' (time-dependent potential with a M$_{\rm bar} = 5\times 10^{9}\,\msun$, $\Omega_b = 38\,\kms$ kpc$^{-1}$ bar), and ``Massive bar'' (M$_{\rm bar} = 1\times 10^{10}\,\msun$, $\Omega_b = 45\,\kms$ kpc$^{-1}$).
 The top row shows the spatial distribution of tracer particles, while rows 2 through 5 present the derived 1D properties along the stream (black points): $\phi_2$ positions of the mean stream track, track deviations from a second order polynomial, number density and width, respectively.
-These simulations individually reproduce many of the features observed in Pal~5 (blue lines, reproduced from Figure\ref{fig:adrian}), but no model matches all of the features simultaneously.
+These simulations individually reproduce many of the features observed in Pal~5 (blue lines, reproduced from Figure\ref{fig:profiles}), but no model matches all of the features simultaneously.
 % Simulated Pal 5 streams (black) compared to The Legacy Surveys data of Pal 5 (blue) using the 1d density model described in Section \ref{sec:densitymodel} for four mock-streams evolved on a regular orbit (column 1) and a chaotic orbit (column 2) in static potentials as well as in ``Light'' (column 3) and ``Massive" (column 4) barred potentials with pattern speeds of $\Omega_b = 38 ~\kms$ kpc$^{-1}$ anc $\Omega_b = 45 ~\kms$ kpc$^{-1}$, respectively. We chose to visualize the two particular mock-streams in barred potentials, as they demonstrates two distinct interaction scenarios between Pal 5 and the Galactic bar: ``Light bar'' (M$_{\rm bar} = 5\times 10^{9}~\msun$): a truncated leading tail and mostly unperturbed trailing tail , ``Massive bar'' (M$_{\rm bar} = 1\times 10^{10}~\msun$): a widened leading tail
 % The top row shows the morphology of the simulated streams. The second row shows the stream track of the simulated mock streams as well as the stream track of the data. The third row shows the number density of stars in the simulated mock-streams and in the data, and the fourth row shows the width of the simulated mock-streams (black) ass well as the width of the leading and trailing tail  of the data (blue). \\
 % \sa{As Ana suggested, maybe add a line showing the wiggles in the track by subtracting the observed track, and plot Delta phi2?}
@@ -483,7 +494,7 @@ Our dataset enables a confident measurement of the gap profile above the Milky W
 %SP thinks the sentence below can be omitted.
 %Ultimately, such modeling will determine the nature of Pal~5's small-scale perturbers and measure the abundance of low-mass dark-matter subhalos in the Milky Way halo.
 
-The depth of the DECaLS catalog also allows for a more confidently determined stream track and reveals its surprising deviations: a global change in Pal~5's curvature $\sim5^\circ$ from the cluster, and $\sim20'$ oscillations, or wiggles, in the trailing tail (Figure~\ref{fig:adrian}).
+The depth of the DECaLS catalog also allows for a more confidently determined stream track and reveals its surprising deviations: a global change in Pal~5's curvature $\sim5^\circ$ from the cluster, and $\sim20'$ oscillations, or wiggles, in the trailing tail (Figure~\ref{fig:profiles}).
 While different simulations capture some of these features (the curvature in the leading tail is reproduced in the ``Chaotic'' and ``Light bar'' models, and the ``Regular'' and ``Massive bar'' models match the curvature in trailing tail), no model recovers the whole stream track.
 % Neither of these features is reproduced in our simulations, even those that have been perturbed by a rotating bar (\citealt{Erkal:2017} models feature a similar discrepancy).
 % \sa{I think the curvature is actually captured, but not the wiggles, so we should re-phrase.}
@@ -493,7 +504,7 @@ For example, when a stream encounters a massive object, its overall orbit can ch
 Measuring the relative angle between the proper-motion vector and the stream track along the Pal~5 tails would therefore test whether it has encountered a massive perturber.
 % \ab{Does the timing work out with Sgr falling in? Ie, how old is the 10deg chunk of the stream (5deg on either side of the progenitor)?}
 
-Similarly, the small-scale wiggle in the trailing tail may be another signature of an impact, especially as it coincides with a very prominent gap (Figure~\ref{fig:adrian}).
+Similarly, the small-scale wiggle in the trailing tail may be another signature of an impact, especially as it coincides with a very prominent gap (Figure~\ref{fig:profiles}).
 During the encounter, nearby stream stars receive a velocity kick that changes their orbital energies and opens a gap in the stellar stream \citep[e.g.,][]{Erkal:2015b}.
 In addition, stream stars affected by the perturber can be displaced from the original stream track \citep{Bonaca:2018b}.
 Simultaneous fitting of the Pal~5 stream track and its density profile could determine the origin of the trailing tail gap.
