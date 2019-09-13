@@ -52,10 +52,10 @@
 %\accepted{not yet}
 % % Adds "Submitted to " the arguement.
 % \submitjournal{ApJ}
-\shorttitle{Variations in Pal~5's tails}
+\shorttitle{pal~5's biggest fan}
 \shortauthors{bonaca et al.}
 
-%@arxiver{}
+%@arxiver{map_fancmd.pdf}
 
 \begin{document}\sloppy\sloppypar\raggedbottom\frenchspacing % trust me
 
@@ -81,7 +81,7 @@ Using deep $grz$ photometry from DECaLS, we present highly probable members of t
 These data yield the cleanest view of a stellar stream beyond $\sim20\,\rm kpc$ and reveal: (1) a wide, low surface-brightness extension of the leading tail, (2) significant density variations along the stream, and (3) sharp changes in the direction of both the leading and the trailing tail.
 In the fiducial Milky Way model, a rotating bar perturbs the Palomar~5 tails and can produce streams with similar width and density profiles to those observed.
 %SP should we mention that chaos can make the stream wide?
-However, the deviations of the stream track in this simple model are significantly smaller than those observed in the Palomar~5 trailing tail, so future kinematic observations may identify an additional source of perturbation.
+However, the deviations of the stream track in this simple model do not match those observed in the Palomar~5 trailing tail, indicating the need for an additional source of perturbation.
 %SP: I think this former sentence is slightly confusing as it's saying the models cannot reproduce the observed wiggle, but that future observations will help, but might be OK.
 These discoveries open up the possibility of measuring the population of perturbers in the Milky Way, including dark-matter subhalos, with an ensamble of stellar streams and deep photometry alone.
 \end{abstract}
@@ -128,7 +128,8 @@ We then explore how these properties change across Pal~5 models simulated in a r
 The regions are labeled in the top left of each panel, and their sky locations are marked in the top panel.
 A stellar population consistent with Pal~5 is evident in every region, although its prominence varies between the fields.
 There is a distance gradient along the stream, with the end of the trailing tail ($\phi_1\sim-15^\circ$) being the most distant, and end of the leading tail ($\phi_1\sim10^\circ$) the closest.
-The fiducial Pal~5 isochrone is offset in every panel so that it matches the location of the main sequence, and the difference in distance modulus from the fiducial Pal~5 value is indicated in the top left \sa{should be note the inferred distance under the mag offset also?}.
+The fiducial Pal~5 isochrone is offset in every panel so that it matches the location of the main sequence, and the difference in distance modulus from the fiducial Pal~5 value is indicated in the top left.
+% \sa{should be note the inferred distance under the mag offset also?}
 }
 \label{fig:cmds}
 \end{figure*}
@@ -186,7 +187,9 @@ These features may be evidence of Pal~5's perturbed dynamical history.
 
 The DECaLS map of Pal~5 presented in Figure \ref{fig:map} reveals qualitatively new features in the stream.
 First, the leading tail extends to $\rm Dec\sim-7^\circ$, beyond the previously detected edge at $\rm Dec\sim -5^\circ$ \citep{Bernard:2016}.
-This newly detected extension of the leading tail is very wide ($\sigma\sim 0.25^\circ$) and in stark contrast with the trailing tail at the same distance from the cluster ($\sigma\sim 0.1^\circ$). We refer to this wide, low surface-brightness extension as the ``fan'' (\citealt{Pearson:2015}). In the right panels of Figure \ref{fig:map}, we compare the color-magnitude diagram of the fan to an off-stream control field. Interestingly, the fan has a stellar population consistent with Pal 5 (see Figure \ref{fig:cmds}), in contrast to the control field, and is therefore likely an extension the leading tail.
+This newly detected extension of the leading tail is very wide ($\sigma\sim 0.25^\circ$) and in stark contrast with the trailing tail at the same distance from the cluster ($\sigma\sim 0.1^\circ$). We refer to this wide, low surface-brightness extension as the ``fan'' (\citealt{Pearson:2015}).
+In the right panels of Figure \ref{fig:map}, we compare the color-magnitude diagram of the fan to an off-stream control field.
+The fan has a stellar population consistent with Pal 5 (see Figure \ref{fig:cmds}), in contrast to the control field, and is therefore likely an extension the leading tail.
 
 Next, there are significant variations in the stellar density along the stream.
 At a fixed distance from the cluster, the trailing tail is denser than the leading tail.
@@ -258,24 +261,22 @@ Accounting for the field Milky Way population, we find $3000\pm100$ Pal~5 stars 
 Integrated out to $|\phi_1|=8^\circ$ (limited by the extent of the leading arm), the trailing and the leading tail have approximately the same number of stars.
 But much like the total stream extent, the density profile is also asymmetric, so within $5^\circ$ from the cluster, the trailing tail has a $50\,\%$ excess over the leading tail.
 On top of these global density variations, Pal~5 features two prominent underdensities at $\phi_1\approx-7^\circ$ and $\phi_1\approx3^\circ$.
-These gaps were already apparent at a lower significance in the \citet{Erkal:2016} analysis.
-In our deeper data, they are detected at $x\,\sigma$ above the background.
+In the shallower CFHT data, these gaps were consistent with the background \citep{Erkal:2016}, while in our deeper data they are detected at $x\,\sigma$ above the background.
 
 Finally, we measure how the width of Pal~5 varies along the stream (fifth row).
 Close to the cluster, both the leading and the trailing tail are thin, $\sigma\approx0.15^\circ$.
-The trailing tail remains as thin throughout, with only inferences of a larger width corresponding to regions of lower stream density, and hence more uncertain differentiation between the stream and background populations.
+The trailing tail remains as thin throughout, with the exception of lower-density regions, where the inference is more uncertain due to a higher level of contamination.
 On the other hand, the leading tail rapidly increases in width to $\sigma\approx0.4^\circ$ at $\phi_1\approx7^\circ$ (see fan).
 Since the tidal debris is fanned over a larger area, its surface density is low, and thus this part of the stream avoided detection in shallower data sets.
 
 To summarize, we detected variations in the direction, density and width of the Pal~5 stream.
 In Section~\ref{sec:sim} we explore the origin of these features by running the same density model on four different Pal~5 simulations.
-% and compare it to the observed Pal~5 results in Figure~\ref{fig:sims}.
 
 
 \section{Simulations of Pal 5's evolution}
 \label{sec:sim}
 To explore plausible mechanisms that could produce the observed morphology of the Pal 5 stream, we run a suite of Pal~5 simulations.
-In particular, we investigate whether Pal~5's wide leading tail can be explained due to chaotic regions in the potential, or whether torques from the Galactic bar are necessary to explain its width. We further investigate what might have caused the length asymmetry between the leading and trailing tail , as well as the gap in the trailing tail .
+In particular, we investigate whether Pal~5's wide leading tail can be explained due to chaotic regions in the potential, or whether torques from the Galactic bar are necessary to explain its width. We further investigate what might have caused the length asymmetry between the leading and trailing tail, as well as the gap in the trailing tail.
 In Section~\ref{sec:potential}, we describe the potentials we use to simulate the evolution of Pal~5, and in Section~\ref{sec:modeling} we describe our simulation setup.
 We show the results of our analyses in Section \ref{sec:sim_results}.
 
@@ -332,7 +333,8 @@ The best-fit present-day kinematics of Pal 5 that reproduce the observed sky tra
 We integrate the best-fit cluster phase-space parameters backwards in time for 3 Gyr in steps of 0.5 Myr to generate the orbit of the progenitor system. % (see potentials in Section \ref{sec:potential}).
 Subsequently, we simulate the forward evolution of Pal~5 using the ``particle-spray'' stream generating method developed by \citet{Fardal:2015} and implemented in the \package{gala} package \citep{gala}, such that the cluster ends at its present day position at $t = 0$.
 We release two particles near each of the two Lagrange points from the progenitor at every time step with the \citet{Fardal:2015} stream distribution function. % (i.e. 2 particles every 0.5 Myr for 3 Gyr).
-We account for the self-gravity of the Pal~5 cluster by including a Plummer mass component with a half-mass radius of $r_h = 4~\textrm{pc}$ and an effective mass, $\textrm{M}_p = 14,404~\msun$. This mass was obtained from the stream track fitting and sets the scaling between the Lagrange points for the modified ``particle spray'' method (\citealt{Fardal:2015}).
+We account for the self-gravity of the Pal~5 cluster by including a Plummer mass component with the initial half-mass radius of $r_h = 4~\textrm{pc}$ and the initial effective mass, $\textrm{M}_p = 14,404~\msun$.
+This mass was obtained from the stream track fitting and sets the scaling between the Lagrange points for the modified ``particle spray'' method (\citealt{Fardal:2015}).
 This is comparable to $12,200 \pm 200~\msun$ that \citet{Ibata:2017} report for the present-day mass of the cluster and tails combined.
 % \ab{is this the initial mass? could probably cite where both the mass and rh come from} \sa{This is from the coordinates.py script, not sure where APW got the value? Ibata 2017 says $1.2 \times 10^{4}$ for cluster+stream.}.
 
@@ -345,7 +347,10 @@ We then simulate the evolution of the stream in time-dependent barred potentials
 
 \subsection{Simulation results}
 \label{sec:sim_results}
-In Figure~\ref{fig:sims} we summarize the results of our suite of Pal~5 simulations. In the top row we present the morphology of the simulated Pal~5 mock-streams evolved in the static potentials with two different flattenings ($q_z = 0.94$ and $q_z = 0.5$) and we show two examples of mock-streams evolved in the ``light'' (M$_{\rm bar} = 5\times 10^9~\msun$) and ``massive'' (M$_{\rm bar} = 1\times 10^{10}~\msun$) time-dependent barred potentials. All mock-streams are visualized in the coordinate system aligned with Pal 5's tidal tails (see also Figure \ref{fig:cmds}), and the leading tail is at positive $\phi_1$. The four bottom rows of Figure \ref{fig:sims} show results of the 1d density model for the stream track (second row), the track deviations from a second order polynomial (third row), stream number density (fourth row), and the stream width (fith row) of the simulated mock-streams (black) as well as of the data (blue shaded region).
+In Figure~\ref{fig:sims} we summarize the results of our suite of Pal~5 simulations.
+In the top row we present the morphology of the simulated Pal~5 mock-streams evolved in the static potentials with two different flattenings ($q_z = 0.94$ and $q_z = 0.5$) and we show two examples of mock-streams evolved in the ``light'' (M$_{\rm bar} = 5\times 10^9~\msun$) and ``massive'' (M$_{\rm bar} = 1\times 10^{10}~\msun$) time-dependent barred potentials.
+All mock-streams are visualized in the coordinate system aligned with Pal 5's tidal tails (see also Figure \ref{fig:cmds}), and the leading tail is at positive $\phi_1$.
+The four bottom rows of Figure \ref{fig:sims} show results of the 1D density model for the stream track (second row), the track deviations from a second order polynomial (third row), stream number density (fourth row), and the stream width (fith row) of the simulated mock-streams (black) as well as of the data (blue shaded region, same as in Figure~\ref{fig:profiles}).
 %The two left columns show Pal~5 evolved in a static potential with two different halo flattenings ($q_z = 0.94$ and $q_z = 0.5$).
 %In the third and fourth columns, we highlight two particular simulations of mock streams evolved in time-dependent barred potentials.
 
@@ -357,6 +362,7 @@ In Figure~\ref{fig:sims} we summarize the results of our suite of Pal~5 simulati
 Properties of four Pal~5 simulations: ``Regular'' (static potential and a regular orbit), ``Chaotic'' (static potential and a chaotic orbit), ``Light bar'' (time-dependent potential with a M$_{\rm bar} = 5\times 10^{9}\,\msun$, $\Omega_b = 38\,\kms$ kpc$^{-1}$ bar), and ``Massive bar'' (M$_{\rm bar} = 1\times 10^{10}\,\msun$, $\Omega_b = 45\,\kms$ kpc$^{-1}$).
 The top row shows the spatial distribution of tracer particles, while rows 2 through 5 present the derived 1D properties along the stream (black points): $\phi_2$ positions of the mean stream track, track deviations from a second order polynomial, number density and width, respectively.
 These simulations individually reproduce many of the features observed in Pal~5 (blue lines, reproduced from Figure\ref{fig:profiles}), but no model matches all of the features simultaneously.
+\ab{separate polynomial tracks for leading and trailing tail}
 % Simulated Pal 5 streams (black) compared to The Legacy Surveys data of Pal 5 (blue) using the 1d density model described in Section \ref{sec:densitymodel} for four mock-streams evolved on a regular orbit (column 1) and a chaotic orbit (column 2) in static potentials as well as in ``Light'' (column 3) and ``Massive" (column 4) barred potentials with pattern speeds of $\Omega_b = 38 ~\kms$ kpc$^{-1}$ anc $\Omega_b = 45 ~\kms$ kpc$^{-1}$, respectively. We chose to visualize the two particular mock-streams in barred potentials, as they demonstrates two distinct interaction scenarios between Pal 5 and the Galactic bar: ``Light bar'' (M$_{\rm bar} = 5\times 10^{9}~\msun$): a truncated leading tail and mostly unperturbed trailing tail , ``Massive bar'' (M$_{\rm bar} = 1\times 10^{10}~\msun$): a widened leading tail
 % The top row shows the morphology of the simulated streams. The second row shows the stream track of the simulated mock streams as well as the stream track of the data. The third row shows the number density of stars in the simulated mock-streams and in the data, and the fourth row shows the width of the simulated mock-streams (black) ass well as the width of the leading and trailing tail  of the data (blue). \\
 % \sa{As Ana suggested, maybe add a line showing the wiggles in the track by subtracting the observed track, and plot Delta phi2?}
@@ -365,18 +371,36 @@ These simulations individually reproduce many of the features observed in Pal~5 
 \end{figure*}
 
 
-We used the mildly flattened ($q_z = 0.94$) static potential to fit the track of the stream (see Section \ref{sec:modeling}), and it is therefore not surprising that the track (second row) and track deviations (third row) of the mock-stream evolved on a regular orbit (left column, black) looks similar to the track of the data (blue).  While the data shows variability in the number density of stars (fourth row), the mock-stream, however, has a similar number of stars in both the trailing a the leading tail. Additionally, the width of both the leading and the trailing mock-stream are too narrow for |$\phi_1| < 7$ as compared to the data (fifth row). While the overall width trends for the trailing tail  at larger negative $\phi_1$ are reproduced, the leading tail of the simulated stream is too narrow as compared to the widened ``fan'' seen in the leading tail of the data.
+We used the mildly flattened ($q_z = 0.94$) static potential to fit the track of the stream (see Section \ref{sec:modeling}), and it is therefore not surprising that the track (second row) and track deviations (third row) of the mock-stream evolved on a regular orbit (left column, black) looks similar to the track of the data (blue).
+While the data shows variability in the number density of stars (fourth row), the mock-stream, however, has a similar number of stars in both the trailing a the leading tail.
+Additionally, the width of both the leading and the trailing mock-stream are too narrow for |$\phi_1| < 7$ as compared to the data (fifth row).
+While the overall width trends for the trailing tail  at larger negative $\phi_1$ are reproduced, the leading tail of the simulated stream is too narrow as compared to the widened ``fan'' seen in the leading tail of the data.
 
 For the mock-stream evolved in a flattened potential,
 %on a chaotic orbit (second column),
-we chose a flattening of $q_z = 0.5$  in order to investigate the morphology of a mock-stream on a chaotic orbit (see also \citealt{Fardal:2015}). The track of the leading tail (third row, black) deviates from the observed stream track (blue) reflecting the extreme flattening of the halo shape. Interestingly, the number density of stars is roughly symmetric for the leading and trailing tail  (fourth row), which was also the case for the regular orbit. While the width (fifth row) of the leading tail is slightly wider for the chaotic mock-stream than for the mock-stream evolved on a regular orbit (left), the mock-stream width is still too narrow when compared to the leading tail data (blue). The trailing tail , on the other hand, is much wider for the chaotic mock-stream than for the data. Thus, the chaotic orbit induces a widening of both the leading and trailing tail , but this widening does not mimic the particular asymmetric widening of the data (blue) (see also \citealt{Pearson:2015}, \citealt{Price-Whelan:2016}).
+we chose a flattening of $q_z = 0.5$  in order to investigate the morphology of a mock-stream on a chaotic orbit (see also \citealt{Fardal:2015}).
+The track of the leading tail (third row, black) deviates from the observed stream track (blue) reflecting the extreme flattening of the halo shape.
+Interestingly, the number density of stars is roughly symmetric for the leading and trailing tail  (fourth row), which was also the case for the regular orbit. 
+While the width (fifth row) of the leading tail is slightly wider for the chaotic mock-stream than for the mock-stream evolved on a regular orbit (left), the mock-stream width is still too narrow when compared to the leading tail data (blue).
+The trailing tail, on the other hand, is much wider for the chaotic mock-stream than for the data.
+Thus, the chaotic orbit induces a widening of both the leading and trailing tail, but this widening does not mimic the particular asymmetric widening of the data (see also \citealt{Pearson:2015}, \citealt{Price-Whelan:2016}).
 
-We selected two specific examples of mock-streams evolved in barred potentials (see ``light bar'' and ``massive bar'' columns in Figure \ref{fig:sims}) through visual inspection of the morphology, track and width of the simulated streams for streams evolved in the time-potentials with bar pattern speeds ranging from $\Omega_b = 30$--$60~\kmskpc$. The ``light bar''  ($\textrm{M}_{\rm bar} = 5\times 10^{9}~\msun$, $\Omega_b = 38 ~\kmskpc$) mock-stream simulation demonstrates a scenario in which the leading tail has been abruptly truncated (see also \citealt{Price-Whelan:2016b}, \citealt{Pearson:2017}, \citealt{Erkal:2017}). This truncation is apparent in both the morphology (top row) number density of stars (fourth row), as well as in the width of the mock-stream (fifth row). In particular, the number of stars in the leading tail at $\phi_1 > 2.5$ is low when compared to the data (blue).
+We selected two specific examples of mock-streams evolved in barred potentials (see ``light bar'' and ``massive bar'' columns in Figure \ref{fig:sims}) through visual inspection of the morphology, track and width of the simulated streams for streams evolved in the time-dependent potentials with bar pattern speeds ranging from $\Omega_b = 30$--$60~\kmskpc$.
+The ``light bar''  ($\textrm{M}_{\rm bar} = 5\times 10^{9}~\msun$, $\Omega_b = 38 ~\kmskpc$) mock-stream simulation demonstrates a scenario in which the leading tail has been abruptly truncated (see also \citealt{Price-Whelan:2016b}, \citealt{Pearson:2017}, \citealt{Erkal:2017}).
+This truncation is apparent in both the morphology (top row) number density of stars (fourth row), as well as in the width of the mock-stream (fifth row).
+In particular, the number of stars in the leading tail at $\phi_1 > 2.5$ is low when compared to the data (blue).
 The width of the trailing mock-stream matches the observed data well, and the part of the leading tail that has not been truncated also follows the overall trends of the data.
 
-The mock stream evolved in a potential including the  ``massive bar'' (M$_{\rm bar} = 1\times 10^{10}~\msun$, $\Omega_b = 45~\kmskpc$), demonstrates a scenario in which the leading tail has been widened by the bar (fifth row), to a similar width as observed in the data. In this scenario, the leading tail has not been truncated and there is a high number density of stars in the leading as well as trailing tail . The bar has, however, induced over- and under-densities (``gaps'') throughout both the leading and trailing tail  (fourth row). While this is also seen in the data, the mock-stream visualized here does not follow the gaps seen in the data exactly (located at $\rm R.A.\approx 227^\circ$ and $235^\circ$ for the leading and trailing tail, respectively, which is equivalent to $\phi_1 \approx 2.5^\circ$ and $-7^\circ$). Interestingly, for this particular pattern speed, the bar has shifted the stream track of the trailing tail  (see second and third row). This effect is apparent in the data on small scales where the track also appears to be ``wiggling''. Thus, this mock stream demonstrates a scenario in which both the leading and trailing tail s have been perturbed by the bar, and where the leading tail width is similar to the width of the data.
+The mock stream evolved in a potential including the  ``massive bar'' (M$_{\rm bar} = 1\times 10^{10}~\msun$, $\Omega_b = 45~\kmskpc$), demonstrates a scenario in which the leading tail has been widened by the bar (fifth row), to a similar width as observed in the data.
+In this scenario, the leading tail has not been truncated and there is a high number density of stars in the leading as in the trailing tail.
+The bar has, however, induced over- and under-densities (``gaps'') throughout both the leading and trailing tail  (fourth row).
+While this is also seen in the data, the mock-stream visualized here does not follow the gaps seen in the data exactly (located at $\rm R.A.\approx 227^\circ$ and $235^\circ$ for the leading and trailing tail, respectively, which is equivalent to $\phi_1 \approx 2.5^\circ$ and $-7^\circ$).
+Interestingly, for this particular pattern speed, the bar has shifted the stream track of the trailing tail  (see second and third row).
+This effect is apparent in the data on small scales where the track also appears to be ``wiggling''.
+Thus, this mock stream demonstrates a scenario in which both the leading and trailing tails have been perturbed by the bar, and where the leading tail width is similar to the width of the data.
 
-While none of the above mock-stream simulations reproduce all aspects of the data simultaneously, they do provide insight into the mechanisms that could be perturbing the stream. In the next Section we discuss the implications of our results.
+While none of the above mock-stream simulations reproduce all aspects of the data simultaneously, they do provide insight into the mechanisms that could be perturbing the stream.
+In the next Section we discuss the implications of our results.
 
 %In Figure \ref{fig:sims}, we chose to include the two particular mock-streams evolved in the ``light''' and ``massive'' barred potentials after  visual inspection of the morphology, track and width of the simulated streams.
 % \begin{figure}
@@ -473,7 +497,7 @@ However, these simulations fail to reproduce the specific observed gaps in the s
 In this section we discuss perturbing mechanisms that could jointly explain this transformed view of the Pal~5 stream.
 
 The striking asymmetry in the length and width of Pal~5's two tidal arms is immediately obvious from Figure~\ref{fig:map}.
-Recently, \citet{Starkman:2019} reported an extension of Pal~5's leading tail that nearly matches the extent of the trailing tail based on a selection of main sequence stars that have proper motions similar the Pal~5 cluster.
+Recently, \citet{Starkman:2019} reported an extension of Pal~5's leading tail that nearly matches the extent of the trailing tail based on a selection of main sequence turn-off stars that have proper motions similar the Pal~5 cluster.
 This choice of sparse tracers limits the confidence in estimating both the width and the density along the tails.
 So while our deep photometry also indicates the leading tail extending further (Figure~\ref{fig:map}), this extension has a significantly larger width and lower surface density.
 At a fixed density threshold, we confirm the original \citet{Bernard:2016} discovery that Pal~5's leading tail is only half as long as the trailing tail.
@@ -504,7 +528,7 @@ With DECaLS photometry, we confirm the large-scale density variations reported b
 % \ab{update gap sizes}
 Based on mass arguments, \citet{Erkal:2017} suggested that the large gap in Pal~5 originates from a dark-matter subhalo encounter, while the small gap may have been produced by a molecular cloud.
 In addition to the perturber's mass, details of the gap profile also depend on the time since the encounter and its impact parameter \citep{Erkal:2015}.
-Our dataset enables a confident measurement of the gap profile above the Milky Way field contamination \ab{quantify?}, which will help in disentangling different encounter parameters, and ultimately determining the origin of these perturbations.
+Our dataset enables a confident measurement of the gap profile above the Milky Way field contamination, which will help in disentangling different encounter parameters, and ultimately determining the origin of these perturbations.
 %SP thinks the sentence below can be omitted.
 %Ultimately, such modeling will determine the nature of Pal~5's small-scale perturbers and measure the abundance of low-mass dark-matter subhalos in the Milky Way halo.
 
@@ -572,7 +596,7 @@ Our results suggest that dynamical inferences about the bar, spiral arms, molecu
 
 
 \acknowledgements{
-It is a pleasure to thank...
+It is a pleasure to thank Charlie Conroy, Doug Finkbeiner, ...
 This work was performed in part during the Gaia19 workshop and the 2019 Santa Barbara Gaia Sprint (also supported by the Heising-Simons Foundation), both hosted by the Kavli Institute for Theoretical Physics at the University of California, Santa Barbara. The Flatiron Institute is supported by the Simons Foundation.
 
 
