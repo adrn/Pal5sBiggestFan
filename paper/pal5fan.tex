@@ -338,14 +338,9 @@ If the scaling in Equation \ref{eq:scale} is not included \citep[as in, e.g.,][]
 To simulate the evolution of Pal~5 in a given potential model, we first fit the stream track of Pal 5 in the static potential---that is, we fit for Pal 5 initial conditions that generate mock stream models that fit the observed sky track of the stream (Section~\ref{sec:densitymodel}).
 We use the observed 6D phase space coordinates of the Pal 5 cluster (see table 1 in \citealt{Pearson:2017} and references therein) to initialize the track fit and transform our fitted 6D phase space coordinates into a Galactocentric frame by assuming $v_{lsr} = (11.1, 24.0, 7.25) ~\kms$,  $v_{circ} = 220~\kms$, and a distance from the Sun to the Galactic center of 8.1 kpc (\citealt{Schonrich:2010}, \citealt{Schonrich:2012}).
 The best-fit present-day kinematics of Pal 5 that reproduce the observed sky track in the static potential are $\alpha = 229.0264^\circ$, $\delta = -0.1368^\circ$, $d = 22.5~\kpc$, $v_r = -56.2~\kms$, $\mu_{\alpha\,\cos\delta} = -2.21~\masyr$, and $\mu_\delta = -2.23~\masyr$.
-% Thus, in order to fit the stream track, Pal 5's 6D phase space coordinates differ slightly from the observed quantities. This indicates that we need to update the potential parameters, but carefully fitting the potential is beyond the scope of this paper (see e.g. \citealt{Kupper:2015}).
 
 With the present-day location of Pal~5 in hand, we generate the orbit of the progenitor system by integrating Pal~5's current 6D position back in time for 3\,Gyr in steps of 0.5\,Myr.
-To generate the mock stream, we then simulate the forward evolution of the cluster and release two particles from the progenitor's Lagrange points at every time step using the \citet{Fardal:2015} distribution function implemented in the \package{gala} package \citep{gala}.
-% We then simulate the forward evolution of Pal~5 using the ``particle-spray'' stream generating method.
-% which ensures that the model cluster ends at Pal~5's present day position at $t = 0$.
-% To generate the mock stream, we release two particles from the progenitor's Lagrange points at every time step using the \citet{Fardal:2015} distribution function implemented in the \package{gala} package \citep{gala}.
-% (i.e. 2 particles every 0.5 Myr for 3 Gyr).
+Starting from this point and integrating forward to the present day, we simulate the cluster's disruption and the formation of the stream by releasing two particles from the progenitor's Lagrange points at every time step, using the \citet{Fardal:2015} distribution function implemented in the \package{gala} package \citep{gala}.
 We account for the self-gravity of the Pal~5 cluster by including a Plummer mass component with the initial half-mass radius of $r_h = 4~\textrm{pc}$ and the initial effective mass, $\textrm{M}_p = 14,404~\msun$.
 This mass was obtained from the stream track fitting and sets the scaling between the Lagrange points for the modified ``particle spray'' method (\citealt{Fardal:2015}).
 This is comparable to $12,200 \pm 200~\msun$ that \citet{Ibata:2017} report for the present-day mass of the cluster and tails combined.
