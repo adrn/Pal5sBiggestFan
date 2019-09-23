@@ -62,7 +62,7 @@
 \title{Variations in the width, density, and direction of the Palomar~5 tidal tails}
 
 \author[0000-0002-7846-9787]{Ana~Bonaca}
-\affiliation{Center for Astrophysics | Harvard \& Smithsonian, 60 Garden Street, Cambridge, MA 02138, USA}
+\affiliation{Center for Astrophysics | Harvard \& Smithsonian, Cambridge, MA 02138, USA}
 \email{ana.bonaca@cfa.harvard.edu}
 \correspondingauthor{Ana Bonaca}
 
@@ -71,7 +71,11 @@
 
 \author[0000-0003-0872-7098]{Adrian~M.~Price-Whelan}
 \affiliation{Flatiron Institute, Center for Computational Astrophysics, NY 10010, USA}
-\affiliation{Department of Astrophysical Sciences, Princeton University, 4 Ivy Lane, Princeton, NJ 08544, USA}
+\affiliation{Department of Astrophysical Sciences, Princeton University, Princeton, NJ 08544, USA}
+
+\author{Adam~D.~Myers}
+% \altaffilmark{UWyo}
+\affiliation{Department of Physics and Astronomy, University of Wyoming, Laramie, WY 82071, USA}
 
 \author{Francisco~Valdez}
 \affiliation{National Optical and Astronomical Observatory, 950 North Cherry Avenue, Tucson, AZ 85719, USA}
@@ -106,7 +110,9 @@ When simulated in more realistic environments that feature some of these events,
 %regular
 thin, coherent structures \citep[e.g.,][]{Bonaca:2014, Ngan:2015, Price-Whelan:2016b}. Recently, \citet{Price-Whelan:2018} detected gaps and off-the-stream features in the GD-1 stellar stream that could be signatures of perturbation \citep{Bonaca:2018b}.
 This discovery establishes stellar streams as a cosmological probe of dark matter on small scales.
-However, streams can also be affected by baryonic perturbers, such as giant molecular clouds \citep{Amorisco:2016}, the Galactic bar \citep{Pearson:2017}, spiral arms \citep{Banik:2019}, and even naturally develop features in their density profile during cluster disruption \citep[e.g.,][]{Kupper:2008, Just:2009}. Additionally, stream debris can spread out rapidly in phase space if their progenitors are evolving on non-regular orbits \citep[e.g.,][]{Pearson:2015, Fardal:2015, Price-Whelan:2016}.
+However, streams can also be affected by baryonic perturbers, such as giant molecular clouds \citep{Amorisco:2016}, the Galactic bar \citep{Pearson:2017}, and spiral arms \citep{Banik:2019}.
+Streams can even naturally develop features in their density profile during cluster disruption \citep[e.g.,][]{Kupper:2008, Just:2009}.
+Additionally, stream debris can spread out rapidly in phase space if their progenitors are evolving on non-regular orbits \citep[e.g.,][]{Pearson:2015, Fardal:2015, Price-Whelan:2016}.
 To measure the abundance of dark-matter subhalos from stream perturbations, we need to confirm the origin of stream perturbations first.
 
 In this paper, we reassess the tidal tails of the Palomar~5 (Pal~5) globular cluster \citep{Odenkirchen:2001, Rockosi:2002}.
@@ -138,13 +144,13 @@ The fiducial Pal~5 isochrone is offset in every panel so that it matches the loc
 \label{fig:cmds}
 \end{figure*}
 
-We study the Palomar~5 system in the photometric catalog of DECam Legacy Survey \citep[DECaLS, part of the DESI Legacy Imaging Surveys,][]{dey2019}.
+We study the Palomar~5 system in the photometric catalog of DECam Legacy Survey \citep[DECaLS, part of the DESI Legacy Imaging Surveys,][]{dey2019}\footnote{see also \url{www.legacysurvey.org}}.
 The survey was designed to provide deep $grz$ imaging at high galactic latitudes, with the targeted $5\,\sigma$ depth of $g=24$, $r=23.4$, and $z=22.5$.
 In addition to data obtained as a part of the survey, DECaLS also includes imaging from publicly available DECam data in the survey footprint.
 We conducted a targeted survey of Pal~5 whose data products are now a part of DECaLS (NOAO Proposal ID nos. 2014A-0321, PI: Geha; 2014A-0611, PI: Munoz; 2015A-0620, PI: Bonaca).
 The median (minimum) $5\,\sigma$ PSF depth in the Pal~5 region is $g=25.6(25.3)$, $r=25.1(24.8)$, $z=24.1(23.4)$, which makes DECaLS the deepest and largest-area survey of Pal~5.
 
-To select likely Pal~5 stars, we first queried the DECaLS catalog for point sources.
+To select likely Pal~5 stars, we first queried the DECaLS DR8 sweep catalogs\footnote{\url{http://legacysurvey.org/dr8/files/\#sweep-catalogs-region-sweep}} for point sources.
 The catalog was constructed using \tractor\ forward-modeling code for source extraction\footnote{\url{https://github.com/dstndstn/tractor}} and a source was classified as \texttt{`PSF'} if the PSF model was preferred to the round exponential model used to represent galaxies\footnote{\url{https://github.com/legacysurvey/legacypipe}}.
 We removed spurious sources by requiring \texttt{allmask\_g==0}, \texttt{allmask\_r==0} and \texttt{brightstarinblob==0}.
 With this clean stellar catalog, we identified stars on Pal~5's main sequence in the dereddened color-magnitude diagram \citep{Schlegel:1998}.
@@ -248,7 +254,7 @@ We use an ensemble Markov Chain Monte Carlo (MCMC) sampler \texttt{emcee} \citep
         p(\bs{\theta}) \, \prod_n^N p(\phi_{2, n} \given \bs{\theta})
 \end{align}
 where ${\phi_2}_N$ are the $\phi_2$ positions of all $N$ CMD-filtered stars in the given $\phi_1$ bin.
-We use 64 walkers in the sampler and, for a given $\phi_1$ bin, initialize the positions of the walkers by sampling from a small Gaussian (with dispersion $10^{-4}$) around the fiducial parameter position $\bs{\theta}_0 = (0.2, \mu_0, 0.1^\circ, 0, 1)$, with $\mu_0$ determined by binning the $\phi_2$ distribution and taking the bin center with the most number of stars.
+We use 64 walkers in the sampler and, for a given $\phi_1$ bin, initialize the positions of the walkers by sampling from a small Gaussian (with dispersion $10^{-4}$) around the fiducial parameter position $\bs{\theta}_0 = (0.2, \mu_0, 0.1^\circ, 0, 1)$, with $\mu_0$ determined by binning the $\phi_2$ distribution and taking the bin center with the most stars.
 We initially burn-in the samplers for 512 steps, then reset and re-run for an additional 1024 steps.
 We then compute the median and (16, 84)th percentile parameter values in each $\phi_1$ bin.
 % \sa{As Ana suggested, we could add a data figure, discuss it and mention that there are 3000$\pm 100$ stars between $20<g<23$ as part of the density discussion}.
@@ -309,7 +315,7 @@ Note that \citet{wang:2012} constructed a bar with a pattern speed of $\Omega_b$
 %This is the radius at which the circular frequency ($\Omega_0$) is equal to the spin of the bar ($\Omega_b$) including the mass of the total potential.
 In this paper, however, we explore a range of pattern speeds, which will lead to different co-rotation radii for different pattern speeds. % (faster bars have co-rotation at smaller radii and vice versa).
 
-As bars are not expected to extend much beyond their co-rotation radius (e.g. \citealt{Debattista:2002}, \citealt{Debattista:2002b}, \citealt{weiner:1999}), we therefore adjust the physical scaling of the bar when we vary the pattern speed. %In \citet{wang:2012}, the scale-radius, $r_s$, assumed in the BFE, is  $r_s = 1.1$ kpc.
+As bars are not expected to extend much beyond their co-rotation radius \citep[e.g.,][]{weiner:1999, Debattista:2002, Debattista:2002b}, we therefore adjust the physical scaling of the bar when we vary the pattern speed. %In \citet{wang:2012}, the scale-radius, $r_s$, assumed in the BFE, is  $r_s = 1.1$ kpc.
 In particular, we compute the co-rotation radius, $r_{\rm CR}$, for the mass profiles of the static potential for any given pattern speed, $\Omega_b$.
 We then scale the bar potential for a given pattern speed, $\Omega_b$:
 \begin{equation}\label{eq:scale}
@@ -334,9 +340,12 @@ We use the observed 6D phase space coordinates of the Pal 5 cluster (see table 1
 The best-fit present-day kinematics of Pal 5 that reproduce the observed sky track in the static potential are $\alpha = 229.0264^\circ$, $\delta = -0.1368^\circ$, $d = 22.5~\kpc$, $v_r = -56.2~\kms$, $\mu_{\alpha\,\cos\delta} = -2.21~\masyr$, and $\mu_\delta = -2.23~\masyr$.
 % Thus, in order to fit the stream track, Pal 5's 6D phase space coordinates differ slightly from the observed quantities. This indicates that we need to update the potential parameters, but carefully fitting the potential is beyond the scope of this paper (see e.g. \citealt{Kupper:2015}).
 
-We integrate the best-fit cluster phase-space parameters backwards in time for 3 Gyr in steps of 0.5 Myr to generate the orbit of the progenitor system. % (see potentials in Section \ref{sec:potential}).
-Subsequently, we simulate the forward evolution of Pal~5 using the ``particle-spray'' stream generating method developed by \citet{Fardal:2015} and implemented in the \package{gala} package \citep{gala}, such that the cluster ends at its present day position at $t = 0$.
-We release two particles near each of the two Lagrange points from the progenitor at every time step with the \citet{Fardal:2015} stream distribution function. % (i.e. 2 particles every 0.5 Myr for 3 Gyr).
+With the present-day location of Pal~5 in hand, we generate the orbit of the progenitor system by integrating Pal~5's current 6D position back in time for 3\,Gyr in steps of 0.5\,Myr.
+To generate the mock stream, we then simulate the forward evolution of the cluster and release two particles from the progenitor's Lagrange points at every time step using the \citet{Fardal:2015} distribution function implemented in the \package{gala} package \citep{gala}.
+% We then simulate the forward evolution of Pal~5 using the ``particle-spray'' stream generating method.
+% which ensures that the model cluster ends at Pal~5's present day position at $t = 0$.
+% To generate the mock stream, we release two particles from the progenitor's Lagrange points at every time step using the \citet{Fardal:2015} distribution function implemented in the \package{gala} package \citep{gala}.
+% (i.e. 2 particles every 0.5 Myr for 3 Gyr).
 We account for the self-gravity of the Pal~5 cluster by including a Plummer mass component with the initial half-mass radius of $r_h = 4~\textrm{pc}$ and the initial effective mass, $\textrm{M}_p = 14,404~\msun$.
 This mass was obtained from the stream track fitting and sets the scaling between the Lagrange points for the modified ``particle spray'' method (\citealt{Fardal:2015}).
 This is comparable to $12,200 \pm 200~\msun$ that \citet{Ibata:2017} report for the present-day mass of the cluster and tails combined.
@@ -354,7 +363,7 @@ We then simulate the evolution of the stream in time-dependent barred potentials
 In Figure~\ref{fig:sims} we summarize the results of our suite of Pal~5 simulations.
 In the top row we present the morphology of the simulated Pal~5 mock-streams evolved in the static potentials with two different flattenings ($q_z = 0.94$ and $q_z = 0.5$) and we show two examples of mock-streams evolved in the ``light'' (M$_{\rm bar} = 5\times 10^9~\msun$) and ``massive'' (M$_{\rm bar} = 1\times 10^{10}~\msun$) time-dependent barred potentials.
 All mock-streams are visualized in the coordinate system aligned with Pal 5's tidal tails (see also Figure \ref{fig:cmds}), and the leading tail is at positive $\phi_1$.
-The four bottom rows of Figure \ref{fig:sims} show results of the 1D density model for the stream track (second row), the track deviations from a second order polynomial (third row), stream number density (fourth row), and the stream width (fith row) of the simulated mock-streams (black) as well as of the data (blue shaded region, same as in Figure~\ref{fig:profiles}).
+The four bottom rows of Figure \ref{fig:sims} show results of the 1D density model for the stream track (second row), the track deviations from a second order polynomial (third row), stream number density (fourth row), and the stream width (fifth row) of the simulated mock-streams (black) as well as of the data (blue shaded region, same as in Figure~\ref{fig:profiles}).
 %The two left columns show Pal~5 evolved in a static potential with two different halo flattenings ($q_z = 0.94$ and $q_z = 0.5$).
 %In the third and fourth columns, we highlight two particular simulations of mock streams evolved in time-dependent barred potentials.
 
@@ -395,7 +404,8 @@ In particular, the number of stars in the leading tail at $\phi_1 > 2.5$ is low 
 The width of the trailing mock-stream matches the observed data well, and the part of the leading tail that has not been truncated also follows the overall trends of the data.
 
 The mock stream evolved in a potential including the  ``massive bar'' (M$_{\rm bar} = 1\times 10^{10}~\msun$, $\Omega_b = 45~\kmskpc$), demonstrates a scenario in which the leading tail has been widened by the bar (fifth row), to a similar width as observed in the data.
-In this scenario, the leading tail has not been truncated and there is a high number density of stars in the leading as in the trailing tail.
+In this scenario, the leading tail has not been truncated and there is a comparable number of stars in the leading and trailing tail.
+% high number density of stars in the leading as in the trailing tail.
 The bar has, however, induced over- and under-densities (``gaps'') throughout both the leading and trailing tail  (fourth row).
 While this is also seen in the data, the mock-stream visualized here does not follow the gaps seen in the data exactly (located at $\rm R.A.\approx 227^\circ$ and $235^\circ$ for the leading and trailing tail, respectively, which is equivalent to $\phi_1 \approx 2.5^\circ$ and $-7^\circ$).
 Interestingly, for this particular pattern speed, the bar has shifted the stream track of the trailing tail  (see second and third row).
@@ -500,7 +510,7 @@ However, these simulations fail to reproduce the specific observed gaps in the s
 In this section we discuss perturbing mechanisms that could jointly explain this transformed view of the Pal~5 stream.
 
 The striking asymmetry in the length and width of Pal~5's two tidal arms is immediately obvious from Figure~\ref{fig:map}.
-Recently, \citet{Starkman:2019} reported an extension of Pal~5's leading tail that nearly matches the extent of the trailing tail based on a selection of main sequence turn-off stars that have proper motions similar the Pal~5 cluster.
+Recently, \citet{Starkman:2019} reported an extension of Pal~5's leading tail that nearly matches the extent of the trailing tail based on a selection of main sequence turn-off stars that have proper motions similar to the Pal~5 cluster.
 This choice of sparse tracers limits the confidence in estimating both the width and the density along the tails.
 So while our deep photometry also indicates the leading tail extending further (Figure~\ref{fig:map}), this extension has a significantly larger width and lower surface density.
 At a fixed density threshold, we confirm the original \citet{Bernard:2016} discovery that Pal~5's leading tail is only half as long as the trailing tail.
@@ -536,7 +546,7 @@ Our dataset enables a confident measurement of the gap profile above the Milky W
 %Ultimately, such modeling will determine the nature of Pal~5's small-scale perturbers and measure the abundance of low-mass dark-matter subhalos in the Milky Way halo.
 
 The depth of the DECaLS catalog also allows for a more confidently determined stream track and reveals its surprising deviations: a global change in Pal~5's curvature $\sim5^\circ$ from the cluster, and $\sim20'$ oscillations, or wiggles, in the trailing tail (Figure~\ref{fig:profiles}).
-While different simulations capture some of these features (the curvature in the leading tail is reproduced in the ``Chaotic'' and ``Light bar'' models, and the ``Regular'' and ``Massive bar'' models match the curvature in trailing tail), no model recovers the whole stream track.
+While different simulations capture some of these features (the curvature in the leading tail is reproduced in the ``Chaotic'' and ``Light bar'' models, and the ``Regular'' and ``Massive bar'' models match the curvature in the trailing tail), no model recovers the whole stream track.
 % Neither of these features is reproduced in our simulations, even those that have been perturbed by a rotating bar (\citealt{Erkal:2017} models feature a similar discrepancy).
 % \sa{I think the curvature is actually captured, but not the wiggles, so we should re-phrase.}
 Fisher information considerations in a static gravitational potential imply that the stream track encodes the enclosed mass at the current location of the stream \citep{Bonaca:2018}.
