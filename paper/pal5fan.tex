@@ -178,7 +178,8 @@ We limit the sample to sources with $g<23$ to reduce inhomogeneities due to the 
 
 To further refine the Pal~5 membership, we next perform the isochrone selection that varies the distance along the stream.
 We start by approximating the distance to the nine segments of the Pal~5 stream indicated in Figure~\ref{fig:cmds} from the locations of their main-sequence turn-offs.
-The adopted distance modulus is indicated in CMD panels at the bottom of Figure~\ref{fig:cmds}, and the corresponding isochrone is shown in orange.
+The adopted distance modulus relative to the cluster bin (segment 6) is indicated in CMD panels at the bottom of Figure~\ref{fig:cmds}, and the corresponding isochrone is shown in orange.
+We find that, from qualitatively matching the location of the turn-off, the leading tail is closer than the trailing tail in agreement with the precise RR Lyrae distance trend found in \citet{Price-Whelan:2019}.
 We perform the updated isochrone selection in $2^\circ$ bins of $\phi_1$ by interpolating the location of the main-sequence selection box between these distance estimates.
 With the improved star--galaxy separation and a selection that accounts for the distance gradient along the stream, Pal~5 tails are prominent between $\rm R.A.\sim223^\circ$ and $\sim245^\circ$ (Figure~\ref{fig:map}).
 
@@ -336,7 +337,7 @@ If the scaling in Equation \ref{eq:scale} is not included \citep[as in, e.g.,][]
 \label{sec:modeling}
 
 To simulate the evolution of Pal~5 in a given potential model, we first fit the stream track of Pal 5 in the static potential---that is, we fit for Pal 5 initial conditions that generate mock stream models that fit the observed sky track of the stream (Section~\ref{sec:densitymodel}).
-We use the observed 6D phase space coordinates of the Pal 5 cluster (see table 1 in \citealt{Pearson:2017} and references therein) to initialize the track fit and transform our fitted 6D phase space coordinates into a Galactocentric frame by assuming $v_{lsr} = (11.1, 24.0, 7.25) ~\kms$,  $v_{circ} = 220~\kms$, and a distance from the Sun to the Galactic center of 8.1 kpc (\citealt{Schonrich:2010}, \citealt{Schonrich:2012}).
+We use the observed 6D phase space coordinates of the Pal 5 cluster (see table 1 in \citealt{Pearson:2017} and references therein, especially \citealt{Fritz:2015}) to initialize the track fit and transform our fitted 6D phase space coordinates into a Galactocentric frame by assuming $v_{lsr} = (11.1, 24.0, 7.25) ~\kms$,  $v_{circ} = 220~\kms$, and a distance from the Sun to the Galactic center of 8.1 kpc (\citealt{Schonrich:2010}, \citealt{Schonrich:2012}).
 The best-fit present-day kinematics of Pal 5 that reproduce the observed sky track in the static potential are $\alpha = 229.0264^\circ$, $\delta = -0.1368^\circ$, $d = 22.5~\kpc$, $v_r = -56.2~\kms$, $\mu_{\alpha\,\cos\delta} = -2.21~\masyr$, and $\mu_\delta = -2.23~\masyr$.
 
 With the present-day location of Pal~5 in hand, we generate the orbit of the progenitor system by integrating Pal~5's current 6D position back in time for 3\,Gyr in steps of 0.5\,Myr.
