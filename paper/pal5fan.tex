@@ -84,8 +84,8 @@
 
 \begin{abstract}\noindent % trust me
 Stars that escape globular clusters form tidal tails that are predominantly shaped by the global distribution of mass in the Galaxy, but also preserve a historical record of small-scale perturbations.
-Using deep $grz$ photometry from DECaLS, we present highly probable members of the tidal tails associated with the disrupting globular cluster Palomar~5.
-These data yield the cleanest view of a stellar stream beyond $\sim20\,\rm kpc$ and reveal: (1) a wide, low surface-brightness extension of the leading tail, (2) significant density variations along the stream, and (3) sharp changes in the direction of both the leading and the trailing tail.
+Using deep $grz$ photometry from Leagcy Surveys DECaLS, we present highly probable members of the tidal tails associated with the disrupting globular cluster Palomar~5.
+These data yield the cleanest view of a stellar stream beyond $\sim20\,\rm kpc$ and reveal: (1) a wide, low surface-brightness extension of the leading tail; (2) significant density variations along the stream; and (3) sharp changes in the direction of both the leading and the trailing tail.
 In the fiducial Milky Way model, a rotating bar perturbs the Palomar~5 tails and can produce streams with similar width and density profiles to those observed.
 %SP should we mention that chaos can make the stream wide?
 However, the deviations of the stream track in this simple model do not match those observed in the Palomar~5 trailing tail, indicating the need for an additional source of perturbation.
@@ -153,21 +153,21 @@ The median (minimum) $5\,\sigma$ PSF depth in the Pal~5 region is $g=25.6(25.3)$
 To select likely Pal~5 stars, we first queried the DECaLS DR8 sweep catalogs\footnote{\url{http://legacysurvey.org/dr8/files/\#sweep-catalogs-region-sweep}} for point sources.
 The catalog was constructed using \tractor\ forward-modeling code for source extraction\footnote{\url{https://github.com/dstndstn/tractor}} and a source was classified as \texttt{`PSF'} if the PSF model was preferred to the round exponential model used to represent galaxies\footnote{\url{https://github.com/legacysurvey/legacypipe}}.
 We removed spurious sources by requiring \texttt{allmask\_g==0}, \texttt{allmask\_r==0} and \texttt{brightstarinblob==0}.
-With this clean stellar catalog, we identified stars on Pal~5's main sequence in the dereddened color-magnitude diagram \citep{Schlegel:1998}.
+With this clean stellar catalog, we identified stars on Pal~5's main sequence in the dereddened color-magnitude diagram \citep[using the re-calibrated SFD dust map;][]{Schlegel:1998, Schlafly:2011}.
 Specifically, we selected stars following an 11.5\,Gyr MIST isochrone with $\rm [Fe/H] = -1.3$ \citep{Choi:2016} between $20<g<23.7$.
 
 In the top panel of Figure~\ref{fig:cmds} we present the sky distribution of likely Pal~5 main sequence stars.
-The $(\phi_1,\phi_2)$ coordinate frame is oriented along the great circle that best-fits the Pal~5 stream, while keeping the cluster at the origin and its motion in the direction of positive $\phi_1$ \citep{gala}.
+The $(\phi_1,\phi_2)$ coordinate frame is oriented along the great circle that best-fits the Pal~5 stream, while keeping the cluster at the origin $(\phi_1 = 0^\circ,\phi_2 = 0^\circ)$  and its motion in the direction of positive $\phi_1$ \citep{gala}.
 There is a distance gradient along the Pal~5 stream \citep{Ibata:2016}, so to increase its contrast against the field Milky Way stars, we applied the isochrone selection at two distances: 23\,kpc for $\phi_1<=0^\circ$ and 19\,kpc for $\phi_1>0^\circ$.
 With our map, Pal~5 is continuously detected between $\phi_1=-15^\circ$ and $7^\circ$.
 % for the first time. \sa{Should we state which part is "for the first time"? e.g. is it the extra degrees in the leading tail? Do we need to cite Bovy's new pal 5 paper?}
 
 The color-magnitude diagrams (CMDs) of stars in different regions of the Pal~5 stream are shown in the bottom of Figure~\ref{fig:cmds}.
-Each panel contains stars from a $3^\circ$ long and $0.8^\circ$ wide area marked in the top of Figure~\ref{fig:cmds}.
+Each panel contains stars from a $3^\circ$ long and $0.8^\circ$ wide area marked in the top of Figure~\ref{fig:cmds} (see red boxes).
 The Pal~5 main-sequence turn-off at $g\sim20.5$ stands out in all fields, but the depth to which the main sequence is detected varies from $g\sim24$ close to the cluster to $g\sim22$ in the leading tail.
 The non-uniform detection depth is partly due to variable photometric depth (the coverage is shallower in the leading tail), and partly due to contamination from the Sagittarius stellar stream (main-sequence turn-off at $g\sim22$ for $\phi_1\gtrsim-5^\circ$) and faint galaxies ($g\gtrsim23$).
 Despite these challenges, the Pal~5 main-sequence is evident even in field~9 ($9^\circ<\phi_1<12^\circ$), beyond the apparent leading tail truncation at $\phi_1\sim7^\circ$.
-This indicates that Pal~5 tails may be longer than previously thought.
+This indicates that Pal~5 tails may be longer than previously thought (\citealt{Bernard:2016}).
 
 To improve our selection of Pal~5 members, we first employ the $z$-band to distinguish between faint stars and galaxies more efficiently.
 In DECam filters, the $g-z$ color of stars bluer than $g-r\lesssim1.2$ is approximately linear with the $g-r$ color \citep[e.g.,][]{dey2019}.
@@ -178,7 +178,8 @@ We limit the sample to sources with $g<23$ to reduce inhomogeneities due to the 
 
 To further refine the Pal~5 membership, we next perform the isochrone selection that varies the distance along the stream.
 We start by approximating the distance to the nine segments of the Pal~5 stream indicated in Figure~\ref{fig:cmds} from the locations of their main-sequence turn-offs.
-The adopted distance modulus is indicated in CMD panels at the bottom of Figure~\ref{fig:cmds}, and the corresponding isochrone is shown in orange.
+The adopted distance modulus relative to the cluster bin (segment 6) is indicated in CMD panels at the bottom of Figure~\ref{fig:cmds}, and the corresponding isochrone is shown in orange.
+We find that, from qualitatively matching the location of the turn-off, the leading tail is closer than the trailing tail in agreement with the precise RR Lyrae distance trend found in \citet{Price-Whelan:2019}.
 We perform the updated isochrone selection in $2^\circ$ bins of $\phi_1$ by interpolating the location of the main-sequence selection box between these distance estimates.
 With the improved star--galaxy separation and a selection that accounts for the distance gradient along the stream, Pal~5 tails are prominent between $\rm R.A.\sim223^\circ$ and $\sim245^\circ$ (Figure~\ref{fig:map}).
 
@@ -261,7 +262,7 @@ We then compute the median and (16, 84)th percentile parameter values in each $\
 
 Figure~\ref{fig:profiles} shows the results of running this density model on the observed distribution of Pal~5 members (top row).
 In the second row, we present the inferred stream track (solid blue line and confidence interval).
-As previously found by \citet{Bernard:2016}, the trailing tail is significantly longer than the leading tail ($\approx16^\circ$ vs $\approx8^\circ$ in our data). 
+As previously found by \citet{Bernard:2016}, the trailing tail is significantly longer than the leading tail ($\approx16^\circ$ vs $\approx8^\circ$ in our data).
 The general curvature of the stream is well-captured by second-order polynomials (fits to the leading and the trailing arm are shown as dotted lines).
 However, the stream track changes direction at several locations, as evident in the track's deviation from the polynomial fits (third row).
 Two of these wiggles appear almost symmetrically in the leading and trailing tails at $\phi_1\approx3.5^\circ$ and $\phi_1\approx-4.5^\circ$, respectively, while the trailing tail has another wiggle at $\phi_1\approx-13^\circ$.
@@ -315,7 +316,7 @@ Note that \citet{wang:2012} constructed a bar with a pattern speed of $\Omega_b$
 %This is the radius at which the circular frequency ($\Omega_0$) is equal to the spin of the bar ($\Omega_b$) including the mass of the total potential.
 In this paper, however, we explore a range of pattern speeds, which will lead to different co-rotation radii for different pattern speeds. % (faster bars have co-rotation at smaller radii and vice versa).
 
-As bars are not expected to extend much beyond their co-rotation radius \citep[e.g.,][]{weiner:1999, Debattista:2002, Debattista:2002b}, we therefore adjust the physical scaling of the bar when we vary the pattern speed. %In \citet{wang:2012}, the scale-radius, $r_s$, assumed in the BFE, is  $r_s = 1.1$ kpc.
+As bars are not expected to extend much beyond their co-rotation radius \citep[e.g.,][]{weiner:1999, Debattista:2002, Debattista:2002b}, we adjust the physical scaling of the bar when we vary the pattern speed. %In \citet{wang:2012}, the scale-radius, $r_s$, assumed in the BFE, is  $r_s = 1.1$ kpc.
 In particular, we compute the co-rotation radius, $r_{\rm CR}$, for the mass profiles of the static potential for any given pattern speed, $\Omega_b$.
 We then scale the bar potential for a given pattern speed, $\Omega_b$:
 \begin{equation}\label{eq:scale}
@@ -336,7 +337,7 @@ If the scaling in Equation \ref{eq:scale} is not included \citep[as in, e.g.,][]
 \label{sec:modeling}
 
 To simulate the evolution of Pal~5 in a given potential model, we first fit the stream track of Pal 5 in the static potential---that is, we fit for Pal 5 initial conditions that generate mock stream models that fit the observed sky track of the stream (Section~\ref{sec:densitymodel}).
-We use the observed 6D phase space coordinates of the Pal 5 cluster (see table 1 in \citealt{Pearson:2017} and references therein) to initialize the track fit and transform our fitted 6D phase space coordinates into a Galactocentric frame by assuming $v_{lsr} = (11.1, 24.0, 7.25) ~\kms$,  $v_{circ} = 220~\kms$, and a distance from the Sun to the Galactic center of 8.1 kpc (\citealt{Schonrich:2010}, \citealt{Schonrich:2012}).
+We use the observed 6D phase space coordinates of the Pal 5 cluster (see table 1 in \citealt{Pearson:2017} and references therein, especially \citealt{Fritz:2015}) to initialize the track fit and transform our fitted 6D phase space coordinates into a Galactocentric frame by assuming $v_{lsr} = (11.1, 24.0, 7.25) ~\kms$,  $v_{circ} = 220~\kms$, and a distance from the Sun to the Galactic center of 8.1 kpc (\citealt{Schonrich:2010}, \citealt{Schonrich:2012}).
 The best-fit present-day kinematics of Pal 5 that reproduce the observed sky track in the static potential are $\alpha = 229.0264^\circ$, $\delta = -0.1368^\circ$, $d = 22.5~\kpc$, $v_r = -56.2~\kms$, $\mu_{\alpha\,\cos\delta} = -2.21~\masyr$, and $\mu_\delta = -2.23~\masyr$.
 
 With the present-day location of Pal~5 in hand, we generate the orbit of the progenitor system by integrating Pal~5's current 6D position back in time for 3\,Gyr in steps of 0.5\,Myr.
@@ -378,7 +379,7 @@ These simulations individually reproduce many of the features observed in Pal~5 
 \end{figure*}
 
 
-We used the mildly flattened ($q_z = 0.94$) static potential to fit the track of the stream (see Section \ref{sec:modeling}), and it is therefore not surprising that the track (second row) and track deviations (third row) of the mock-stream evolved on a regular orbit (left column, black) looks similar to the track of the data (blue).
+We used the mildly flattened ($q_z = 0.94$) static potential to fit the track of the stream (see Section \ref{sec:modeling}), and it is therefore not surprising that the track (second row) and track deviations (third row) of the mock-stream evolved on the ``Regular'' orbit (left column, black) looks similar to the track of the data (blue).
 While the data shows variability in the number density of stars (fourth row), the mock-stream, however, has a similar number of stars in both the trailing a the leading tail.
 Additionally, the width of both the leading and the trailing mock-stream are too narrow for |$\phi_1| < 7$ as compared to the data (fifth row).
 While the overall width trends for the trailing tail  at larger negative $\phi_1$ are reproduced, the leading tail of the simulated stream is too narrow as compared to the widened ``fan'' seen in the leading tail of the data.
@@ -387,7 +388,7 @@ For the mock-stream evolved in a flattened potential,
 %on a chaotic orbit (second column),
 we chose a flattening of $q_z = 0.5$  in order to investigate the morphology of a mock-stream on a chaotic orbit (see also \citealt{Fardal:2015}).
 The track of the leading tail (third row, black) deviates from the observed stream track (blue) reflecting the extreme flattening of the halo shape.
-Interestingly, the number density of stars is roughly symmetric for the leading and trailing tail  (fourth row), which was also the case for the regular orbit. 
+Interestingly, the number density of stars is roughly symmetric for the leading and trailing tail  (fourth row), which was also the case for the regular orbit.
 While the width (fifth row) of the leading tail is slightly wider for the chaotic mock-stream than for the mock-stream evolved on a regular orbit (left), the mock-stream width is still too narrow when compared to the leading tail data (blue).
 The trailing tail, on the other hand, is much wider for the chaotic mock-stream than for the data.
 Thus, the chaotic orbit induces a widening of both the leading and trailing tail, but this widening does not mimic the particular asymmetric widening of the data (see also \citealt{Pearson:2015}, \citealt{Price-Whelan:2016}).
@@ -507,7 +508,7 @@ In this section we discuss perturbing mechanisms that could jointly explain this
 The striking asymmetry in the length and width of Pal~5's two tidal arms is immediately obvious from Figure~\ref{fig:map}.
 Recently, \citet{Starkman:2019} reported an extension of Pal~5's leading tail that nearly matches the extent of the trailing tail based on a selection of main sequence turn-off stars that have proper motions similar to the Pal~5 cluster.
 This choice of sparse tracers limits the confidence in estimating both the width and the density along the tails.
-So while our deep photometry also indicates the leading tail extending further (Figure~\ref{fig:map}), this extension has a significantly larger width and lower surface density.
+So while our deep photometry also indicates the leading tail extending further (Figure~\ref{fig:map}), this extension (i.e., the fan) has a significantly larger width and lower surface density.
 At a fixed density threshold, we confirm the original \citet{Bernard:2016} discovery that Pal~5's leading tail is only half as long as the trailing tail.
 % - fan cmd indicates pal5 stars in this extension, but at significantly lower density, not easily interpretable from smoothed sparse distribution
 % first reported in \citet{Bernard:2016},
@@ -545,7 +546,7 @@ While different simulations capture some of these features (the curvature in the
 % Neither of these features is reproduced in our simulations, even those that have been perturbed by a rotating bar (\citealt{Erkal:2017} models feature a similar discrepancy).
 % \sa{I think the curvature is actually captured, but not the wiggles, so we should re-phrase.}
 Fisher information considerations in a static gravitational potential imply that the stream track encodes the enclosed mass at the current location of the stream \citep{Bonaca:2018}.
-The change in the Pal~5's curvature occurs at a nearly symmetric position along the leading and the trailing tail, so this may indicate a sudden change in the enclosed mass inside Pal~5's orbit.
+The change in the curvature of Pal 5’s tidal arms occurs at a nearly symmetric position along the leading and the trailing arm, so this may indicate a sudden change in the enclosed mass inside Pal~5's orbit.
 For example, when a stream encounters a massive object, its overall orbit can change and produce a misalignment between the proper motions and the stream track \citep{Erkal:2018, Koposov:2019}.
 Measuring the relative angle between the proper-motion vector and the stream track along the Pal~5 tails would therefore test whether it has encountered a massive perturber.
 % \ab{Does the timing work out with Sgr falling in? Ie, how old is the 10deg chunk of the stream (5deg on either side of the progenitor)?}
@@ -604,7 +605,7 @@ Our results suggest that dynamical inferences about the bar, spiral arms, molecu
 
 
 \acknowledgements{
-It is a pleasure to thank Charlie Conroy's and Doug Finkbeiner's groups at the CfA, ...
+It is a pleasure to thank Charlie Conroy's and Doug Finkbeiner's groups at the CfA. 
 This work was performed in part during the Gaia19 workshop and the 2019 Santa Barbara Gaia Sprint (also supported by the Heising-Simons Foundation), both hosted by the Kavli Institute for Theoretical Physics at the University of California, Santa Barbara. The Flatiron Institute is supported by the Simons Foundation.
 
 
