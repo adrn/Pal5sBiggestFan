@@ -355,6 +355,8 @@ Starting from this point and integrating forward to the present day, we simulate
 We account for the self-gravity of the Pal~5 cluster by including a Plummer mass component with the initial half-mass radius of $r_h = 4~\textrm{pc}$ and the initial effective mass, $\textrm{M}_p = 14,404~\msun$.
 This mass was obtained from the stream track fitting and sets the scaling between the Lagrange points for the modified ``particle spray'' method (\citealt{Fardal:2015}).
 This is comparable to $12,200 \pm 200~\msun$ that \citet{Ibata:2017} report for the present-day mass of the cluster and tails combined.
+%star particles are created near the Lagrange points of a progenitor system%on a given orbit with dispersions in position and velocity set by the mass and%orbit of the progenitor (see section 2.4 in ref. 60).
+\changes{As the star particles are released at each time step, they have dispersions in position and velocity set by the mass andorbit of the progenitor (see section 2.4 in \citealt{Fardal:2015})}. 
 
 To investigate Pal~5's evolution on a regular orbit, we first run a ``particle-spray'' simulation in the static potential, setting $q_z = 0.94$ \citep{Bovy:2016}.
 Subsequently, we run the same simulation setting $q_z = 0.5$ to place Pal~5 on a strongly chaotic orbit.
