@@ -154,7 +154,9 @@ We then explore how these properties change across Pal~5 models simulated in a r
 \includegraphics[width=0.83\textwidth]{fig1_b_cmds.pdf}
 \end{center}
 \caption{
-(Top) The Legacy Surveys detection of the Palomar 5 globular cluster in a coordinate system aligned with its tidal tails.
+(Top) The Legacy Surveys detection of the Palomar 5 globular cluster in a
+coordinate system aligned with its tidal tails \changes{(see
+Appendix~\ref{sec:coordtransform})}.
 (Bottom) Color-magnitude diagrams of $\approx0.8\times3$\,deg$^2$ windows along the tails.
 The regions are labeled in the top left of each panel, and their sky locations are marked in the top panel.
 A stellar population consistent with Pal~5 is evident in every region, although its prominence varies between the fields.
@@ -240,7 +242,9 @@ We initialize bin centers between $\phi_1 \in (-20, 10)^\circ$ with a spacing of
 \includegraphics[width=0.8\columnwidth]{observed_profiles.pdf}
 \end{center}
 \caption{
-Members of the Pal~5 stream, in a coordinate system aligned with the stream, used for 1D density modeling (top row).
+Members of the Pal~5 stream, in a coordinate system aligned with the stream
+\changes{(see Appendix~\ref{sec:coordtransform})}, used for 1D density modeling
+(top row).
 The inferred stream track and its residual from second-order polynomial fits to each tidal arm (rows 2 and 3, respectively) show sharp changes in the tails' direction (``wiggles'').
 The density profile (row 4) is asymmetric overall, and features two prominent underdensities (``gaps'').
 The trailing tail remains thin even far from the cluster, while the leading has a marked increase in width past $\phi_1\gtrsim5^\circ$ (the ``fan'', row 5).
@@ -351,9 +355,15 @@ The best-fit present-day kinematics of Pal~5 that reproduce the observed sky tra
 
 With the present-day location of Pal~5 in hand, we generate the orbit of the progenitor system by integrating Pal~5's current 6D position back in time for 3\,Gyr in steps of 0.5\,Myr.
 Starting from this point and integrating forward to the present day, we simulate the cluster's disruption and the formation of the stream by releasing two particles from the progenitor's Lagrange points at every time step, using the \citet{Fardal:2015} distribution function implemented in the \package{gala} package \citep{gala}.
+\changes{This method is efficient for generating mock-streams and is similar to methods presented in \citet{Kupper:2012} (see also \citealt{Varghese:2011, Lane:2012, Gibbons:2014}).}
 We account for the self-gravity of the Pal~5 cluster by including a Plummer mass component with the initial half-mass radius of $r_h = 4~\textrm{pc}$ and the initial effective mass, $\textrm{M}_p = 14,404~\msun$.
 This mass was obtained from the stream track fitting and sets the scaling between the Lagrange points for the modified ``particle spray'' method (\citealt{Fardal:2015}).
 This is comparable to $12,200 \pm 200~\msun$ that \citet{Ibata:2017} report for the present-day mass of the cluster and tails combined.
+%star particles are created near the Lagrange points of a progenitor system
+%on a given orbit with dispersions in position and velocity set by the mass and
+%orbit of the progenitor (see section 2.4 in ref. 60).
+\changes{As the star particles are released at each time step, they have dispersions in position and velocity set by the mass and
+orbit of the progenitor (see section 2.4 in \citealt{Fardal:2015})}.
 
 To investigate Pal~5's evolution on a regular orbit, we first run a ``particle-spray'' simulation in the static potential, setting $q_z = 0.94$ \citep{Bovy:2016}.
 Subsequently, we run the same simulation setting $q_z = 0.5$ to place Pal~5 on a strongly chaotic orbit.
@@ -363,7 +373,7 @@ We then simulate the evolution of the stream in time-dependent barred potentials
 \label{sec:sim_results}
 In Figure~\ref{fig:sims} we summarize the results of our suite of Pal~5 simulations.
 In the top row we present the morphology of the simulated Pal~5 mock-streams evolved in the static potentials with two different flattenings ($q_z = 0.94$ and $q_z = 0.5$) and we show two examples of mock-streams evolved in the ``light'' (M$_{\rm bar} = 5\times 10^9~\msun$) and ``massive'' (M$_{\rm bar} = 1\times 10^{10}~\msun$) time-dependent barred potentials.
-All mock-streams are visualized in the coordinate system aligned with Pal~5's tidal tails (see also Figure~\ref{fig:cmds}), and the leading tail is at positive $\phi_1$.
+All mock-streams are visualized in the coordinate system aligned with Pal~5's tidal tails (see also Figure~\ref{fig:cmds}), and the leading tail is at positive $\phi_1$ \changes{(see Appendix~\ref{sec:coordtransform})}.
 The four bottom rows of Figure~\ref{fig:sims} show results of the 1D density model for the stream track (second row), the track deviations from a second order polynomial (third row), stream number density (fourth row), and the stream width (fifth row) of the simulated mock-streams (black) as well as of the data (blue shaded region, same as in Figure~\ref{fig:profiles}).
 
 \begin{figure*}
@@ -491,6 +501,33 @@ The Flatiron Institute is supported by the Simons Foundation.
 The Legacy Surveys consist of three individual and complementary projects: the Dark Energy Camera Legacy Survey (DECaLS; NOAO Proposal ID \# 2014B-0404; PIs: David Schlegel and Arjun Dey), the Beijing-Arizona Sky Survey (BASS; NOAO Proposal ID \# 2015A-0801; PIs: Zhou Xu and Xiaohui Fan), and the Mayall z-band Legacy Survey (MzLS; NOAO Proposal ID \# 2016A-0453; PI: Arjun Dey). DECaLS, BASS and MzLS together include data obtained, respectively, at the Blanco telescope, Cerro Tololo Inter-American Observatory, National Optical Astronomy Observatory (NOAO); the Bok telescope, Steward Observatory, University of Arizona; and the Mayall telescope, Kitt Peak National Observatory, NOAO. The Legacy Surveys project is honored to be permitted to conduct astronomical research on Iolkam Du'ag (Kitt Peak), a mountain with particular significance to the Tohono O'odham Nation.
 
 The Legacy Surveys imaging of the DESI footprint is supported by the Director, Office of Science, Office of High Energy Physics of the U.S. Department of Energy under Contract No. DE-AC02-05CH1123, by the National Energy Research Scientific Computing Center, a DOE Office of Science User Facility under the same contract; and by the U.S. National Science Foundation, Division of Astronomical Sciences under Contract No. AST-0950945 to NOAO.
+
+\appendix
+
+\section{Definition of Pal 5 coordinates}
+\label{sec:coordtransform}
+
+\changes{We use a spherical coordinate system approximately aligned with the Pal
+5 stream, with the cluster center at the origin, $(\phi_1, \phi_2) = (0,
+0)^\circ$.
+The transformation matrix from ICRS to the Pal 5 coordinate system used in this
+paper is approximately represented as}
+\begin{equation*}
+\left( \begin{array}{c}
+x \\
+y \\
+z \end{array} \right)_{\rm Pal 5} \approx
+\left( \begin{array}{ccc}
+-0.65582036 & -0.75491389 & -0.00216422 \\
+-0.62865701 &  0.54771927 & -0.55208149 \\
+ 0.41795937 & -0.36070573 & -0.83378735
+\end{array} \right) \,
+\left( \begin{array}{c}
+x \\
+y \\
+z \end{array} \right)_{\rm ICRS}
+\end{equation*}
+\changes{and is implemented in the \texttt{Gala} Python package \citep{gala}}.
 
 \bibliographystyle{aasjournal}
 \bibliography{pal5fan}
