@@ -175,7 +175,7 @@ The median (minimum) $5\,\sigma$ PSF depth in the Pal~5 region is $g=25.6(25.3)$
 To select likely Pal~5 stars, we first queried the DECaLS DR8 sweep catalogs\footnote{\url{http://legacysurvey.org/dr8/files/\#sweep-catalogs-region-sweep}} for point sources.
 The catalog was constructed using \tractor\ forward-modeling code for source extraction\footnote{\url{https://github.com/dstndstn/tractor}} and a source was classified as \texttt{`PSF'} if the PSF model was preferred to the round exponential model used to represent galaxies\footnote{\url{https://github.com/legacysurvey/legacypipe}}.
 We removed spurious sources by requiring \texttt{allmask\_g==0}, \texttt{allmask\_r==0} and \texttt{brightstarinblob==0}.
-With this clean stellar catalog, we identified stars on Pal~5's main sequence in the dereddened color-magnitude diagram \citep[using the re-calibrated SFD dust map;][]{Schlegel:1998, Schlafly:2011}.
+With this clean stellar catalog, we identified stars on Pal~5's main sequence in the dereddened color-magnitude diagram\footnote{\changes{Dereddened photometry is designated with the subscript 0, e.g., $g_0$ and $(g-r)_0$.}} \citep[using the re-calibrated SFD dust map;][]{Schlegel:1998, Schlafly:2011}.
 Specifically, we selected stars following an 11.5\,Gyr MIST isochrone with $\rm [Fe/H] = -1.3$ \citep{Choi:2016} between $20<g<23.7$.
 
 In the top panel of Figure~\ref{fig:cmds} we present the sky distribution of likely Pal~5 main sequence stars.
@@ -185,8 +185,8 @@ With our map, Pal~5 is continuously detected between $\phi_1=-15^\circ$ and $7^\
 
 The color-magnitude diagrams (CMDs) of stars in different regions of the Pal~5 stream are shown in the bottom of Figure~\ref{fig:cmds}.
 Each panel contains stars from a $3^\circ$ long and $0.8^\circ$ wide area marked in the top of Figure~\ref{fig:cmds} (see red boxes).
-The Pal~5 main-sequence turn-off at $g\approx20.5$ stands out in all fields, but the depth to which the main sequence is detected varies from $g\approx24$ close to the cluster to $g\approx22$ in the leading tail.
-The non-uniform detection depth is partly due to variable photometric depth (the coverage is shallower in the leading tail), and partly due to contamination from the Sagittarius stellar stream (main-sequence turn-off at $g\approx22$ for $\phi_1\gtrsim-5^\circ$) and faint galaxies ($g\gtrsim23$).
+The Pal~5 main-sequence turn-off at $g_0\approx20.5$ stands out in all fields, but the depth to which the main sequence is detected varies from $g_0\approx24$ close to the cluster to $g_0\approx22$ in the leading tail.
+The non-uniform detection depth is partly due to variable photometric depth (the coverage is shallower in the leading tail), and partly due to contamination from the Sagittarius stellar stream (main-sequence turn-off at $g_0\approx22$ for $\phi_1\gtrsim-5^\circ$) and faint galaxies ($g_0\gtrsim23$).
 Despite these challenges, the Pal~5 main-sequence is evident even in field~9 ($9^\circ<\phi_1<12^\circ$), beyond the apparent leading tail truncation at $\phi_1\approx7^\circ$.
 This indicates that Pal~5 tails may be longer than previously thought (\citealt{Bernard:2016}).
 
@@ -195,10 +195,13 @@ In DECam filters, the $g-z$ color of stars bluer than $g-r\lesssim1.2$ is approx
 We adopted the stellar locus of $(g-z)_0 = 1.7\times(g-r)_0 -0.17$.
 On the other hand, galaxies span a wider distribution of redder $g-z$ colors at a fixed $g-r$ color.
 To exclude faint galaxies, we restrict to sources within 0.1\,mag of the stellar locus.
-We limit the sample to sources with $g<23$ to reduce inhomogeneities due to the shallow $z$-band coverage.
+We limit the sample to sources with $g_0<23$ to reduce inhomogeneities due to the shallow $z$-band coverage.
 
 To further refine the Pal~5 membership, we next perform the isochrone selection that varies the distance along the stream.
-We start by approximating the distance to the nine segments of the Pal~5 stream indicated in Figure~\ref{fig:cmds} from the locations of their main-sequence turn-offs.
+\changes{In each panel of Figure~\ref{fig:cmds}, an isochrone has been manually placed to the distance that matches the main-sequence turn-off of the Pal~5 population.
+This procedure is sufficiently precise to select Pal~5 members at high confidence, so we defer more precise modeling of Pal~5's stellar population along the tails to future work \citep[e.g., by using isochrone-fitting methods implemented in][]{brutus}.
+}
+% We start by approximating the distance to the nine segments of the Pal~5 stream indicated in Figure~\ref{fig:cmds} from the locations of their main-sequence turn-offs.
 The adopted distance modulus relative to the cluster bin (segment 6) is indicated in CMD panels at the bottom of Figure~\ref{fig:cmds}, and the corresponding isochrone is shown in orange.
 Qualitatively matching the location of the turn-off, we find that the leading tail is closer than the trailing tail, in agreement with the precise RR Lyrae distance trend found in \citet{Price-Whelan:2019}.
 We perform the updated isochrone selection in $2^\circ$ bins of $\phi_1$ by interpolating the location of the main-sequence selection box between these distance estimates.
@@ -292,11 +295,12 @@ However, the stream track changes direction at several locations, as evident in 
 Two of these wiggles appear almost symmetrically in the leading and trailing tails at $\phi_1\approx3.5^\circ$ and $\phi_1\approx-4.5^\circ$, respectively, while the trailing tail has another wiggle at $\phi_1\approx-13^\circ$.
 
 Next, we quantify the total number of stars in the Pal~5 stream, as well as its density profile (fourth row).
-Accounting for the field Milky Way population, we find $3000\pm100$ Pal~5 stars between $20<g<23$ excluding the progenitor.
+Accounting for the field Milky Way population, we find $3000\pm100$ Pal~5 stars between $20<g_0<23$ excluding the progenitor.
 Integrated out to $|\phi_1|=8^\circ$ (limited by the extent of the leading arm), the trailing and the leading tail have approximately the same number of stars.
 But much like the total stream extent, the density profile is also asymmetric, so within $5^\circ$ from the cluster, the trailing tail has a $50\,\%$ excess over the leading tail.
 On top of these global density variations, Pal~5 features two prominent underdensities at $\phi_1\approx-7^\circ$ and $\phi_1\approx3^\circ$.
-In the shallower CFHT data, these gaps were consistent with the background \citep{Erkal:2016}, while in our deeper data they are clearly detected above the background.
+\changes{Even in these underdense regions, deep DECaLS data enabled us to detect the stream more confidently above the background than in earlier data sets \citep[cf.][]{Bernard:2016, Erkal:2017}.}
+% In the shallower CFHT data, these gaps were consistent with the background \citep{Erkal:2017}, while in our deeper data they are clearly detected above the background.
 
 Finally, we measure how the width of Pal~5 varies along the stream (fifth row).
 Close to the cluster, both the leading and the trailing tail are thin, $\sigma\approx0.15^\circ$.
@@ -463,14 +467,17 @@ This disagreement is hardly surprising since we determined the orbit by only fit
 Our results suggest that stream modeling by matching the global density profile would put additional constraints on the inferred orbital phase of Pal~5, as well as on the underlying gravitational potential \citep[cf.][]{Kupper:2015, Bovy:2016}.
 }
 
-\changes{- smaller-scale variations, most prominent being an overdensity at (consistent w kupper2015) and underdensities at (consistent w erkal2017)
-- our models should have these features, but unperturbed ones instead only reproduce epicyclic overdensities close to the cluster
+\changes{We also detect small-scale density variations in Pal~5.
+The most prominent overdensities are at $\phi_1\approx\pm0.5^\circ$ \citep[consistent with][]{Kupper:2015}, while the most prominent underdensities (gaps) are at $\phi_1\approx-7^\circ$ and $3^\circ$ \citep[consistent with][]{Erkal:2017}.
+The density peaks are likely epicyclic overdensities \citep[predicted by][]{Kupper:2008, Just:2009, Kupper:2010}, and are prominently reproduced in our static Pal~5 models (see Figure~\ref{fig:sims}).
+On the other hand, static models fail to reproduce the large gaps detected in Pal~5.
+However, similar gaps can be induced in an encounter with objects such as the spiral arms, molecular clouds, or dark-matter subhalos \citep[e.g.,][]{Johnston:2002,Ibata:2002,Yoon:2011,Amorisco:2016,Banik:2019}.
 }
-In addition, streams can also be perturbed by smaller-scale objects, such as dark-matter subhalos, spiral arms and molecular clouds \citep[e.g.,][]{Yoon:2011,Amorisco:2016, Banik:2019}.
-An encounter with these more compact perturbers produces a gap in a stellar stream \citep[e.g.,][]{Johnston:2002,Ibata:2002}, and tidal tails of Pal~5 have long been searched for such density variations.
-The findings so far have been conflicting, with the number of gaps reported in Pal~5 ranging from five \citep{Carlberg:2012} to no gaps \citep{Ibata:2016}.
-With DECaLS photometry, we confirm the large-scale density variations reported by \citet{Erkal:2017}: the two most prominent underdensities in Pal~5 are a $\approx5^\circ$ gap in the trailing and a $\approx1^\circ$ gap in the leading tail.
-Based on mass arguments, \citet{Erkal:2017} suggested that the large gap in Pal~5 originates from a dark-matter subhalo encounter, while the small gap may have been produced by a molecular cloud.
+% In addition, streams can also be perturbed by smaller-scale objects, such as dark-matter subhalos, spiral arms and molecular clouds \citep[e.g.,][]{Yoon:2011, Amorisco:2016, Banik:2019}.
+% An encounter with these more compact perturbers produces a gap in a stellar stream \citep[e.g.,][]{Johnston:2002,Ibata:2002}, and tidal tails of Pal~5 have long been searched for such density variations.
+% The findings so far have been conflicting, with the number of gaps reported in Pal~5 ranging from five \citep{Carlberg:2012} to no gaps \citep{Ibata:2016}.
+% With DECaLS photometry, we confirm the large-scale density variations reported by \citet{Erkal:2017}: the two most prominent underdensities in Pal~5 are a $\approx5^\circ$ gap in the trailing and a $\approx1^\circ$ gap in the leading tail.
+Based on mass arguments, \citet{Erkal:2017} suggested that the small gap in Pal~5 may have been produced by a molecular cloud, while the large gap originates from a dark-matter subhalo encounter.
 In addition to the perturber's mass, details of the gap profile also depend on the time since the encounter and its impact parameter \citep{Erkal:2015}.
 Our dataset enables a confident measurement of the gap profile above the Milky Way field contamination, which will help in disentangling different encounter parameters, and ultimately determining the origin of these perturbations.
 
